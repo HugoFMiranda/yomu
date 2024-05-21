@@ -1,6 +1,6 @@
-| Download | Contribute |
-|-------|----------|
-| [![release](https://img.shields.io/github/release/HugoFMiranda/tachiyomi.svg?maxAge=3600&label=download)](https://github.com/HugoFMiranda/tachiyomiJ2K/releases) | [![Translation status](https://hosted.weblate.org/widgets/tachiyomi/-/tachiyomi-j2k/svg-badge.svg)](https://hosted.weblate.org/engage/tachiyomi/?utm_source=widget) |
+| Download |
+|-------|
+| [![release](https://img.shields.io/github/release/HugoFMiranda/tachiyomi.svg?maxAge=3600&label=download)](https://github.com/HugoFMiranda/tachiyomiJ2K/releases) |
 
 
 # ![app icon](./.github/readme-images/app-icon.png)TachiyomiJ2K
