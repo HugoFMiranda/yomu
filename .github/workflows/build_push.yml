@@ -9,6 +9,13 @@ on:
         description: 'Version'     
         required: true
         type: string
+
+permissions:
+  actions: write
+  checks: write
+  contents: write
+  pull-requests: write
+  workflow-runs: write
         
 jobs:
   build:
