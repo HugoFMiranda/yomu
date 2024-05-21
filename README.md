@@ -1,6 +1,6 @@
-| Download | Contribute | Support Server |
-|-------|----------|---------|
-| [![release](https://img.shields.io/github/release/HugoFMiranda/tachiyomi.svg?maxAge=3600&label=download)](https://github.com/HugoFMiranda/tachiyomiJ2K/releases) | [![Translation status](https://hosted.weblate.org/widgets/tachiyomi/-/tachiyomi-j2k/svg-badge.svg)](https://hosted.weblate.org/engage/tachiyomi/?utm_source=widget) | [![Discord](https://img.shields.io/discord/349436576037732353.svg?label=discord&labelColor=7289da&color=2c2f33&style=flat)](https://discord.gg/tachiyomi) |
+| Download | Contribute |
+|-------|----------|
+| [![release](https://img.shields.io/github/release/HugoFMiranda/tachiyomi.svg?maxAge=3600&label=download)](https://github.com/HugoFMiranda/tachiyomiJ2K/releases) | [![Translation status](https://hosted.weblate.org/widgets/tachiyomi/-/tachiyomi-j2k/svg-badge.svg)](https://hosted.weblate.org/engage/tachiyomi/?utm_source=widget) |
 
 
 # ![app icon](./.github/readme-images/app-icon.png)TachiyomiJ2K
@@ -39,63 +39,6 @@ Plus some new features in this fork such as:
 * View all chapters right in the reader
 * A lot more Material Design You additions
 * Android 12 features such as automatic extension and app updates
-
-## Issues, Feature Requests and Contributing
-
-Please make sure to read the full guidelines. Your issue may be closed without warning if you do not.
-
-<details><summary>Issues</summary>
-
-1. **Before reporting a new issue, take a look at the [FAQ](https://github.com/tachiyomiorg/tachiyomi/wiki/FAQ), the [changelog](https://github.com/jays2kings/tachiyomi/releases) and the already opened [issues](https://github.com/tachiyomiorg/tachiyomi/issues).**
-2. If you are unsure, ask here: [![Discord](https://img.shields.io/discord/349436576037732353.svg)](https://discord.gg/tachiyomi)
-
-</details>
-
-<details><summary>Bugs</summary>
-
-* Include version (Setting > About > Version)
- * If not latest, try updating, it may have already been solved
- * Dev version is equal to the number of commits as seen in the main page
-* Include steps to reproduce (if not obvious from description)
-* Include screenshot (if needed)
-* If it could be device-dependent, try reproducing on another device (if possible)
-* For large logs use http://pastebin.com/ (or similar)
-* Don't group unrelated requests into one issue
-
-DO: https://github.com/tachiyomiorg/tachiyomi/issues/24 https://github.com/tachiyomiorg/tachiyomi/issues/71
-
-DON'T: https://github.com/tachiyomiorg/tachiyomi/issues/75
-
-</details>
-
-<details><summary>Feature Requests</summary>
-
-* Write a detailed issue, explaning what it should do or how. Avoid writing just "like X app does"
-* Include screenshot (if needed)
-
-Source requests should be created at https://github.com/tachiyomiorg/tachiyomi-extensions, they do not belong in this repository.
-</details>
-
-## FAQ
-
-[See our website.](https://tachiyomi.org/)
-You can also reach out to us on [Discord](https://discord.gg/tachiyomi).
-
-## License
-
-    Copyright 2015 Javier Tomás
-
-    Licensed under the Apache License, Version 2.0 (the "License");
-    you may not use this file except in compliance with the License.
-    You may obtain a copy of the License at
-
-    http://www.apache.org/licenses/LICENSE-2.0
-
-    Unless required by applicable law or agreed to in writing, software
-    distributed under the License is distributed on an "AS IS" BASIS,
-    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-    See the License for the specific language governing permissions and
-    limitations under the License.
 
 ## Disclaimer
 
