@@ -3,7 +3,7 @@
 | [![release](https://img.shields.io/github/release/HugoFMiranda/tachiyomi.svg?maxAge=3600&label=download)](https://github.com/HugoFMiranda/tachiyomiJ2K/releases) |
 
 
-# ![app icon](./.github/readme-images/app-icon.png)TachiyomiJ2K
+# ![app icon](./.github/readme-images/app-icon.png)TachiyomiHFM
 TachiyomiJ2K is a free and open source manga reader for Android 6.0 and above. Based on the original [Tachiyomi](https://github.com/tachiyomiorg/tachiyomi)
 
 ![screenshots of app](./.github/readme-images/screens.gif)
