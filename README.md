@@ -1,6 +1,6 @@
 | Download |
 |-------|
-| [![release](https://img.shields.io/github/release/HugoFMiranda/tachiyomi.svg?maxAge=3600&label=download)](https://github.com/HugoFMiranda/tachiyomiJ2K/releases) |
+| [![release](https://img.shields.io/github/release/HugoFMiranda/tachiyomi.svg?maxAge=3600&label=download)](https://github.com/HugoFMiranda/tachiyomiHFM/releases) |
 
 
 # ![app icon](./.github/readme-images/app-icon.png)TachiyomiHFM
