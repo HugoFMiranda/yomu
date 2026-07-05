@@ -2,6 +2,14 @@
 
 Guidance for Claude Code sessions working in this repo.
 
+## Commit conventions
+
+- Use Conventional Commits (`fix:`, `feat:`, `docs:`, `chore:`, etc.) for
+  every commit message.
+- Never add Claude as author or co-author. No `Co-Authored-By: Claude`
+  trailer, no author override — commits stay under the user's own git
+  identity.
+
 ## What this is
 
 Fork of TachiyomiJ2K (Android manga reader, Kotlin + Jetpack Compose).
