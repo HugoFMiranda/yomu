@@ -12,8 +12,6 @@ object AndroidVersions {
 
 object Plugins {
     const val androidApplication = "com.android.application"
-    const val googleServices = "com.google.gms.google-services"
-    const val kapt = "kapt"
     const val kotlinParcelize = "kotlin-parcelize"
     const val kotlinAndroid = "android"
     const val jetbrainsKotlin = "org.jetbrains.kotlin.android"

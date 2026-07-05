@@ -14,8 +14,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.net.toUri
 import androidx.lifecycle.lifecycleScope
 import androidx.preference.PreferenceScreen
-import com.google.firebase.crashlytics.ktx.crashlytics
-import com.google.firebase.ktx.Firebase
 import eu.kanade.tachiyomi.BuildConfig
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.cache.ChapterCache
@@ -86,20 +84,6 @@ class SettingsAdvancedController : SettingsController() {
     @SuppressLint("BatteryLife")
     override fun setupPreferenceScreen(screen: PreferenceScreen) = screen.apply {
         titleRes = R.string.advanced
-
-        switchPreference {
-            key = "acra.enable"
-            titleRes = R.string.send_crash_report
-            summaryRes = R.string.helps_fix_bugs
-            defaultValue = true
-            onChange {
-                try {
-                    Firebase.crashlytics.setCrashlyticsCollectionEnabled(it as Boolean)
-                } catch (_: Exception) {
-                }
-                true
-            }
-        }
 
         preference {
             key = "dump_crash_logs"

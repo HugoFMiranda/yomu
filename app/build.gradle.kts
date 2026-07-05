@@ -3,16 +3,9 @@ import java.io.ByteArrayOutputStream
 plugins {
     id(Plugins.androidApplication)
     kotlin(Plugins.kotlinAndroid)
-    kotlin(Plugins.kapt)
     id(Plugins.kotlinParcelize)
     id(Plugins.kotlinSerialization)
     id("com.google.android.gms.oss-licenses-plugin")
-    id(Plugins.googleServices) apply false
-    id("com.google.firebase.crashlytics")
-}
-
-if (gradle.startParameter.taskRequests.toString().contains("Standard")) {
-    apply<com.google.gms.googleservices.GoogleServicesPlugin>()
 }
 
 fun runCommand(command: String): String {
@@ -142,11 +135,9 @@ dependencies {
     implementation("androidx.compose.ui:ui:1.5.1")
     implementation("androidx.compose.material:material:1.5.1")
     implementation("androidx.compose.material3:material3:1.1.2")
-    implementation("com.google.android.material:compose-theme-adapter-3:1.1.1")
     implementation("androidx.compose.material:material-icons-extended:1.5.1")
     implementation("androidx.compose.ui:ui-tooling-preview:1.5.1")
     debugImplementation("androidx.compose.ui:ui-tooling:1.5.1")
-    implementation("com.google.accompanist:accompanist-webview:0.30.1")
     implementation("androidx.glance:glance-appwidget:1.0.0")
 
     // Modified dependencies
@@ -175,11 +166,6 @@ dependencies {
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
 
     implementation("androidx.multidex:multidex:2.0.1")
-
-    implementation(platform("com.google.firebase:firebase-bom:31.2.3"))
-
-    implementation("com.google.firebase:firebase-analytics-ktx")
-    implementation("com.google.firebase:firebase-crashlytics-ktx")
 
     val lifecycleVersion = "2.6.2"
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycleVersion")
@@ -232,8 +218,6 @@ dependencies {
     // Job scheduling
     implementation("androidx.work:work-runtime-ktx:2.8.1")
     implementation("com.google.guava:guava:31.1-android")
-
-    implementation("com.google.android.gms:play-services-gcm:17.0.0")
 
     // Database
     implementation("androidx.sqlite:sqlite-ktx:2.3.1")
