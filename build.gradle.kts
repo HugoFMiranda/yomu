@@ -5,6 +5,12 @@ plugins {
 }
 allprojects {
     repositories {
+        // Vendored copies of JitPack artifacts JitPack can no longer build
+        // (their own build scripts depend on JCenter, shut down permanently
+        // in 2022): com.github.florent37:viewtooltip, br.com.simplepass:
+        // loading-button-android, com.dmitrymalkovich.android:material-design-dimens,
+        // com.github.inorichi.injekt:injekt-core. See local-repo/README.md.
+        maven { setUrl("$rootDir/local-repo") }
         google()
         mavenCentral()
         maven { setUrl("https://jitpack.io") }
