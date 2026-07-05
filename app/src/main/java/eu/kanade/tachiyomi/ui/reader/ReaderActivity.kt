@@ -1751,7 +1751,7 @@ class ReaderActivity : BaseActivity<ReaderActivityBinding>() {
                                 val newBitmap = Bitmap.createBitmap(
                                     intrinsicWidth,
                                     intrinsicHeight,
-                                    bitmap.config,
+                                    bitmap.config ?: Bitmap.Config.ARGB_8888,
                                 )
                                 val canvas = Canvas(newBitmap)
                                 val bgColor = ColorUtils.setAlphaComponent(service.getLogoColor(), 255)
