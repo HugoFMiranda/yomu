@@ -85,7 +85,7 @@ class MigrationProcessHolder(
                 }
 
                 /*launchUI {
-                    item.manga.progress.asFlow().collect { (max, progress) ->
+                    item.manga.progress.collect { (max, progress) ->
                         withContext(Dispatchers.Main) {
                             binding.migrationMangaCardTo.search_progress.let { progressBar ->
                                 progressBar.max = max

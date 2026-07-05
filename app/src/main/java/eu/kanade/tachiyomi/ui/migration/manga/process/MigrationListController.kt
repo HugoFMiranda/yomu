@@ -194,7 +194,7 @@ class MigrationListController(bundle: Bundle? = null) :
                                                 } catch (e: Exception) {
                                                     return@source null
                                                 }
-                                                manga.progress.send(validSources.size to processedSources.incrementAndGet())
+                                                manga.progress.value = validSources.size to processedSources.incrementAndGet()
                                                 localManga to chapters.size
                                             } else {
                                                 null
@@ -241,7 +241,7 @@ class MigrationListController(bundle: Bundle? = null) :
                                     null
                                 }
 
-                                manga.progress.send(validSources.size to (index + 1))
+                                manga.progress.value = validSources.size to (index + 1)
 
                                 if (searchResult != null) return@async searchResult
                             }
