@@ -123,6 +123,15 @@ android {
         jvmTarget = "17"
     }
     namespace = "eu.kanade.tachiyomi"
+
+    packaging {
+        resources {
+            // okhttp, logging-interceptor, okhttp-dnsoverhttps, and
+            // okhttp-brotli all ship an identical multi-release OSGi
+            // manifest at this path; safe to keep just one copy.
+            excludes += "/META-INF/versions/9/OSGI-INF/MANIFEST.MF"
+        }
+    }
 }
 
 dependencies {
