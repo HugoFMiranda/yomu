@@ -125,16 +125,17 @@ android {
 
 dependencies {
     // Compose
-    implementation("androidx.activity:activity-compose:1.7.2")
-    implementation("androidx.compose.foundation:foundation:1.5.1")
-    implementation("androidx.compose.animation:animation:1.5.1")
-    implementation("androidx.compose.ui:ui:1.5.1")
-    implementation("androidx.compose.material:material:1.5.1")
-    implementation("androidx.compose.material3:material3:1.1.2")
-    implementation("androidx.compose.material:material-icons-extended:1.5.1")
-    implementation("androidx.compose.ui:ui-tooling-preview:1.5.1")
-    debugImplementation("androidx.compose.ui:ui-tooling:1.5.1")
-    implementation("androidx.glance:glance-appwidget:1.0.0")
+    implementation(platform("androidx.compose:compose-bom:2025.05.01"))
+    implementation("androidx.activity:activity-compose:1.10.1")
+    implementation("androidx.compose.foundation:foundation")
+    implementation("androidx.compose.animation:animation")
+    implementation("androidx.compose.ui:ui")
+    implementation("androidx.compose.material:material")
+    implementation("androidx.compose.material3:material3")
+    implementation("androidx.compose.material:material-icons-extended")
+    implementation("androidx.compose.ui:ui-tooling-preview")
+    debugImplementation("androidx.compose.ui:ui-tooling")
+    implementation("androidx.glance:glance-appwidget:1.1.1")
 
     // Modified dependencies
     implementation("com.github.jays2kings:subsampling-scale-image-view:756849e") {
@@ -143,18 +144,18 @@ dependencies {
     implementation("com.github.tachiyomiorg:image-decoder:7879b45")
 
     // Android X libraries
-    implementation("androidx.appcompat:appcompat:1.6.1")
+    implementation("androidx.appcompat:appcompat:1.7.1")
     implementation("androidx.cardview:cardview:1.0.0")
-    implementation("com.google.android.material:material:1.10.0")
-    implementation("androidx.webkit:webkit:1.8.0")
-    implementation("androidx.recyclerview:recyclerview:1.3.1")
+    implementation("com.google.android.material:material:1.12.0")
+    implementation("androidx.webkit:webkit:1.14.0")
+    implementation("androidx.recyclerview:recyclerview:1.4.0")
     implementation("androidx.preference:preference:1.2.1")
-    implementation("androidx.annotation:annotation:1.7.0")
-    implementation("androidx.browser:browser:1.6.0")
+    implementation("androidx.annotation:annotation:1.9.1")
+    implementation("androidx.browser:browser:1.8.0")
     implementation("androidx.biometric:biometric:1.1.0")
     implementation("androidx.palette:palette:1.0.0")
-    implementation("androidx.activity:activity-ktx:1.8.0")
-    implementation("androidx.core:core-ktx:1.12.0")
+    implementation("androidx.activity:activity-ktx:1.10.1")
+    implementation("androidx.core:core-ktx:1.16.0")
     implementation("com.google.android.flexbox:flexbox:3.0.0")
     implementation("androidx.window:window:1.1.0")
     implementation("androidx.swiperefreshlayout:swiperefreshlayout:1.1.0")
@@ -163,7 +164,7 @@ dependencies {
 
     implementation("androidx.multidex:multidex:2.0.1")
 
-    val lifecycleVersion = "2.6.2"
+    val lifecycleVersion = "2.9.1"
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycleVersion")
     implementation("androidx.lifecycle:lifecycle-livedata-ktx:$lifecycleVersion")
     implementation("androidx.lifecycle:lifecycle-common:$lifecycleVersion")
@@ -184,7 +185,7 @@ dependencies {
     implementation("com.squareup.okhttp3:logging-interceptor:$okhttpVersion")
     implementation("com.squareup.okhttp3:okhttp-dnsoverhttps:$okhttpVersion")
     implementation("com.squareup.okhttp3:okhttp-brotli:$okhttpVersion")
-    implementation("com.squareup.okio:okio:3.4.0")
+    implementation("com.squareup.okio:okio:3.15.0")
 
     // Chucker
     val chuckerVersion = "3.5.2"
@@ -195,7 +196,7 @@ dependencies {
     implementation(kotlin("reflect", version = AndroidVersions.kotlin))
 
     // JSON
-    val kotlinSerialization =  "1.6.0"
+    val kotlinSerialization =  "1.8.1"
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:${kotlinSerialization}")
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-protobuf:${kotlinSerialization}")
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json-okio:${kotlinSerialization}")
@@ -209,10 +210,10 @@ dependencies {
     implementation("com.github.junrar:junrar:7.5.5")
 
     // HTML parser
-    implementation("org.jsoup:jsoup:1.16.1")
+    implementation("org.jsoup:jsoup:1.21.1")
 
     // Job scheduling
-    implementation("androidx.work:work-runtime-ktx:2.8.1")
+    implementation("androidx.work:work-runtime-ktx:2.10.2")
     implementation("com.google.guava:guava:31.1-android")
 
     // Database
@@ -230,7 +231,7 @@ dependencies {
     implementation("com.github.inorichi.injekt:injekt-core:65b0440")
 
     // Image library
-    val coilVersion = "2.4.0"
+    val coilVersion = "2.7.0"
     implementation("io.coil-kt:coil:$coilVersion")
     implementation("io.coil-kt:coil-gif:$coilVersion")
     implementation("io.coil-kt:coil-svg:$coilVersion")
@@ -270,7 +271,7 @@ dependencies {
 
     implementation(kotlin("stdlib", org.jetbrains.kotlin.config.KotlinCompilerVersion.VERSION))
 
-    val coroutines = "1.7.3"
+    val coroutines = "1.10.2"
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutines")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutines")
 
@@ -280,7 +281,7 @@ dependencies {
     implementation("com.google.android.gms:play-services-oss-licenses:17.0.1")
 
     // TLS 1.3 support for Android < 10
-    implementation("org.conscrypt:conscrypt-android:2.5.2")
+    implementation("org.conscrypt:conscrypt-android:2.5.3")
 
     // Android Chart
     implementation("com.github.PhilJay:MPAndroidChart:v3.1.0")
