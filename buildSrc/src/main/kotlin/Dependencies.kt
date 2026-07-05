@@ -1,13 +1,13 @@
 import java.util.Locale
 
 object AndroidVersions {
-    const val compileSdk = 34
+    const val compileSdk = 35
     const val minSdk = 23
     const val targetSdk = 34
     const val versionCode = 111
     const val versionName = "1.7.4"
     const val ndk = "23.1.7779620"
-    const val kotlin = "1.9.10"
+    const val kotlin = "2.1.21"
 }
 
 object Plugins {
@@ -17,7 +17,7 @@ object Plugins {
     const val jetbrainsKotlin = "org.jetbrains.kotlin.android"
     const val kotlinSerialization = "org.jetbrains.kotlin.plugin.serialization"
     val gradleVersions = PluginClass("com.github.ben-manes.versions", "0.42.0")
-    val kotlinter = PluginClass("org.jmailen.kotlinter", "3.12.0")
+    val kotlinter = PluginClass("org.jmailen.kotlinter", "5.1.1")
 }
 
 data class PluginClass(val name: String, val version: String) {

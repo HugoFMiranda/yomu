@@ -5,6 +5,7 @@ plugins {
     kotlin(Plugins.kotlinAndroid)
     id(Plugins.kotlinParcelize)
     id(Plugins.kotlinSerialization)
+    id("org.jetbrains.kotlin.plugin.compose")
     id("com.google.android.gms.oss-licenses-plugin")
 }
 
@@ -101,10 +102,6 @@ android {
         disable.addAll(listOf("MissingTranslation", "ExtraTranslation"))
         abortOnError = false
         checkReleaseBuilds = false
-    }
-
-    composeOptions {
-        kotlinCompilerExtensionVersion = "1.5.3"
     }
 
     compileOptions {
@@ -293,7 +290,6 @@ tasks {
     // See https://kotlinlang.org/docs/reference/experimental.html#experimental-status-of-experimental-api(-markers)
     withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
         kotlinOptions.freeCompilerArgs += listOf(
-            "-Xskip-metadata-version-check",
             "-Xcontext-receivers",
             "-opt-in=kotlin.Experimental",
             "-opt-in=kotlin.RequiresOptIn",
@@ -336,7 +332,11 @@ tasks {
         include("**/*")
     }
 
+    // formatKotlin intentionally not wired into preBuild: ktlint 1.x would
+    // reformat the whole inherited codebase, and the lint pass costs
+    // memory/time this build box doesn't have. Run ./gradlew formatKotlin
+    // manually when wanted.
     preBuild {
-        dependsOn(formatKotlin, copyHebrewStrings)
+        dependsOn(copyHebrewStrings)
     }
 }
