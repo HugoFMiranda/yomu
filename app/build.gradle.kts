@@ -188,7 +188,7 @@ dependencies {
     implementation("com.fredporciuncula:flow-preferences:1.6.0")
 
     // Network client
-    val okhttpVersion = "5.0.0-alpha.11"
+    val okhttpVersion = "5.3.2"
     implementation("com.squareup.okhttp3:okhttp:$okhttpVersion")
     implementation("com.squareup.okhttp3:logging-interceptor:$okhttpVersion")
     implementation("com.squareup.okhttp3:okhttp-dnsoverhttps:$okhttpVersion")
@@ -301,6 +301,7 @@ tasks {
     // See https://kotlinlang.org/docs/reference/experimental.html#experimental-status-of-experimental-api(-markers)
     withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
         kotlinOptions.freeCompilerArgs += listOf(
+            "-Xskip-metadata-version-check",
             "-Xcontext-receivers",
             "-opt-in=kotlin.Experimental",
             "-opt-in=kotlin.RequiresOptIn",
