@@ -19,6 +19,7 @@ import eu.kanade.tachiyomi.data.updater.AppDownloadInstallJob
 import eu.kanade.tachiyomi.data.updater.AppUpdateChecker
 import eu.kanade.tachiyomi.data.updater.AppUpdateNotifier
 import eu.kanade.tachiyomi.data.updater.AppUpdateResult
+import eu.kanade.tachiyomi.data.updater.GITHUB_REPO
 import eu.kanade.tachiyomi.data.updater.RELEASE_URL
 import eu.kanade.tachiyomi.ui.base.controller.DialogController
 import eu.kanade.tachiyomi.ui.setting.SettingsController
@@ -69,7 +70,7 @@ class AboutController : SettingsController() {
                 val intent = Intent(
                     Intent.ACTION_VIEW,
                     if (BuildConfig.DEBUG) {
-                        "https://github.com/Jays2Kings/tachiyomiJ2K/commits/master"
+                        "https://github.com/$GITHUB_REPO/commits/master"
                     } else {
                         RELEASE_URL
                     }.toUri(),

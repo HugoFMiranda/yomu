@@ -26,7 +26,7 @@ android {
     defaultConfig {
         minSdk = AndroidVersions.minSdk
         targetSdk = AndroidVersions.targetSdk
-        applicationId = "eu.kanade.tachiyomi"
+        applicationId = "com.hugofm.yomu"
         versionCode = AndroidVersions.versionCode
         versionName = AndroidVersions.versionName
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
@@ -60,11 +60,10 @@ android {
 
     buildTypes {
         getByName("debug") {
-            applicationIdSuffix = ".debugJ2K"
+            applicationIdSuffix = ".debug"
             versionNameSuffix = "-d${getCommitCount()}"
         }
         getByName("release") {
-            applicationIdSuffix = ".j2k"
             isShrinkResources = true
             isMinifyEnabled = true
             proguardFiles("proguard-android-optimize.txt", "proguard-rules.pro")

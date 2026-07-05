@@ -1,10 +1,10 @@
 | Download |
 |-------|
-| [![release](https://img.shields.io/github/release/HugoFMiranda/tachiyomi.svg?maxAge=3600&label=download)](https://github.com/HugoFMiranda/tachiyomiHFM/releases) |
+| [![release](https://img.shields.io/github/release/HugoFMiranda/yomu.svg?maxAge=3600&label=download)](https://github.com/HugoFMiranda/yomu/releases) |
 
 
-# ![app icon](./.github/readme-images/app-icon.png)TachiyomiHFM
-TachiyomiJ2K is a free and open source manga reader for Android 6.0 and above. Based on the original [Tachiyomi](https://github.com/tachiyomiorg/tachiyomi)
+# ![app icon](./.github/readme-images/app-icon.png)Yomu
+Yomu is a free and open source manga reader for Android 6.0 and above, forked from [TachiyomiJ2K](https://github.com/Jays2Kings/tachiyomiJ2K) and based on the original [Tachiyomi](https://github.com/tachiyomiorg/tachiyomi)
 
 ![screenshots of app](./.github/readme-images/screens.gif)
 

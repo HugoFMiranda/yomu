@@ -67,6 +67,8 @@
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
 
+                <data android:scheme="yomu" />
+                <!-- Legacy scheme so existing add-repo links keep working -->
                 <data android:scheme="tachiyomi" />
                 <data android:host="add-repo" />
             </intent-filter>
@@ -148,6 +150,8 @@
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
 
+                <!-- Scheme must match the redirect URI registered with the
+                     upstream MyAnimeList OAuth client ID — do not rebrand -->
                 <data
                     android:host="myanimelist-auth"
                     android:scheme="tachiyomij2k" />
@@ -163,6 +167,8 @@
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
 
+                <!-- Scheme must match the redirect URI registered with the
+                     upstream Anilist OAuth client ID — do not rebrand -->
                 <data
                     android:host="anilist-auth"
                     android:scheme="tachiyomi" />
@@ -178,6 +184,8 @@
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
 
+                <!-- Scheme must match the redirect URI registered with the
+                     upstream Shikimori OAuth client ID — do not rebrand -->
                 <data
                     android:host="shikimori-auth"
                     android:scheme="tachiyomi" />
@@ -193,6 +201,8 @@
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
 
+                <!-- Scheme must match the redirect URI registered with the
+                     upstream Bangumi OAuth client ID — do not rebrand -->
                 <data
                     android:host="bangumi-auth"
                     android:scheme="tachiyomi" />

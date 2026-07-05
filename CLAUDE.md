@@ -12,9 +12,14 @@ Guidance for Claude Code sessions working in this repo.
 
 ## What this is
 
-Fork of TachiyomiJ2K (Android manga reader, Kotlin + Jetpack Compose).
-Currently mid-rebrand — see `REBRAND_PLAN.md` for the full spec (new name,
-icon, applicationId, signing, release pipeline, Firebase removal).
+Fork of TachiyomiJ2K (Android manga reader, Kotlin + Jetpack Compose),
+rebranded as **Yomu** (`com.hugofm.yomu`, deep-link scheme `yomu`, releases
+via `HugoFMiranda/yomu`). See `REBRAND_PLAN.md` for the original spec.
+Firebase is fully removed. Tracker OAuth intent-filters intentionally keep
+the upstream `tachiyomi`/`tachiyomij2k` schemes — they must match the
+redirect URIs registered with the upstream OAuth client IDs the app still
+uses. Launcher icon is a placeholder vector pending real artwork; legacy
+PNG mipmaps (API 23-25) still show upstream art.
 
 ## Environment
 

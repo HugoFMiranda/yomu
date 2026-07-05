@@ -15,12 +15,12 @@ can pick this up with no prior context.
 
 ## Decisions needed before starting (fill these in)
 
-| Placeholder | Meaning | Example |
+| Placeholder | Meaning | Decision |
 |---|---|---|
-| `{APP_NAME}` | Display name shown to users | `MangaFlow` |
-| `{APPLICATION_ID}` | New Android package id | `com.hugoeu.mangaflow` |
-| `{URL_SCHEME}` | Deep-link scheme prefix | `mangaflow` |
-| `{GITHUB_REPO}` | Your fork's `owner/repo` on GitHub | `hugoeu10/mangaflow` |
+| `{APP_NAME}` | Display name shown to users | `Yomu` |
+| `{APPLICATION_ID}` | New Android package id | `com.hugofm.yomu` |
+| `{URL_SCHEME}` | Deep-link scheme prefix | `yomu` |
+| `{GITHUB_REPO}` | Your fork's `owner/repo` on GitHub | `HugoFMiranda/yomu` |
 | `{KEEP_UPSTREAM_LINKS}` | Keep original Discord/GitHub links in About screen, or replace/remove? | remove |
 
 ---

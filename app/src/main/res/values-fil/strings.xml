@@ -612,8 +612,8 @@
         <item quantity="one">Para sa %d serye</item>
         <item quantity="other">Para sa %d (na) serye</item>
     </plurals>
-    <string name="external_storage_download_notice">Kailangan ng TachiyomiJ2K ng access sa lahat ng mga file para maka-download ng mga kabanata. Pakipindot ito, tapos pakibuksan ang \"Payagan ang pamamahala ng lahat ng file.\"</string>
-    <string name="external_storage_permission_notice">Ang TachiyomiJ2K ay nangangailangan ng access sa lahat ng mga file sa Android 11 upang mag-download ng mga kabanata, gumawa ng mga awtomatikong pag-backup, at magbasa ng lokal na serye.
+    <string name="external_storage_download_notice">Kailangan ng Yomu ng access sa lahat ng mga file para maka-download ng mga kabanata. Pakipindot ito, tapos pakibuksan ang \"Payagan ang pamamahala ng lahat ng file.\"</string>
+    <string name="external_storage_permission_notice">Ang Yomu ay nangangailangan ng access sa lahat ng mga file sa Android 11 upang mag-download ng mga kabanata, gumawa ng mga awtomatikong pag-backup, at magbasa ng lokal na serye.
 \n
 \nSa susunod na screen, buksan ang \"Payagan ang pag-access upang pamahalaan ang lahat ng mga file.\"</string>
     <string name="all_files_permission_required">Kailangan ng permiso sa file</string>
