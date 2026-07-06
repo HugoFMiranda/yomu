@@ -27,10 +27,4 @@
         android:icon="@drawable/ic_tune_24dp"
         android:title="@string/options"
         app:showAsAction="ifRoom" />
-
-    <item
-        android:id="@+id/action_migration_guide"
-        android:title="@string/source_migration_guide"
-        android:icon="@drawable/ic_help_24dp"
-        app:showAsAction="ifRoom"/>
 </menu>

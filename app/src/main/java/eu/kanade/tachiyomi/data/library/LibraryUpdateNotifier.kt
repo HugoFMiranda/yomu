@@ -112,7 +112,7 @@ class LibraryUpdateNotifier(private val context: Context) {
                     ),
                 )
                 setContentIntent(pendingIntent)
-                setSmallIcon(R.drawable.ic_tachij2k_notification)
+                setSmallIcon(R.drawable.ic_yomu_notification)
                 addAction(
                     R.drawable.ic_file_open_24dp,
                     context.getString(R.string.open_log),
@@ -146,17 +146,11 @@ class LibraryUpdateNotifier(private val context: Context) {
                         },
                     ),
                 )
-                setContentIntent(NotificationHandler.openUrl(context, HELP_SKIPPED_URL))
-                setSmallIcon(R.drawable.ic_tachij2k_notification)
+                setSmallIcon(R.drawable.ic_yomu_notification)
                 addAction(
                     R.drawable.ic_file_open_24dp,
                     context.getString(R.string.open_log),
                     NotificationReceiver.openErrorOrSkippedLogPendingActivity(context, uri),
-                )
-                addAction(
-                    R.drawable.ic_help_outline_24dp,
-                    context.getString(R.string.learn_why),
-                    NotificationHandler.openUrl(context, HELP_SKIPPED_URL),
                 )
             }
                 .build(),
@@ -183,7 +177,7 @@ class LibraryUpdateNotifier(private val context: Context) {
                     notifications.add(
                         Pair(
                             context.notification(Notifications.CHANNEL_NEW_CHAPTERS) {
-                                setSmallIcon(R.drawable.ic_tachij2k_notification)
+                                setSmallIcon(R.drawable.ic_yomu_notification)
                                 try {
                                     val request = ImageRequest.Builder(context).data(manga)
                                         .networkCachePolicy(CachePolicy.DISABLED)
@@ -257,7 +251,7 @@ class LibraryUpdateNotifier(private val context: Context) {
                 notify(
                     Notifications.ID_NEW_CHAPTERS,
                     context.notification(Notifications.CHANNEL_NEW_CHAPTERS) {
-                        setSmallIcon(R.drawable.ic_tachij2k_notification)
+                        setSmallIcon(R.drawable.ic_yomu_notification)
                         setLargeIcon(notificationBitmap)
                         setContentTitle(context.getString(R.string.new_chapters_found))
                         color = ContextCompat.getColor(context, R.color.secondaryTachiyomi)
@@ -303,7 +297,6 @@ class LibraryUpdateNotifier(private val context: Context) {
             setContentTitle(context.getString(R.string.warning))
             setSmallIcon(R.drawable.ic_warning_white_24dp)
             setStyle(NotificationCompat.BigTextStyle().bigText(context.getString(R.string.notification_size_warning)))
-            setContentIntent(NotificationHandler.openUrl(context, HELP_WARNING_URL))
             setTimeoutAfter(30000)
         }
             .build()
@@ -336,7 +329,5 @@ class LibraryUpdateNotifier(private val context: Context) {
         private const val MAX_CHAPTERS = 5
         private const val TITLE_MAX_LEN = 45
         private const val ICON_SIZE = 192
-        const val HELP_SKIPPED_URL = "https://tachiyomi.org/docs/faq/library#why-is-global-update-skipping-entries"
-        const val HELP_WARNING_URL = "https://tachiyomi.org/docs/faq/library#why-am-i-warned-about-large-bulk-updates-and-downloads"
     }
 }

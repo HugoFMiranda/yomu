@@ -1,5 +1,6 @@
 package eu.kanade.tachiyomi.ui.more
 
+import androidx.core.view.isVisible
 import android.app.Dialog
 import android.content.res.ColorStateList
 import android.graphics.Color
@@ -89,10 +90,8 @@ class OverflowDialog(activity: MainActivity) : Dialog(activity, R.style.Overflow
             dismiss()
         }
 
-        binding.helpItem.setOnClickListener {
-            activity.openInBrowser(URL_HELP)
-            dismiss()
-        }
+        // Upstream help site removed with the rebrand
+        binding.helpItem.isVisible = false
 
         val vName = "v${BuildConfig.VERSION_NAME}".substringBefore("-")
         val newVName = buildSpannedString {
@@ -129,6 +128,5 @@ class OverflowDialog(activity: MainActivity) : Dialog(activity, R.style.Overflow
     }
 
     private companion object {
-        private const val URL_HELP = "https://tachiyomi.org/docs/guides/troubleshooting/"
     }
 }

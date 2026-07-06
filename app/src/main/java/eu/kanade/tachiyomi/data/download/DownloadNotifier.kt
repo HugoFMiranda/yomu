@@ -228,12 +228,6 @@ internal class DownloadNotifier(private val context: Context) {
                 NotificationCompat.BigTextStyle()
                     .bigText(context.getString(R.string.download_queue_size_warning)),
             )
-            setContentIntent(
-                NotificationHandler.openUrl(
-                    context,
-                    LibraryUpdateNotifier.HELP_WARNING_URL,
-                ),
-            )
             setTimeoutAfter(30000)
         }
             .build()

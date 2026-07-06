@@ -356,9 +356,6 @@ class BrowseController :
                 R.id.action_filter -> {
                     router.pushController(ExtensionFilterController().withFadeTransaction())
                 }
-                R.id.action_migration_guide -> {
-                    activity?.openInBrowser(HELP_URL)
-                }
                 R.id.action_sources_settings -> {
                     router.pushController(SettingsBrowseController().withFadeTransaction())
                 }
@@ -696,9 +693,6 @@ class BrowseController :
             R.id.action_filter -> {
                 router.pushController(SettingsSourcesController().withFadeTransaction())
             }
-            R.id.action_migration_guide -> {
-                activity?.openInBrowser(HELP_URL)
-            }
             R.id.action_sources_settings -> {
                 router.pushController(SettingsBrowseController().withFadeTransaction())
             }
@@ -733,6 +727,5 @@ class BrowseController :
     data class SmartSearchConfig(val origTitle: String, val origMangaId: Long) : Parcelable
 
     companion object {
-        const val HELP_URL = "https://tachiyomi.org/docs/guides/source-migration"
     }
 }

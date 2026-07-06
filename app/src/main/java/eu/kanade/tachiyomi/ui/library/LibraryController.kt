@@ -1117,15 +1117,7 @@ open class LibraryController(
                 } else {
                     R.string.library_is_empty_add_from_browse
                 },
-                if (!hasActiveFilters) {
-                    listOf(
-                        EmptyView.Action(R.string.getting_started_guide) {
-                            activity?.openInBrowser("https://tachiyomi.org/docs/guides/getting-started#_2-adding-sources")
-                        },
-                    )
-                } else {
-                    emptyList()
-                },
+                emptyList(),
             )
         }
         adapter.setItems(mangaMap)

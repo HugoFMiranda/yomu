@@ -106,7 +106,6 @@ class SettingsMainController : SettingsController(), FloatingSearchInterface {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
-            R.id.action_help -> openInBrowser(URL_HELP)
         }
         return super.onOptionsItemSelected(item)
     }
@@ -125,6 +124,5 @@ class SettingsMainController : SettingsController(), FloatingSearchInterface {
     }
 
     private companion object {
-        private const val URL_HELP = "https://tachiyomi.org/docs/guides/troubleshooting/"
     }
 }

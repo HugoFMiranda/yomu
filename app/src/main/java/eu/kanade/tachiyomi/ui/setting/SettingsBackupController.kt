@@ -148,7 +148,6 @@ class SettingsBackupController : SettingsController() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
-            R.id.action_backup_help -> activity?.openInBrowser(HELP_URL)
         }
         return super.onOptionsItemSelected(item)
     }
@@ -302,4 +301,3 @@ private const val CODE_BACKUP_DIR = 503
 private const val CODE_BACKUP_CREATE = 504
 private const val CODE_BACKUP_RESTORE = 505
 
-private const val HELP_URL = "https://tachiyomi.org/docs/guides/backups"

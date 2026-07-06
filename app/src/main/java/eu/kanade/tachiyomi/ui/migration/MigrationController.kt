@@ -128,11 +128,6 @@ class MigrationController :
             presenter.refreshMigrations()
             item.isChecked = true
         }
-        when (item.itemId) {
-            R.id.action_migration_guide -> {
-                activity?.openInBrowser(BrowseController.HELP_URL)
-            }
-        }
         return super.onOptionsItemSelected(item)
     }
 

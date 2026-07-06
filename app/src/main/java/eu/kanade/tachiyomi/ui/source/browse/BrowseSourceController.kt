@@ -354,7 +354,6 @@ open class BrowseSourceController(bundle: Bundle) :
             R.id.action_search -> expandActionViewFromInteraction = true
             R.id.action_display_mode -> swapDisplayMode()
             R.id.action_open_in_web_view -> openInWebView()
-            R.id.action_local_source_help -> openLocalSourceHelpGuide()
             R.id.action_popular_latest -> swapPopularLatest()
             else -> return super.onOptionsItemSelected(item)
         }
@@ -502,10 +501,6 @@ open class BrowseSourceController(bundle: Bundle) :
         startActivity(intent)
     }
 
-    private fun openLocalSourceHelpGuide() {
-        activity?.openInBrowser(LocalSource.HELP_URL)
-    }
-
     override fun onChangeStarted(handler: ControllerChangeHandler, type: ControllerChangeType) {
         super.onChangeStarted(handler, type)
         if (type == ControllerChangeType.POP_ENTER && lastPosition > -1) {
@@ -578,12 +573,8 @@ open class BrowseSourceController(bundle: Bundle) :
         if (adapter.isEmpty) {
             val actions = emptyList<EmptyView.Action>().toMutableList()
 
-            actions += if (presenter.source is LocalSource) {
-                EmptyView.Action(
-                    R.string.local_source_help_guide,
-                ) { openLocalSourceHelpGuide() }
-            } else {
-                EmptyView.Action(R.string.retry, retryAction)
+            if (presenter.source !is LocalSource) {
+                actions += EmptyView.Action(R.string.retry, retryAction)
             }
 
             if (presenter.source is HttpSource) {
