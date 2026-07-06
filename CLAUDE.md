@@ -88,6 +88,14 @@ Extensions are separate APKs loaded at runtime.
 matches them via intent-filter action, not hardcoded package name — safe
 to change `applicationId` without breaking extension compatibility.
 
+The extension system is aligned with mihonapp/mihon (loader + source-api):
+extensions-lib **1.3–1.6** accepted, lib version read from manifest
+metadata (`tachiyomix.extensionLib`) with versionName fallback, extensions
+run in Mihon's `ChildFirstPathClassLoader`, and app-side fetches go through
+the combined `Source.getMangaUpdate` API (its default bridges old suspend/
+Rx extensions). When touching this area, port from Mihon rather than
+patching legacy J2K code. ExtensionManager/Installer UI flows remain J2K.
+
 ## Rebrand in progress
 
 Full plan, file-by-file, in `REBRAND_PLAN.md`. Read it before doing any
