@@ -6,7 +6,7 @@ import eu.kanade.tachiyomi.BuildConfig
 import eu.kanade.tachiyomi.data.preference.PreferencesHelper
 import eu.kanade.tachiyomi.network.GET
 import eu.kanade.tachiyomi.network.NetworkHelper
-import eu.kanade.tachiyomi.network.await
+import eu.kanade.tachiyomi.network.awaitSuccess
 import eu.kanade.tachiyomi.network.parseAs
 import eu.kanade.tachiyomi.util.system.localeContext
 import eu.kanade.tachiyomi.util.system.withIOContext
@@ -32,7 +32,7 @@ class AppUpdateChecker {
                 if (preferences.checkForBetas().get()) {
                     networkService.client
                         .newCall(GET("https://api.github.com/repos/$GITHUB_REPO/releases"))
-                        .await()
+                        .awaitSuccess()
                         .parseAs<List<GithubRelease>>()
                         .let { githubReleases ->
                             val releases =
@@ -57,7 +57,7 @@ class AppUpdateChecker {
                 } else {
                     networkService.client
                         .newCall(GET("https://api.github.com/repos/$GITHUB_REPO/releases/latest"))
-                        .await()
+                        .awaitSuccess()
                         .parseAs<GithubRelease>()
                         .let {
                             preferences.lastAppCheck().set(Date().time)
