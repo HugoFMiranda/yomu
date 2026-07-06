@@ -99,7 +99,7 @@ interface Manga : SManga {
         ).lowercase(Locale.getDefault())
     }
 
-    fun getGenres(): List<String>? {
+    override fun getGenres(): List<String>? {
         return genre?.split(",")
             ?.mapNotNull { tag -> tag.trim().takeUnless { it.isBlank() } }
     }
