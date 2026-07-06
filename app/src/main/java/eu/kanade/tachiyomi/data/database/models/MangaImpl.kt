@@ -5,6 +5,7 @@ import eu.kanade.tachiyomi.data.download.DownloadProvider
 import eu.kanade.tachiyomi.data.library.CustomMangaManager
 import eu.kanade.tachiyomi.source.model.SManga
 import eu.kanade.tachiyomi.source.model.UpdateStrategy
+import kotlinx.serialization.json.JsonObject
 import uy.kohesive.injekt.injectLazy
 
 open class MangaImpl : Manga {
@@ -60,6 +61,9 @@ open class MangaImpl : Manga {
     override var last_update: Long = 0
 
     override var initialized: Boolean = false
+
+    @Transient
+    override var memo: JsonObject = JsonObject(emptyMap())
 
     override var viewer_flags: Int = -1
 

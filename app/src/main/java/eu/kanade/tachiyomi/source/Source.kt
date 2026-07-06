@@ -5,8 +5,11 @@ import eu.kanade.tachiyomi.extension.ExtensionManager
 import eu.kanade.tachiyomi.source.model.Page
 import eu.kanade.tachiyomi.source.model.SChapter
 import eu.kanade.tachiyomi.source.model.SManga
+import eu.kanade.tachiyomi.source.model.SMangaUpdate
 import eu.kanade.tachiyomi.source.online.HttpSource
 import eu.kanade.tachiyomi.util.system.awaitSingle
+import kotlinx.coroutines.async
+import kotlinx.coroutines.supervisorScope
 import rx.Observable
 import uy.kohesive.injekt.Injekt
 import uy.kohesive.injekt.api.get
@@ -51,6 +54,29 @@ interface Source {
     @Suppress("DEPRECATION")
     suspend fun getChapterList(manga: SManga): List<SChapter> {
         return fetchChapterList(manga).awaitSingle()
+    }
+
+    /**
+     * Fetches updated information for a manga: updated metadata, available
+     * chapters, or both, depending on the flags. Newer (lib 1.6) extensions
+     * override this directly; for older extensions the default bridges to
+     * [getMangaDetails] and [getChapterList].
+     *
+     * @since tachiyomix 1.6
+     * @param manga The manga to fetch updates for.
+     * @param chapters Existing chapters of the manga
+     * @param fetchDetails Whether to fetch updated manga details.
+     * @param fetchChapters Whether to fetch available chapters.
+     */
+    suspend fun getMangaUpdate(
+        manga: SManga,
+        chapters: List<SChapter>,
+        fetchDetails: Boolean,
+        fetchChapters: Boolean,
+    ): SMangaUpdate = supervisorScope {
+        val asyncManga = if (fetchDetails) async { getMangaDetails(manga) } else null
+        val asyncChapters = if (fetchChapters) async { getChapterList(manga) } else null
+        SMangaUpdate(asyncManga?.await() ?: manga, asyncChapters?.await() ?: chapters)
     }
 
     /**

@@ -1,6 +1,7 @@
 package eu.kanade.tachiyomi.source.model
 
 import eu.kanade.tachiyomi.data.database.models.MangaImpl
+import kotlinx.serialization.json.JsonObject
 import java.io.Serializable
 
 interface SManga : Serializable {
@@ -24,6 +25,18 @@ interface SManga : Serializable {
     var update_strategy: UpdateStrategy
 
     var initialized: Boolean
+
+    /**
+     * Extra metadata associated with the manga, not visible to users.
+     *
+     * @since tachiyomix 1.6
+     */
+    var memo: JsonObject
+
+    fun getGenres(): List<String>? {
+        if (genre.isNullOrBlank()) return null
+        return genre?.split(", ")?.map { it.trim() }?.filterNot { it.isBlank() }?.distinct()
+    }
 
     val originalTitle: String
         get() = (this as? MangaImpl)?.ogTitle ?: title
@@ -67,6 +80,8 @@ interface SManga : Serializable {
 
         update_strategy = other.update_strategy
 
+        memo = other.memo
+
         if (!initialized) {
             initialized = other.initialized
         }
@@ -81,6 +96,7 @@ interface SManga : Serializable {
         it.genre = genre
         it.status = status
         it.thumbnail_url = thumbnail_url
+        it.memo = memo
         it.initialized = initialized
     }
 

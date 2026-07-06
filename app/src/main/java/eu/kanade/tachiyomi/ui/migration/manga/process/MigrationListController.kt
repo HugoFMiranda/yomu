@@ -183,7 +183,7 @@ class MigrationListController(bundle: Bundle? = null) :
                                                         searchResult,
                                                         source.id,
                                                     )
-                                                val chapters = source.getChapterList(localManga)
+                                                val chapters = source.getMangaUpdate(localManga, emptyList(), fetchDetails = false, fetchChapters = true).chapters
                                                 try {
                                                     syncChaptersWithSource(
                                                         db,
@@ -222,7 +222,7 @@ class MigrationListController(bundle: Bundle? = null) :
                                             source.id,
                                         )
                                         val chapters: List<SChapter> = try {
-                                            source.getChapterList(localManga)
+                                            source.getMangaUpdate(localManga, emptyList(), fetchDetails = false, fetchChapters = true).chapters
                                         } catch (e: java.lang.Exception) {
                                             Timber.e(e)
                                             emptyList()
@@ -257,7 +257,8 @@ class MigrationListController(bundle: Bundle? = null) :
                 if (result != null && result.thumbnail_url == null) {
                     try {
                         val newManga =
-                            sourceManager.getOrStub(result.source).getMangaDetails(result)
+                            sourceManager.getOrStub(result.source)
+                            .getMangaUpdate(result, emptyList(), fetchDetails = true, fetchChapters = false).manga
                         result.copyFrom(newManga)
 
                         db.insertManga(result).executeAsBlocking()
@@ -363,7 +364,7 @@ class MigrationListController(bundle: Bundle? = null) :
             val result = CoroutineScope(migratingManga.manga.migrationJob).async {
                 val localManga = smartSearchEngine.networkToLocalManga(manga, source.id)
                 try {
-                    val chapters = source.getChapterList(localManga)
+                    val chapters = source.getMangaUpdate(localManga, emptyList(), fetchDetails = false, fetchChapters = true).chapters
                     syncChaptersWithSource(db, chapters, localManga, source)
                 } catch (e: Exception) {
                     return@async null
@@ -374,7 +375,8 @@ class MigrationListController(bundle: Bundle? = null) :
             if (result != null) {
                 try {
                     val newManga =
-                        sourceManager.getOrStub(result.source).getMangaDetails(result)
+                        sourceManager.getOrStub(result.source)
+                            .getMangaUpdate(result, emptyList(), fetchDetails = true, fetchChapters = false).manga
                     result.copyFrom(newManga)
 
                     db.insertManga(result).executeAsBlocking()

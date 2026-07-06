@@ -345,7 +345,7 @@ class MangaDetailsPresenter(
             var chapterError: java.lang.Exception? = null
             val chapters = async(Dispatchers.IO) {
                 try {
-                    source.getChapterList(manga)
+                    source.getMangaUpdate(manga, emptyList(), fetchDetails = false, fetchChapters = true).chapters
                 } catch (e: Exception) {
                     chapterError = e
                     emptyList()
@@ -354,7 +354,7 @@ class MangaDetailsPresenter(
             val thumbnailUrl = manga.thumbnail_url
             val nManga = async(Dispatchers.IO) {
                 try {
-                    source.getMangaDetails(manga.copy())
+                    source.getMangaUpdate(manga.copy(), emptyList(), fetchDetails = true, fetchChapters = false).manga
                 } catch (e: java.lang.Exception) {
                     mangaError = e
                     null
@@ -446,7 +446,7 @@ class MangaDetailsPresenter(
 
         presenterScope.launch(Dispatchers.IO) {
             val chapters = try {
-                source.getChapterList(manga)
+                source.getMangaUpdate(manga, emptyList(), fetchDetails = false, fetchChapters = true).chapters
             } catch (e: Exception) {
                 withContext(Dispatchers.Main) { view?.showError(trimException(e)) }
                 return@launch

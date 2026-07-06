@@ -251,7 +251,7 @@ open class GlobalSearchPresenter(
      * @return The initialized manga.
      */
     private suspend fun getMangaDetails(manga: Manga, source: Source): Manga {
-        val networkManga = source.getMangaDetails(manga.copy())
+        val networkManga = source.getMangaUpdate(manga.copy(), emptyList(), fetchDetails = true, fetchChapters = false).manga
         manga.copyFrom(networkManga)
         manga.initialized = true
         db.insertManga(manga).executeAsBlocking()

@@ -7,15 +7,15 @@ import android.content.pm.PackageInfo
 import android.content.pm.PackageManager
 import android.os.Build
 import androidx.core.content.pm.PackageInfoCompat
-import dalvik.system.PathClassLoader
 import eu.kanade.tachiyomi.BuildConfig
 import eu.kanade.tachiyomi.data.preference.PreferencesHelper
 import eu.kanade.tachiyomi.extension.model.Extension
 import eu.kanade.tachiyomi.extension.model.LoadResult
-import eu.kanade.tachiyomi.source.CatalogueSource
 import eu.kanade.tachiyomi.source.Source
 import eu.kanade.tachiyomi.source.SourceFactory
 import eu.kanade.tachiyomi.util.lang.Hash
+import eu.kanade.tachiyomi.util.storage.copyAndSetReadOnlyTo
+import eu.kanade.tachiyomi.util.system.ChildFirstPathClassLoader
 import eu.kanade.tachiyomi.util.system.withIOContext
 import kotlinx.coroutines.async
 import kotlinx.coroutines.awaitAll
@@ -42,8 +42,15 @@ internal object ExtensionLoader {
     private const val METADATA_SOURCE_CLASS = "tachiyomi.extension.class"
     private const val METADATA_SOURCE_FACTORY = "tachiyomi.extension.factory"
     private const val METADATA_NSFW = "tachiyomi.extension.nsfw"
+
+    private const val METADATA_NAME = "tachiyomix.name"
+    private const val METADATA_EXTENSION_LIB = "tachiyomix.extensionLib"
+    private const val METADATA_CONTENT_WARNING = "tachiyomix.contentWarning"
+
+    // Mihon allows 1.4-1.6; we keep 1.3 as the floor so extensions that
+    // already load on this fork keep working
     const val LIB_VERSION_MIN = 1.3
-    const val LIB_VERSION_MAX = 1.5
+    const val LIB_VERSION_MAX = 1.6
 
     @Suppress("DEPRECATION")
     private val PACKAGE_FLAGS = PackageManager.GET_CONFIGURATIONS or
@@ -82,7 +89,8 @@ internal object ExtensionLoader {
 
         val target = File(getPrivateExtensionDir(context), "${extension.packageName}.$PRIVATE_EXTENSION_EXTENSION")
         return try {
-            file.copyTo(target, overwrite = true)
+            target.delete()
+            file.copyAndSetReadOnlyTo(target, overwrite = true)
             if (currentExtension != null) {
                 ExtensionInstallReceiver.notifyReplaced(context, extension.packageName)
             } else {
@@ -119,7 +127,10 @@ internal object ExtensionLoader {
             ?.asSequence()
             ?.filter { it.isFile && it.extension == PRIVATE_EXTENSION_EXTENSION }
             ?.mapNotNull {
-                it.setReadOnly()
+                // Just in case, since Android 14+ requires them to be read-only
+                if (it.canWrite()) {
+                    it.setReadOnly()
+                }
                 val path = it.absolutePath
                 pkgManager.getPackageArchiveInfo(path, PACKAGE_FLAGS)
                     ?.apply { applicationInfo?.fixBasePaths(path) }
@@ -276,7 +287,8 @@ internal object ExtensionLoader {
         val appInfo = pkgInfo.applicationInfo ?: return LoadResult.Error
         val pkgName = pkgInfo.packageName
 
-        val extName = pkgManager.getApplicationLabel(appInfo).toString().substringAfter("Tachiyomi: ")
+        val extName = appInfo.metaData.getString(METADATA_NAME)
+            ?: pkgManager.getApplicationLabel(appInfo).toString().substringAfter("Tachiyomi: ")
         val versionName = pkgInfo.versionName
         val versionCode = PackageInfoCompat.getLongVersionCode(pkgInfo)
 
@@ -285,8 +297,10 @@ internal object ExtensionLoader {
             return LoadResult.Error
         }
 
-        // Validate lib version
-        val libVersion = versionName.substringBeforeLast('.').toDoubleOrNull()
+        // Validate lib version: declared in manifest metadata by newer
+        // extensions, otherwise derived from the versionName prefix
+        val libVersion = appInfo.metaData.getDouble(METADATA_EXTENSION_LIB).takeUnless { it == 0.0 }
+            ?: versionName.substringBeforeLast('.').toDoubleOrNull()
         if (libVersion == null || libVersion < LIB_VERSION_MIN || libVersion > LIB_VERSION_MAX) {
             Timber.w(
                 "Lib version is $libVersion, while only versions $LIB_VERSION_MIN to $LIB_VERSION_MAX are allowed",
@@ -311,13 +325,19 @@ internal object ExtensionLoader {
             return LoadResult.Untrusted(extension)
         }
 
-        val isNsfw = appInfo.metaData.getInt(METADATA_NSFW) == 1
+        val isNsfw = appInfo.metaData.getInt(METADATA_CONTENT_WARNING) > 0 ||
+            appInfo.metaData.getInt(METADATA_NSFW) == 1
         if (!loadNsfwSource && isNsfw) {
             Timber.w("NSFW extension $pkgName not allowed")
             return LoadResult.Error
         }
 
-        val classLoader = PathClassLoader(appInfo.sourceDir, null, context.classLoader)
+        val classLoader = try {
+            ChildFirstPathClassLoader(appInfo.sourceDir, null, context.classLoader)
+        } catch (e: Exception) {
+            Timber.e(e, "Extension load error: $extName ($pkgName)")
+            return LoadResult.Error
+        }
 
         val sources = appInfo.metaData.getString(METADATA_SOURCE_CLASS)!!
             .split(";")
@@ -342,9 +362,7 @@ internal object ExtensionLoader {
                 }
             }
 
-        val langs = sources.filterIsInstance<CatalogueSource>()
-            .map { it.lang }
-            .toSet()
+        val langs = sources.map { it.lang }.toSet()
         val lang = when (langs.size) {
             0 -> ""
             1 -> langs.first()
