@@ -14,6 +14,7 @@ import okhttp3.Cookie
 import okhttp3.HttpUrl.Companion.toHttpUrl
 import okhttp3.Interceptor
 import okhttp3.Request
+import org.jsoup.Jsoup
 import okhttp3.Response
 import java.io.IOException
 import java.util.concurrent.CountDownLatch
@@ -28,7 +29,18 @@ class CloudflareInterceptor(
 
     override fun shouldIntercept(response: Response): Boolean {
         // Check if Cloudflare anti-bot is on
-        return response.code in ERROR_CODES && response.header("Server") in SERVER_CHECK
+        return if (response.code in ERROR_CODES && response.header("Server") in SERVER_CHECK) {
+            val document = Jsoup.parse(
+                response.peekBody(Long.MAX_VALUE).string(),
+                response.request.url.toString(),
+            )
+
+            // solve with webview only on captcha, not on geo block
+            document.getElementById("challenge-error-title") != null ||
+                document.getElementById("challenge-error-text") != null
+        } else {
+            false
+        }
     }
 
     override fun intercept(
