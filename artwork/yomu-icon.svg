@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Yomu master icon: minimalist lotus, two colors.
+     Source of truth for all launcher/readme assets.
+     Grid matches Android adaptive-icon 108dp viewport;
+     lotus sits inside the 66dp safe zone. -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 108 108">
+  <rect width="108" height="108" rx="24" fill="#6750A4"/>
+  <g fill="#FFFFFF">
+    <!-- center petal -->
+    <path d="M54 29 C63.5 40 65 54 54 65 C43 54 44.5 40 54 29 Z"/>
+    <!-- inner petals -->
+    <path d="M52 63.5 C42.5 61.5 35.5 53 34 42 C45 47.5 51.5 55.5 52 63.5 Z"/>
+    <path d="M56 63.5 C65.5 61.5 72.5 53 74 42 C63 47.5 56.5 55.5 56 63.5 Z"/>
+    <!-- outer petals -->
+    <path d="M51 66 C40 67.5 28.5 62 23.5 50.5 C36 51.5 47.5 58.5 51 66 Z"/>
+    <path d="M57 66 C68 67.5 79.5 62 84.5 50.5 C72 51.5 60.5 58.5 57 66 Z"/>
+    <!-- water line -->
+    <path d="M36 73 C42 70.5 48 70.5 54 73 C60 75.5 66 75.5 72 73 L72 76.5 C66 79 60 79 54 76.5 C48 74 42 74 36 76.5 Z"/>
+  </g>
+</svg>
