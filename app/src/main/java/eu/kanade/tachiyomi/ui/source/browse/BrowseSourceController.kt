@@ -345,8 +345,6 @@ open class BrowseSourceController(bundle: Bundle) :
         val supportsLatest = (presenter.source as? CatalogueSource)?.supportsLatest == true
         menu.findItem(R.id.action_popular_latest).isVisible = supportsLatest
 
-        val isLocalSource = presenter.source is LocalSource
-        menu.findItem(R.id.action_local_source_help).isVisible = isLocalSource
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {

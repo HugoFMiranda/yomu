@@ -293,7 +293,7 @@ class BrowseController :
                 view?.context?.getString(R.string.extensions)
             }
         val onExtensionTab = binding.bottomSheet.tabs.selectedTabPosition == 0
-        if (binding.bottomSheet.sheetToolbar.menu.findItem(if (onExtensionTab) R.id.action_search else R.id.action_migration_guide) != null) {
+        if (binding.bottomSheet.sheetToolbar.menu.findItem(if (onExtensionTab) R.id.action_search else R.id.action_migration_sort) != null) {
             return
         }
         val oldSearchView = binding.bottomSheet.sheetToolbar.menu.findItem(R.id.action_search)?.actionView as? SearchView
