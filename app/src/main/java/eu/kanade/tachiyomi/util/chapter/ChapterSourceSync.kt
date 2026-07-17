@@ -78,6 +78,7 @@ fun syncChaptersWithSource(
                 dbChapter.date_upload = sourceChapter.date_upload
                 dbChapter.chapter_number = sourceChapter.chapter_number
                 dbChapter.source_order = sourceChapter.source_order
+                dbChapter.memo = sourceChapter.memo
                 toChange.add(dbChapter)
             }
         }
@@ -183,5 +184,6 @@ private fun shouldUpdateDbChapter(dbChapter: Chapter, sourceChapter: Chapter): B
         dbChapter.name != sourceChapter.name ||
         dbChapter.date_upload != sourceChapter.date_upload ||
         dbChapter.chapter_number != sourceChapter.chapter_number ||
-        dbChapter.source_order != sourceChapter.source_order
+        dbChapter.source_order != sourceChapter.source_order ||
+        dbChapter.memo != sourceChapter.memo
 }

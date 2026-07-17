@@ -30,6 +30,8 @@ object ChapterTable {
 
     const val COL_SOURCE_ORDER = "source_order"
 
+    const val COL_MEMO = "memo"
+
     val createTableQuery: String
         get() =
             """CREATE TABLE $TABLE(
@@ -46,6 +48,7 @@ object ChapterTable {
             $COL_SOURCE_ORDER INTEGER NOT NULL,
             $COL_DATE_FETCH LONG NOT NULL,
             $COL_DATE_UPLOAD LONG NOT NULL,
+            $COL_MEMO TEXT,
             FOREIGN KEY($COL_MANGA_ID) REFERENCES ${MangaTable.TABLE} (${MangaTable.COL_ID})
             ON DELETE CASCADE
             )"""
@@ -68,4 +71,7 @@ object ChapterTable {
 
     val pagesLeftQuery: String
         get() = "ALTER TABLE $TABLE ADD COLUMN $COL_PAGES_LEFT INTEGER DEFAULT 0"
+
+    val addMemo: String
+        get() = "ALTER TABLE $TABLE ADD COLUMN $COL_MEMO TEXT DEFAULT NULL"
 }

@@ -2,6 +2,7 @@ package eu.kanade.tachiyomi.data.database.mappers
 
 import android.content.ContentValues
 import android.database.Cursor
+import androidx.core.database.getStringOrNull
 import com.pushtorefresh.storio.sqlite.SQLiteTypeMapping
 import com.pushtorefresh.storio.sqlite.operations.delete.DefaultDeleteResolver
 import com.pushtorefresh.storio.sqlite.operations.get.DefaultGetResolver
@@ -18,6 +19,7 @@ import eu.kanade.tachiyomi.data.database.tables.ChapterTable.COL_DATE_UPLOAD
 import eu.kanade.tachiyomi.data.database.tables.ChapterTable.COL_ID
 import eu.kanade.tachiyomi.data.database.tables.ChapterTable.COL_LAST_PAGE_READ
 import eu.kanade.tachiyomi.data.database.tables.ChapterTable.COL_MANGA_ID
+import eu.kanade.tachiyomi.data.database.tables.ChapterTable.COL_MEMO
 import eu.kanade.tachiyomi.data.database.tables.ChapterTable.COL_NAME
 import eu.kanade.tachiyomi.data.database.tables.ChapterTable.COL_PAGES_LEFT
 import eu.kanade.tachiyomi.data.database.tables.ChapterTable.COL_READ
@@ -25,6 +27,8 @@ import eu.kanade.tachiyomi.data.database.tables.ChapterTable.COL_SCANLATOR
 import eu.kanade.tachiyomi.data.database.tables.ChapterTable.COL_SOURCE_ORDER
 import eu.kanade.tachiyomi.data.database.tables.ChapterTable.COL_URL
 import eu.kanade.tachiyomi.data.database.tables.ChapterTable.TABLE
+import kotlinx.serialization.json.Json
+import kotlinx.serialization.json.JsonObject
 
 class ChapterTypeMapping : SQLiteTypeMapping<Chapter>(
     ChapterPutResolver(),
@@ -44,7 +48,7 @@ class ChapterPutResolver : DefaultPutResolver<Chapter>() {
         .whereArgs(obj.id)
         .build()
 
-    override fun mapToContentValues(obj: Chapter) = ContentValues(11).apply {
+    override fun mapToContentValues(obj: Chapter) = ContentValues(12).apply {
         put(COL_ID, obj.id)
         put(COL_MANGA_ID, obj.manga_id)
         put(COL_URL, obj.url)
@@ -58,6 +62,7 @@ class ChapterPutResolver : DefaultPutResolver<Chapter>() {
         put(COL_PAGES_LEFT, obj.pages_left)
         put(COL_CHAPTER_NUMBER, obj.chapter_number)
         put(COL_SOURCE_ORDER, obj.source_order)
+        put(COL_MEMO, Json.encodeToString(JsonObject.serializer(), obj.memo))
     }
 }
 
@@ -77,6 +82,9 @@ class ChapterGetResolver : DefaultGetResolver<Chapter>() {
         pages_left = cursor.getInt(cursor.getColumnIndex(COL_PAGES_LEFT))
         chapter_number = cursor.getFloat(cursor.getColumnIndex(COL_CHAPTER_NUMBER))
         source_order = cursor.getInt(cursor.getColumnIndex(COL_SOURCE_ORDER))
+        memo = cursor.getStringOrNull(cursor.getColumnIndex(COL_MEMO))?.let {
+            Json.decodeFromString(JsonObject.serializer(), it)
+        } ?: JsonObject(emptyMap())
     }
 }
 
