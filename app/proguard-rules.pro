@@ -10,6 +10,7 @@
 -keep,allowoptimization class kotlinx.coroutines.** { public protected *; }
 -keep class kotlinx.serialization.** { public protected *; }
 -keep class okhttp3.** { public protected *; }
+-keep class com.squareup.zstd.** { *; } # JNI FindClass targets aren't visible to the shrinker
 -keep,allowoptimization class okio.** { public protected *; }
 -keep,allowoptimization class rx.** { public protected *; }
 -keep class org.jsoup.** { public protected *; }
