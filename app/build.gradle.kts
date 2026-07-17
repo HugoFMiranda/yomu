@@ -185,6 +185,7 @@ dependencies {
     implementation("com.squareup.okhttp3:logging-interceptor:$okhttpVersion")
     implementation("com.squareup.okhttp3:okhttp-dnsoverhttps:$okhttpVersion")
     implementation("com.squareup.okhttp3:okhttp-brotli:$okhttpVersion")
+    implementation("com.squareup.okhttp3:okhttp-zstd:$okhttpVersion")
     implementation("com.squareup.okio:okio:3.15.0")
 
     // Chucker
