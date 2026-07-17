@@ -343,25 +343,20 @@ class MangaDetailsPresenter(
             isLoading = true
             var mangaError: java.lang.Exception? = null
             var chapterError: java.lang.Exception? = null
-            val chapters = async(Dispatchers.IO) {
-                try {
-                    source.getMangaUpdate(manga, emptyList(), fetchDetails = false, fetchChapters = true).chapters
-                } catch (e: Exception) {
-                    chapterError = e
-                    emptyList()
-                }
-            }
             val thumbnailUrl = manga.thumbnail_url
-            val nManga = async(Dispatchers.IO) {
-                try {
-                    source.getMangaUpdate(manga.copy(), emptyList(), fetchDetails = true, fetchChapters = false).manga
-                } catch (e: java.lang.Exception) {
-                    mangaError = e
-                    null
-                }
+            // Single combined call: some sources reject concurrent getMangaUpdate
+            // calls for the same manga (e.g. they fetch the page once and parse
+            // both details and chapters from it).
+            val update = try {
+                source.getMangaUpdate(manga.copy(), emptyList(), fetchDetails = true, fetchChapters = true)
+            } catch (e: Exception) {
+                mangaError = e
+                chapterError = e
+                null
             }
+            val finChapters = update?.chapters.orEmpty()
 
-            val networkManga = nManga.await()
+            val networkManga = update?.manga
             if (networkManga != null) {
                 manga.copyFrom(networkManga)
                 manga.initialized = true
@@ -386,7 +381,6 @@ class MangaDetailsPresenter(
                     }
                 }
             }
-            val finChapters = chapters.await()
             if (finChapters.isNotEmpty()) {
                 val newChapters = syncChaptersWithSource(db, finChapters, manga, source)
                 if (newChapters.first.isNotEmpty()) {
