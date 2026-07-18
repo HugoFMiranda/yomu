@@ -6,12 +6,13 @@ import androidx.core.view.isVisible
 import androidx.recyclerview.widget.LinearLayoutManager
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.databinding.UpcomingControllerBinding
+import eu.kanade.tachiyomi.ui.base.SmallToolbarInterface
 import eu.kanade.tachiyomi.ui.base.controller.BaseController
 import eu.kanade.tachiyomi.ui.manga.MangaDetailsController
 import eu.kanade.tachiyomi.util.view.liftAppbarWith
 import eu.kanade.tachiyomi.util.view.withFadeTransaction
 
-class UpcomingController : BaseController<UpcomingControllerBinding>() {
+class UpcomingController : BaseController<UpcomingControllerBinding>(), SmallToolbarInterface {
 
     private val presenter = UpcomingPresenter()
 
