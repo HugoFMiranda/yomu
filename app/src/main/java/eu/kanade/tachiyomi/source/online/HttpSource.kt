@@ -394,6 +394,22 @@ abstract class HttpSource : CatalogueSource {
     }
 
     /**
+     * Like [getImage], but requests the source image starting at [resumeFrom] bytes via a
+     * Range header, for resuming an interrupted download. Falls back to a full request if
+     * [resumeFrom] isn't positive. The response may still come back as a full (200) response
+     * rather than partial (206) if the source doesn't support range requests; callers should
+     * check [Response.code] before assuming the resume was honored.
+     */
+    open suspend fun getImage(page: Page, resumeFrom: Long): Response {
+        if (resumeFrom <= 0) return getImage(page)
+        val request = imageRequest(page).newBuilder()
+            .header("Range", "bytes=$resumeFrom-")
+            .build()
+        return client.newCachelessCallWithProgress(request, page)
+            .awaitSuccess()
+    }
+
+    /**
      * Returns the request for getting the source image. Override only if it's needed to override
      * the url, send different headers or request method like POST.
      *

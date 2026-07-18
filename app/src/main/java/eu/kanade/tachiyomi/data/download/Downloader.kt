@@ -441,13 +441,12 @@ class Downloader(
 
         val digitCount = (download.pages?.size ?: 0).toString().length.coerceAtLeast(3)
         val filename = String.format("%0${digitCount}d", page.number)
-        val tmpFile = tmpDir.findFile("$filename.tmp")
-
-        // Delete temp file if it exists
-        tmpFile?.delete()
-
-        // Try to find the image file
-        val imageFile = tmpDir.listFiles()?.find { it.name!!.startsWith("$filename.") || it.name!!.startsWith("${filename}__001") }
+        // Try to find the finished image file (a leftover .tmp file is a partial download, not
+        // a finished one, and is resumed from inside downloadImage rather than treated as done).
+        val imageFile = tmpDir.listFiles()?.find {
+            (it.name!!.startsWith("$filename.") || it.name!!.startsWith("${filename}__001")) &&
+                !it.name!!.endsWith(".tmp")
+        }
 
         val chapName = download.chapter.preferredChapterName(context, download.manga, preferences)
         try {
@@ -502,15 +501,19 @@ class Downloader(
         page.status = Page.State.DOWNLOAD_IMAGE
         page.progress = 0
         return flow {
-            val response = source.getImage(page)
-            val file = tmpDir.createFile("$filename.tmp")
+            val existingTmpFile = tmpDir.findFile("$filename.tmp")
+            val resumeFrom = existingTmpFile?.takeIf { it.length() > 0 }?.length() ?: 0L
+            val response = source.getImage(page, resumeFrom)
+            val file = existingTmpFile ?: tmpDir.createFile("$filename.tmp")
+            val append = resumeFrom > 0 && response.code == 206
             try {
-                response.body.source().saveTo(file.openOutputStream())
+                response.body.source().saveTo(file.openOutputStream(append))
                 val extension = getImageExtension(response, file)
                 file.renameTo("$filename.$extension")
             } catch (e: Exception) {
                 response.close()
-                file.delete()
+                // Keep the partial file so the next attempt can resume from it instead of
+                // redownloading from scratch.
                 throw e
             }
             emit(file)
