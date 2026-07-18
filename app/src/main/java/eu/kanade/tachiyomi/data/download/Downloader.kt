@@ -12,6 +12,7 @@ import com.hippo.unifile.UniFile
 import com.jakewharton.rxrelay.PublishRelay
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.cache.ChapterCache
+import eu.kanade.tachiyomi.data.database.DatabaseHelper
 import eu.kanade.tachiyomi.data.database.models.Chapter
 import eu.kanade.tachiyomi.data.database.models.Manga
 import eu.kanade.tachiyomi.data.download.model.Download
@@ -77,6 +78,7 @@ class Downloader(
 ) {
     private val preferences: PreferencesHelper by injectLazy()
     private val chapterCache: ChapterCache by injectLazy()
+    private val db: DatabaseHelper by injectLazy()
 
     /**
      * Store for persisting downloads across restarts.
@@ -351,7 +353,8 @@ class Downloader(
             )
             return
         }
-        val chapterDirname = provider.getChapterDirName(download.chapter)
+        val siblingChapters = db.getChapters(download.manga).executeAsBlocking()
+        val chapterDirname = provider.getChapterDirName(download.chapter, siblingChapters = siblingChapters)
         val tmpDir = mangaDir.createDirectory(chapterDirname + TMP_DIR_SUFFIX)
 
         try {

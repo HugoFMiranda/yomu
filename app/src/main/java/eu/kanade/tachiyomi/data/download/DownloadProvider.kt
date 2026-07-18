@@ -162,8 +162,9 @@ class DownloadProvider(private val context: Context) {
     ): List<UniFile> {
         val mangaDir = findMangaDir(manga, source) ?: return emptyList()
         val chapterNameHashSet = chapters.map { it.name }.toHashSet()
-        val scanalatorNameHashSet = chapters.map { getChapterDirName(it) }.toHashSet()
-        val scanalatorCbzNameHashSet = chapters.map { "${getChapterDirName(it)}.cbz" }.toHashSet()
+        val validDirNames = chapters.flatMap { getValidChapterDirNames(it) }.toHashSet()
+        val scanalatorNameHashSet = chapters.map { getChapterDirName(it, siblingChapters = chapters) }.toHashSet() + validDirNames
+        val scanalatorCbzNameHashSet = scanalatorNameHashSet.map { "$it.cbz" }.toHashSet()
 
         return mangaDir.listFiles()!!.asList().filter { file ->
             file.name?.let { fileName ->
@@ -196,7 +197,10 @@ class DownloadProvider(private val context: Context) {
      */
     fun findTempChapterDirs(chapters: List<Chapter>, manga: Manga, source: Source): List<UniFile> {
         val mangaDir = findMangaDir(manga, source) ?: return emptyList()
-        return chapters.mapNotNull { mangaDir.findFile("${getChapterDirName(it)}_tmp") }
+        return chapters.mapNotNull { chapter ->
+            mangaDir.findFile("${getChapterDirName(chapter, siblingChapters = chapters)}_tmp")
+                ?: mangaDir.findFile("${getChapterDirName(chapter)}_tmp")
+        }
     }
 
     /**
@@ -221,16 +225,26 @@ class DownloadProvider(private val context: Context) {
      * Returns the chapter directory name for a chapter.
      *
      * @param chapter the chapter to query.
+     * @param siblingChapters other chapters of the same manga to check for name collisions
+     * against. When a different chapter would produce the same directory name, a short hash
+     * of this chapter's url is appended to keep them from overwriting each other.
      */
-    fun getChapterDirName(chapter: Chapter, includeBlank: Boolean = false): String {
-        return DiskUtil.buildValidFilename(
-            if (!chapter.scanlator.isNullOrBlank()) {
-                "${chapter.scanlator}_${chapter.name}"
-            } else {
-                (if (includeBlank) "_" else "") + chapter.name
-            },
-            preferences.asciiOnlyFilenames().get(),
-        )
+    fun getChapterDirName(chapter: Chapter, includeBlank: Boolean = false, siblingChapters: List<Chapter> = emptyList()): String {
+        fun rawName(c: Chapter) = if (!c.scanlator.isNullOrBlank()) {
+            "${c.scanlator}_${c.name}"
+        } else {
+            (if (includeBlank) "_" else "") + c.name
+        }
+
+        val asciiOnly = preferences.asciiOnlyFilenames().get()
+        val baseName = DiskUtil.buildValidFilename(rawName(chapter), asciiOnly)
+
+        val collides = siblingChapters.any { other ->
+            other.url != chapter.url && DiskUtil.buildValidFilename(rawName(other), asciiOnly) == baseName
+        }
+        if (!collides) return baseName
+
+        return "${baseName}_${DiskUtil.hashKeyForDisk(chapter.url).take(6)}"
     }
 
     /**
@@ -239,9 +253,16 @@ class DownloadProvider(private val context: Context) {
      * @param chapter the chapter to query.
      */
     fun getValidChapterDirNames(chapter: Chapter): List<String> {
+        val plainName = getChapterDirName(chapter)
+        val plainBlankName = getChapterDirName(chapter, true)
         return listOf(
-            getChapterDirName(chapter),
-            getChapterDirName(chapter, true),
+            plainName,
+            plainBlankName,
+            // Collision-avoidance suffix getChapterDirName appends when a sibling chapter's
+            // name sanitizes to the same directory name; included here so lookups still find
+            // it without needing the full chapter list.
+            "${plainName}_${DiskUtil.hashKeyForDisk(chapter.url).take(6)}",
+            "${plainBlankName}_${DiskUtil.hashKeyForDisk(chapter.url).take(6)}",
             // Legacy chapter directory name used in v0.8.4 and before
             DiskUtil.buildValidFilename(chapter.name),
         ).distinct()
