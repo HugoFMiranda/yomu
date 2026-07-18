@@ -86,6 +86,7 @@ class ChapterLoader(
                     } catch (e: UnsupportedRarV5Exception) {
                         error(context.getString(R.string.loader_rar5_error))
                     }
+                    is LocalSource.Format.SevenZip -> SevenZipPageLoader(format.file)
                     is LocalSource.Format.Epub -> EpubPageLoader(format.file)
                 }
             }

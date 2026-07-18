@@ -18,6 +18,7 @@ import kotlinx.serialization.Serializable
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.decodeFromStream
+import org.apache.commons.compress.archivers.sevenz.SevenZFile
 import timber.log.Timber
 import uy.kohesive.injekt.injectLazy
 import java.io.File
@@ -305,6 +306,7 @@ class LocalSource(private val context: Context) : CatalogueSource, UnmeteredSour
             isDirectory -> Format.Directory(this)
             extension.equals("zip", true) || extension.equals("cbz", true) -> Format.Zip(this)
             extension.equals("rar", true) || extension.equals("cbr", true) -> Format.Rar(this)
+            extension.equals("7z", true) || extension.equals("cb7", true) -> Format.SevenZip(this)
             extension.equals("epub", true) -> Format.Epub(this)
             else -> throw Exception(context.getString(R.string.local_invalid_format))
         }
@@ -334,6 +336,15 @@ class LocalSource(private val context: Context) : CatalogueSource, UnmeteredSour
                         val entry = archive.fileHeaders
                             .sortedWith { f1, f2 -> f1.fileName.compareToCaseInsensitiveNaturalOrder(f2.fileName) }
                             .find { !it.isDirectory && ImageUtil.isImage(it.fileName) { archive.getInputStream(it) } }
+
+                        entry?.let { updateCover(context, manga, archive.getInputStream(it)) }
+                    }
+                }
+                is Format.SevenZip -> {
+                    SevenZFile(format.file).use { archive ->
+                        val entry = archive.entries
+                            .sortedWith { f1, f2 -> f1.name.compareToCaseInsensitiveNaturalOrder(f2.name) }
+                            .find { !it.isDirectory && ImageUtil.isImage(it.name) { archive.getInputStream(it) } }
 
                         entry?.let { updateCover(context, manga, archive.getInputStream(it)) }
                     }
@@ -369,8 +380,9 @@ class LocalSource(private val context: Context) : CatalogueSource, UnmeteredSour
         data class Directory(val file: File) : Format()
         data class Zip(val file: File) : Format()
         data class Rar(val file: File) : Format()
+        data class SevenZip(val file: File) : Format()
         data class Epub(val file: File) : Format()
     }
 }
 
-private val SUPPORTED_ARCHIVE_TYPES = listOf("zip", "cbz", "rar", "cbr", "epub")
+private val SUPPORTED_ARCHIVE_TYPES = listOf("zip", "cbz", "rar", "cbr", "7z", "cb7", "epub")

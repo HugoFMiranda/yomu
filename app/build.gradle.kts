@@ -209,6 +209,8 @@ dependencies {
     implementation("com.jakewharton:disklrucache:2.0.2")
     implementation("com.github.tachiyomiorg:unifile:17bec43")
     implementation("com.github.junrar:junrar:7.5.5")
+    implementation("org.apache.commons:commons-compress:1.24.0")
+    implementation("org.tukaani:xz:1.9")
 
     // HTML parser
     implementation("org.jsoup:jsoup:1.21.1")
