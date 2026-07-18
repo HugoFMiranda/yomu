@@ -15,6 +15,7 @@ import eu.kanade.tachiyomi.util.system.notificationManager
 import eu.kanade.tachiyomi.util.system.toast
 import uy.kohesive.injekt.Injekt
 import uy.kohesive.injekt.api.get
+import java.io.File
 import java.io.IOException
 
 class CrashLogUtil(private val context: Context) {
@@ -33,6 +34,15 @@ class CrashLogUtil(private val context: Context) {
         } catch (e: IOException) {
             context.toast("Failed to get logs")
         }
+    }
+
+    fun clearLogs() {
+        val file = File(context.externalCacheDir, "tachiyomi_crash_logs.txt")
+        if (file.exists()) {
+            file.delete()
+        }
+        context.notificationManager.cancel(Notifications.ID_CRASH_LOGS)
+        context.toast(context.getString(R.string.crash_log_cleared))
     }
 
     fun getDebugInfo(): String {

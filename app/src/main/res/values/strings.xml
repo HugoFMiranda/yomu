@@ -836,6 +836,9 @@
     <string name="crash_logs">Crash logs</string>
     <string name="dump_crash_logs">Dump crash logs</string>
     <string name="saves_error_logs">Saves error logs to a file for sharing with the developers</string>
+    <string name="clear_crash_logs">Clear crash logs</string>
+    <string name="clears_error_logs">Deletes the saved crash log file</string>
+    <string name="crash_log_cleared">Crash logs cleared</string>
     <string name="about_dont_kill_my_app">Some manufacturers have additional app restrictions that kill background services. This website has more info on how to fix it.</string>
     <string name="crash_log_saved">Crash logs saved</string>
     <string name="network">Network</string>
@@ -1071,7 +1074,7 @@
     <string name="file_picker_error">No file picker app found</string>
 
     <!-- Webview -->
-    <string name="failed_to_bypass_cloudflare">Failed to bypass Cloudflare</string>
+    <string name="failed_to_bypass_cloudflare">Cloudflare check failed. Tap "Open in WebView" below to pass it manually</string>
     <string name="please_update_webview">Please update the WebView app for better compatibility</string>
     <!-- Do not translate "WebView" -->
     <string name="webview_is_required">WebView is required for Tachiyomi</string>

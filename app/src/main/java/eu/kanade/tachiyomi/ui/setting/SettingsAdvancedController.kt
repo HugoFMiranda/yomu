@@ -96,6 +96,16 @@ class SettingsAdvancedController : SettingsController() {
         }
 
         preference {
+            key = "clear_crash_logs"
+            titleRes = R.string.clear_crash_logs
+            summaryRes = R.string.clears_error_logs
+
+            onClick {
+                CrashLogUtil(context.localeContext).clearLogs()
+            }
+        }
+
+        preference {
             key = "debug_info"
             titleRes = R.string.pref_debug_info
 
