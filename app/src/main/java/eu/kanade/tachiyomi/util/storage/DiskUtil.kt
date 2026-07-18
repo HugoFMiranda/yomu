@@ -9,6 +9,7 @@ import androidx.core.os.EnvironmentCompat
 import com.hippo.unifile.UniFile
 import eu.kanade.tachiyomi.util.lang.Hash
 import java.io.File
+import java.text.Normalizer
 
 object DiskUtil {
 
@@ -91,11 +92,21 @@ object DiskUtil {
      * Mutate the given filename to make it valid for a FAT filesystem,
      * replacing any invalid characters with "_". This method doesn't allow hidden files (starting
      * with a dot), but you can manually add it later.
+     *
+     * @param asciiOnly if true, transliterates accented Latin characters and strips any
+     * remaining non-ASCII characters before FAT sanitization, for filesystems with poor
+     * Unicode support.
      */
-    fun buildValidFilename(origName: String): String {
-        val name = origName.trim('.', ' ')
+    fun buildValidFilename(origName: String, asciiOnly: Boolean = false): String {
+        var name = origName.trim('.', ' ')
         if (name.isEmpty()) {
             return "(invalid)"
+        }
+        if (asciiOnly) {
+            name = Normalizer.normalize(name, Normalizer.Form.NFKD)
+                .replace(Regex("\\p{M}"), "")
+                .map { if (it.code < 128) it else '_' }
+                .joinToString("")
         }
         val sb = StringBuilder(name.length)
         name.forEach { c ->

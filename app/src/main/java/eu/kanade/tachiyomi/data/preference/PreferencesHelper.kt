@@ -241,6 +241,8 @@ class PreferencesHelper(val context: Context) {
 
     fun simultaneousPageDownloads() = flowPrefs.getInt("simultaneous_page_downloads", 2)
 
+    fun asciiOnlyFilenames() = flowPrefs.getBoolean("ascii_only_filenames", false)
+
     fun folderPerManga() = flowPrefs.getBoolean("create_folder_per_manga", false)
 
     fun librarySearchSuggestion() = flowPrefs.getString(Keys.librarySearchSuggestion, "")

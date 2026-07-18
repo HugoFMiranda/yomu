@@ -68,6 +68,11 @@ class SettingsDownloadController : SettingsController() {
             entryValues = (1..10).toList()
             defaultValue = 2
         }
+        switchPreference {
+            bindTo(preferences.asciiOnlyFilenames())
+            titleRes = R.string.ascii_only_filenames
+            summaryRes = R.string.ascii_only_filenames_summary
+        }
 
         val dbCategories = db.getCategories().executeAsBlocking()
         val categories = listOf(Category.createDefault(context)) + dbCategories

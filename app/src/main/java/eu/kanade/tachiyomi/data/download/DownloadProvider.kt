@@ -214,7 +214,7 @@ class DownloadProvider(private val context: Context) {
      * @param manga the manga to query.
      */
     fun getMangaDirName(manga: Manga): String {
-        return DiskUtil.buildValidFilename(manga.originalTitle)
+        return DiskUtil.buildValidFilename(manga.originalTitle, preferences.asciiOnlyFilenames().get())
     }
 
     /**
@@ -229,6 +229,7 @@ class DownloadProvider(private val context: Context) {
             } else {
                 (if (includeBlank) "_" else "") + chapter.name
             },
+            preferences.asciiOnlyFilenames().get(),
         )
     }
 
