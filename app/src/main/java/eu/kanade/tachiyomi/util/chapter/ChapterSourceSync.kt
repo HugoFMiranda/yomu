@@ -36,7 +36,9 @@ fun syncChaptersWithSource(
     // Chapters from db.
     val dbChapters = db.getChapters(manga).executeAsBlocking()
 
-    val sourceChapters = rawSourceChapters
+    @Suppress("UNCHECKED_CAST")
+    val sourceChapters = (rawSourceChapters as List<SChapter?>)
+        .filterNotNull()
         .distinctBy { it.url }
         .mapIndexed { i, sChapter ->
             Chapter.create().apply {
