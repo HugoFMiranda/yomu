@@ -340,6 +340,8 @@
     <string name="ext_installer_summary">Allows extensions to be installed without user prompts and enables automatic updates for devices under Android 12</string>
     <string name="untrusted_extension">Untrusted extension</string>
     <string name="untrusted_extension_message">Malicious extensions can read any stored login credentials or execute arbitrary code.\n\nBy trusting this extension, you accept these risks.</string>
+    <string name="extension_signature_changed">Extension signing certificate changed</string>
+    <string name="extension_signature_changed_message">This extension is signed with a different certificate than the one you previously trusted for it. This can happen after a legitimate re-signing, but it\'s also what a compromised or malicious repo swapping this extension would look like.\n\nOnly trust this if you\'re sure of its source.</string>
     <string name="obsolete_extension_message">This extension is no longer available.</string>
     <string name="extension_api_error">Failed to fetch available extensions</string>
     <string name="version_">Version: %1$s</string>

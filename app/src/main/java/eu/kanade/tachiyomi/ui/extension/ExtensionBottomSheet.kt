@@ -22,6 +22,7 @@ import eu.kanade.tachiyomi.extension.model.Extension
 import eu.kanade.tachiyomi.extension.model.InstallStep
 import eu.kanade.tachiyomi.extension.model.InstalledExtensionsOrder
 import eu.kanade.tachiyomi.extension.util.ExtensionInstaller
+import eu.kanade.tachiyomi.extension.util.TrustExtension
 import eu.kanade.tachiyomi.ui.extension.details.ExtensionDetailsController
 import eu.kanade.tachiyomi.ui.main.MainActivity
 import eu.kanade.tachiyomi.ui.migration.BaseMigrationInterface
@@ -323,9 +324,17 @@ class ExtensionBottomSheet @JvmOverloads constructor(context: Context, attrs: At
 
     private fun openTrustDialog(extension: Extension.Untrusted) {
         val activity = controller.activity ?: return
+        val signatureChanged = Injekt.get<TrustExtension>()
+            .hasSignatureChanged(extension.pkgName, extension.signatureHash)
         activity.materialAlertDialog()
-            .setTitle(R.string.untrusted_extension)
-            .setMessage(R.string.untrusted_extension_message)
+            .setTitle(if (signatureChanged) R.string.extension_signature_changed else R.string.untrusted_extension)
+            .setMessage(
+                if (signatureChanged) {
+                    R.string.extension_signature_changed_message
+                } else {
+                    R.string.untrusted_extension_message
+                },
+            )
             .setPositiveButton(R.string.trust) { _, _ ->
                 trustExtension(extension.pkgName, extension.versionCode, extension.signatureHash)
             }

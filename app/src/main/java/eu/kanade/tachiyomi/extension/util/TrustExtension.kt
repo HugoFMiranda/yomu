@@ -15,6 +15,19 @@ class TrustExtension(
         return key in preferences.trustedExtensions().get()
     }
 
+    /**
+     * Returns true if [pkgName] was previously trusted under a *different* signature than
+     * [signatureHash]. This is a stronger signal than a plain first-time "untrusted" prompt: the
+     * extension's signing certificate changed since the user last approved it, which is what a
+     * compromised repo re-signing/swapping a known extension would look like.
+     */
+    fun hasSignatureChanged(pkgName: String, signatureHash: String): Boolean {
+        return preferences.trustedExtensions().get().any {
+            val parts = it.split(":")
+            parts.size == 3 && parts[0] == pkgName && parts[2] != signatureHash
+        }
+    }
+
     fun trust(pkgName: String, versionCode: Long, signatureHash: String) {
         preferences.trustedExtensions().let { exts ->
             // Remove previously trusted versions
