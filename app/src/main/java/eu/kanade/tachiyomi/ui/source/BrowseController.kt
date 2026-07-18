@@ -631,7 +631,7 @@ class BrowseController :
      * Opens a catalogue with the given controller.
      */
     private fun openCatalogue(source: CatalogueSource, controller: BrowseSourceController) {
-        if (!preferences.incognitoMode().get()) {
+        if (!preferences.isIncognitoModeForSource(source.id)) {
             preferences.lastUsedCatalogueSource().set(source.id)
             if (source !is LocalSource) {
                 val list = preferences.lastUsedSources().get().toMutableSet()

@@ -482,7 +482,7 @@ class ReaderViewModel(
         selectedChapter.chapter.last_page_read = page.index
         selectedChapter.chapter.pages_left =
             (selectedChapter.pages?.size ?: page.index) - page.index
-        val shouldTrack = !preferences.incognitoMode().get() || hasTrackers
+        val shouldTrack = !preferences.isIncognitoModeForSource(manga?.source ?: -1) || hasTrackers
         if (shouldTrack &&
             // For double pages, check if the second to last page is doubled up
             (
@@ -605,7 +605,7 @@ class ReaderViewModel(
         db.getChapter(readerChapter.chapter.id!!).executeAsBlocking()?.let { dbChapter ->
             readerChapter.chapter.bookmark = dbChapter.bookmark
         }
-        if (!preferences.incognitoMode().get() || hasTrackers) {
+        if (!preferences.isIncognitoModeForSource(manga?.source ?: -1) || hasTrackers) {
             db.updateChapterProgress(readerChapter.chapter).executeAsBlocking()
         }
     }
@@ -614,7 +614,7 @@ class ReaderViewModel(
      * Saves this [readerChapter] last read history.
      */
     private fun saveChapterHistory(readerChapter: ReaderChapter) {
-        if (!preferences.incognitoMode().get()) {
+        if (!preferences.isIncognitoModeForSource(manga?.source ?: -1)) {
             val readAt = Date().time
             val sessionReadDuration = chapterReadStartTime?.let { readAt - it } ?: 0
             val oldTimeRead = db.getHistoryByChapterUrl(readerChapter.chapter.url).executeAsBlocking()?.time_read ?: 0

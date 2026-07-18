@@ -344,6 +344,8 @@ open class BrowseSourceController(bundle: Bundle) :
         menu.findItem(R.id.action_open_in_web_view).isVisible = isHttpSource
         val supportsLatest = (presenter.source as? CatalogueSource)?.supportsLatest == true
         menu.findItem(R.id.action_popular_latest).isVisible = supportsLatest
+        menu.findItem(R.id.action_incognito).isChecked =
+            presenter.source.id.toString() in presenter.prefs.incognitoSources().get()
 
     }
 
@@ -353,9 +355,23 @@ open class BrowseSourceController(bundle: Bundle) :
             R.id.action_display_mode -> swapDisplayMode()
             R.id.action_open_in_web_view -> openInWebView()
             R.id.action_popular_latest -> swapPopularLatest()
+            R.id.action_incognito -> toggleIncognitoForSource(item)
             else -> return super.onOptionsItemSelected(item)
         }
         return true
+    }
+
+    private fun toggleIncognitoForSource(item: MenuItem) {
+        val sourceId = presenter.source.id.toString()
+        val incognitoSources = presenter.prefs.incognitoSources().get().toMutableSet()
+        val nowChecked = !item.isChecked
+        if (nowChecked) {
+            incognitoSources.add(sourceId)
+        } else {
+            incognitoSources.remove(sourceId)
+        }
+        presenter.prefs.incognitoSources().set(incognitoSources)
+        item.isChecked = nowChecked
     }
 
     private fun showFilters() {

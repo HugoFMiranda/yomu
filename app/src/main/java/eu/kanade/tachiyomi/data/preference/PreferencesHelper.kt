@@ -243,6 +243,16 @@ class PreferencesHelper(val context: Context) {
 
     fun asciiOnlyFilenames() = flowPrefs.getBoolean("ascii_only_filenames", false)
 
+    fun incognitoSources() = flowPrefs.getStringSet("incognito_sources", emptySet())
+
+    /**
+     * Whether incognito behavior (no history/tracking updates) should apply for [sourceId],
+     * either because incognito mode is on globally or because that source has it toggled on.
+     */
+    fun isIncognitoModeForSource(sourceId: Long): Boolean {
+        return incognitoMode().get() || sourceId.toString() in incognitoSources().get()
+    }
+
     fun folderPerManga() = flowPrefs.getBoolean("create_folder_per_manga", false)
 
     fun librarySearchSuggestion() = flowPrefs.getString(Keys.librarySearchSuggestion, "")

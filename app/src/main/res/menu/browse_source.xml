@@ -28,4 +28,10 @@
         android:title="@string/open_in_webview"
         app:showAsAction="ifRoom" />
 
+    <item
+        android:id="@+id/action_incognito"
+        android:title="@string/incognito_mode"
+        android:checkable="true"
+        app:showAsAction="never" />
+
 </menu>
