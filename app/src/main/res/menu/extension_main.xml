@@ -20,4 +20,9 @@
         android:icon="@drawable/ic_extension_update_24dp"
         app:iconTint="?actionBarTintColor"
         app:showAsAction="ifRoom"/>
+
+    <item
+        android:id="@+id/action_install_from_storage"
+        android:title="@string/install_from_storage"
+        app:showAsAction="never"/>
 </menu>

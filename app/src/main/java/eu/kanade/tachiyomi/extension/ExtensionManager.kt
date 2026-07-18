@@ -2,6 +2,7 @@ package eu.kanade.tachiyomi.extension
 
 import android.content.Context
 import android.graphics.drawable.Drawable
+import android.net.Uri
 import android.os.Build
 import android.os.Parcelable
 import eu.kanade.tachiyomi.R
@@ -16,6 +17,7 @@ import eu.kanade.tachiyomi.extension.util.ExtensionLoader
 import eu.kanade.tachiyomi.extension.util.TrustExtension
 import eu.kanade.tachiyomi.source.Source
 import eu.kanade.tachiyomi.ui.extension.ExtensionIntallInfo
+import eu.kanade.tachiyomi.util.storage.getUriCompat
 import eu.kanade.tachiyomi.util.system.launchNow
 import eu.kanade.tachiyomi.util.system.toast
 import eu.kanade.tachiyomi.util.system.withUIContext
@@ -28,6 +30,7 @@ import kotlinx.parcelize.Parcelize
 import timber.log.Timber
 import uy.kohesive.injekt.Injekt
 import uy.kohesive.injekt.api.get
+import java.io.File
 import java.util.Locale
 
 /**
@@ -234,6 +237,34 @@ class ExtensionManager(
      */
     suspend fun installExtension(extension: ExtensionInfo, scope: CoroutineScope): Flow<ExtensionIntallInfo> {
         return installer.downloadAndInstall(api.getApkUrl(extension), extension, scope)
+    }
+
+    /**
+     * Installs an extension APK picked from local storage, without it being listed in any
+     * extension repo. Returns whether the install could be kicked off (not whether it ultimately
+     * succeeded — that's reported through [downloadSharedFlow] like any other install).
+     */
+    @Suppress("DEPRECATION")
+    fun installExtensionFromUri(uri: Uri): Boolean {
+        val tempFile = File(context.cacheDir, "sideload_${System.currentTimeMillis()}.apk")
+        return try {
+            context.contentResolver.openInputStream(uri)?.use { input ->
+                tempFile.outputStream().use { output -> input.copyTo(output) }
+            } ?: return false
+
+            val pkgName = context.packageManager.getPackageArchiveInfo(tempFile.absolutePath, 0)
+                ?.packageName ?: return false
+
+            // Synthetic id distinct from real DownloadManager ids, which are always positive.
+            val downloadId = -System.currentTimeMillis()
+            installer.activeDownloads[pkgName] = downloadId
+            installer.installApk(downloadId, tempFile.getUriCompat(context))
+            true
+        } catch (e: Exception) {
+            Timber.e(e, "Failed to install extension from local storage")
+            tempFile.delete()
+            false
+        }
     }
 
     /**

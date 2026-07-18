@@ -1,6 +1,8 @@
 package eu.kanade.tachiyomi.ui.source
 
 import android.app.Activity
+import android.content.ActivityNotFoundException
+import android.content.Intent
 import android.os.Build
 import android.os.Parcelable
 import android.view.LayoutInflater
@@ -29,6 +31,7 @@ import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.preference.PreferenceValues
 import eu.kanade.tachiyomi.data.preference.PreferencesHelper
 import eu.kanade.tachiyomi.databinding.BrowseControllerBinding
+import eu.kanade.tachiyomi.extension.ExtensionManager
 import eu.kanade.tachiyomi.extension.util.ExtensionInstaller
 import eu.kanade.tachiyomi.source.CatalogueSource
 import eu.kanade.tachiyomi.source.LocalSource
@@ -50,6 +53,7 @@ import eu.kanade.tachiyomi.util.system.getResourceColor
 import eu.kanade.tachiyomi.util.system.openInBrowser
 import eu.kanade.tachiyomi.util.system.rootWindowInsetsCompat
 import eu.kanade.tachiyomi.util.system.spToPx
+import eu.kanade.tachiyomi.util.system.toast
 import eu.kanade.tachiyomi.util.view.activityBinding
 import eu.kanade.tachiyomi.util.view.checkHeightThen
 import eu.kanade.tachiyomi.util.view.collapse
@@ -361,6 +365,16 @@ class BrowseController :
                 }
                 R.id.action_ext_repos -> {
                     router.pushController(RepoController().withFadeTransaction())
+                }
+                R.id.action_install_from_storage -> {
+                    try {
+                        val intent = Intent(Intent.ACTION_OPEN_DOCUMENT)
+                            .addCategory(Intent.CATEGORY_OPENABLE)
+                            .setType(ExtensionInstaller.APK_MIME)
+                        startActivityForResult(intent, CODE_INSTALL_FROM_STORAGE)
+                    } catch (e: ActivityNotFoundException) {
+                        activity?.toast(R.string.file_picker_error)
+                    }
                 }
             }
             return@setOnMenuItemClickListener true
@@ -723,9 +737,26 @@ class BrowseController :
         }
     }
 
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == CODE_INSTALL_FROM_STORAGE && resultCode == Activity.RESULT_OK) {
+            val uri = data?.data
+            val activity = activity ?: return
+            if (uri == null) {
+                activity.toast(R.string.file_picker_error)
+                return
+            }
+            val installed = Injekt.get<ExtensionManager>().installExtensionFromUri(uri)
+            if (!installed) {
+                activity.toast(R.string.file_picker_error)
+            }
+        }
+    }
+
     @Parcelize
     data class SmartSearchConfig(val origTitle: String, val origMangaId: Long) : Parcelable
 
     companion object {
+        private const val CODE_INSTALL_FROM_STORAGE = 502
     }
 }
