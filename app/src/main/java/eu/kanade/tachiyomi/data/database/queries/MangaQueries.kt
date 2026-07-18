@@ -15,6 +15,7 @@ import eu.kanade.tachiyomi.data.database.resolvers.MangaFilteredScanlatorsPutRes
 import eu.kanade.tachiyomi.data.database.resolvers.MangaFlagsPutResolver
 import eu.kanade.tachiyomi.data.database.resolvers.MangaInfoPutResolver
 import eu.kanade.tachiyomi.data.database.resolvers.MangaLastUpdatedPutResolver
+import eu.kanade.tachiyomi.data.database.resolvers.MangaNotesPutResolver
 import eu.kanade.tachiyomi.data.database.resolvers.MangaTitlePutResolver
 import eu.kanade.tachiyomi.data.database.resolvers.SourceIdMangaCountGetResolver
 import eu.kanade.tachiyomi.data.database.tables.CategoryTable
@@ -226,5 +227,10 @@ interface MangaQueries : DbProvider {
     fun updateMangaFilteredScanlators(manga: Manga) = db.put()
         .`object`(manga)
         .withPutResolver(MangaFilteredScanlatorsPutResolver())
+        .prepare()
+
+    fun updateMangaNotes(manga: Manga) = db.put()
+        .`object`(manga)
+        .withPutResolver(MangaNotesPutResolver())
         .prepare()
 }

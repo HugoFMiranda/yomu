@@ -23,6 +23,7 @@ import eu.kanade.tachiyomi.data.database.tables.MangaTable.COL_HIDE_TITLE
 import eu.kanade.tachiyomi.data.database.tables.MangaTable.COL_ID
 import eu.kanade.tachiyomi.data.database.tables.MangaTable.COL_INITIALIZED
 import eu.kanade.tachiyomi.data.database.tables.MangaTable.COL_LAST_UPDATE
+import eu.kanade.tachiyomi.data.database.tables.MangaTable.COL_NOTES
 import eu.kanade.tachiyomi.data.database.tables.MangaTable.COL_SOURCE
 import eu.kanade.tachiyomi.data.database.tables.MangaTable.COL_STATUS
 import eu.kanade.tachiyomi.data.database.tables.MangaTable.COL_THUMBNAIL_URL
@@ -71,6 +72,7 @@ class MangaPutResolver : DefaultPutResolver<Manga>() {
         put(COL_DATE_ADDED, obj.date_added)
         put(COL_FILTERED_SCANLATORS, obj.filtered_scanlators)
         put(COL_UPDATE_STRATEGY, obj.update_strategy.let(updateStrategyAdapter::encode))
+        put(COL_NOTES, obj.notes)
     }
 }
 
@@ -97,6 +99,7 @@ interface BaseMangaGetResolver {
         update_strategy = cursor.getInt(cursor.getColumnIndex(COL_UPDATE_STRATEGY)).let(
             updateStrategyAdapter::decode,
         )
+        notes = cursor.getString(cursor.getColumnIndex(COL_NOTES))
     }
 }
 

@@ -59,6 +59,7 @@ import eu.kanade.tachiyomi.data.download.model.Download
 import eu.kanade.tachiyomi.data.image.coil.getBestColor
 import eu.kanade.tachiyomi.data.notification.NotificationReceiver
 import eu.kanade.tachiyomi.data.track.model.TrackSearch
+import eu.kanade.tachiyomi.databinding.DialogEditNotesBinding
 import eu.kanade.tachiyomi.databinding.MangaDetailsControllerBinding
 import eu.kanade.tachiyomi.source.CatalogueSource
 import eu.kanade.tachiyomi.source.Source
@@ -125,6 +126,7 @@ import eu.kanade.tachiyomi.util.view.snack
 import eu.kanade.tachiyomi.util.view.toolbarHeight
 import eu.kanade.tachiyomi.util.view.withFadeTransaction
 import eu.kanade.tachiyomi.widget.LinearLayoutManagerAccurateOffset
+import io.noties.markwon.Markwon
 import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.withTimeoutOrNull
 import timber.log.Timber
@@ -1106,6 +1108,7 @@ class MangaDetailsController :
         menu ?: return
         val editItem = menu.findItem(R.id.action_edit)
         editItem?.isVisible = presenter.manga.favorite && !presenter.isLockedFromSearch
+        menu.findItem(R.id.action_notes)?.isVisible = presenter.manga.favorite && !presenter.isLockedFromSearch
         menu.findItem(R.id.action_download)?.isVisible = !presenter.isLockedFromSearch &&
             !presenter.manga.isLocal()
         menu.findItem(R.id.action_mark_all_as_read)?.isVisible =
@@ -1130,6 +1133,7 @@ class MangaDetailsController :
                 )
                 editMangaDialog?.showDialog(router)
             }
+            R.id.action_notes -> showNotesDialog()
             R.id.action_open_in_web_view -> openInWebView()
             R.id.action_refresh_tracking -> presenter.refreshTracking(true)
             R.id.action_migrate ->
@@ -1619,6 +1623,25 @@ class MangaDetailsController :
                 showAddedSnack()
             }
         }
+    }
+
+    private fun showNotesDialog() {
+        val activity = activity ?: return
+        val binding = DialogEditNotesBinding.inflate(activity.layoutInflater)
+        val existingNotes = presenter.manga.notes
+        binding.notes.setText(existingNotes ?: "")
+        if (!existingNotes.isNullOrBlank()) {
+            binding.notesPreview.isVisible = true
+            binding.notesPreview.text = Markwon.create(activity).toMarkdown(existingNotes)
+        }
+        activity.materialAlertDialog()
+            .setTitle(R.string.notes)
+            .setView(binding.root)
+            .setPositiveButton(R.string.save) { _, _ ->
+                presenter.setNotes(binding.notes.text?.toString())
+            }
+            .setNegativeButton(android.R.string.cancel, null)
+            .show()
     }
 
     private fun toggleMangaFavorite() {

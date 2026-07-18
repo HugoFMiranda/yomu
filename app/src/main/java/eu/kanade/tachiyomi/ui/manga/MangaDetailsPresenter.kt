@@ -695,6 +695,13 @@ class MangaDetailsPresenter(
         asyncUpdateMangaAndChapters()
     }
 
+    fun setNotes(notes: String?) {
+        val manga = manga
+        manga.notes = notes?.trim()?.takeIf { it.isNotBlank() }
+        db.updateMangaNotes(manga).executeAsBlocking()
+        view?.updateHeader()
+    }
+
     fun toggleFavorite(): Boolean {
         manga.favorite = !manga.favorite
 

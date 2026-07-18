@@ -76,6 +76,11 @@
         app:showAsAction="never" />
 
     <item
+        android:id="@+id/action_notes"
+        android:title="@string/notes"
+        app:showAsAction="never" />
+
+    <item
         android:id="@+id/action_migrate"
         android:icon="@drawable/ic_swap_calls_24dp"
         android:title="@string/migrate"

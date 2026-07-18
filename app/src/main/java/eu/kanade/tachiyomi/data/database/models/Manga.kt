@@ -33,6 +33,8 @@ interface Manga : SManga {
 
     var filtered_scanlators: String?
 
+    var notes: String?
+
     fun isBlank() = id == Long.MIN_VALUE
     fun isHidden() = status == -1
 
