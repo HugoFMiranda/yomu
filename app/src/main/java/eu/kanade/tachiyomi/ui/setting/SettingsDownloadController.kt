@@ -54,6 +54,20 @@ class SettingsDownloadController : SettingsController() {
             titleRes = R.string.split_tall_images
             summaryRes = R.string.split_tall_images_summary
         }
+        intListPreference(activity) {
+            bindTo(preferences.simultaneousDownloads())
+            titleRes = R.string.simultaneous_downloads
+            entries = (1..10).map { it.toString() }
+            entryValues = (1..10).toList()
+            defaultValue = 5
+        }
+        intListPreference(activity) {
+            bindTo(preferences.simultaneousPageDownloads())
+            titleRes = R.string.simultaneous_page_downloads
+            entries = (1..10).map { it.toString() }
+            entryValues = (1..10).toList()
+            defaultValue = 2
+        }
 
         val dbCategories = db.getCategories().executeAsBlocking()
         val categories = listOf(Category.createDefault(context)) + dbCategories

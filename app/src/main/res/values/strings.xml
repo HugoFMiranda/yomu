@@ -1021,6 +1021,8 @@
     <string name="save_chapters_as_cbz">Save as CBZ archive</string>
     <string name="split_tall_images">Split tall images</string>
     <string name="split_tall_images_summary">Improves reader performance</string>
+    <string name="simultaneous_downloads">Simultaneous downloads</string>
+    <string name="simultaneous_page_downloads">Simultaneous page downloads per chapter</string>
 
     <!-- Stats -->
     <string name="stat">Stat</string>
