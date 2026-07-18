@@ -278,8 +278,7 @@ class MangaHeaderHolder(
     fun bindChapters() {
         val presenter = adapter.delegate.mangaPresenter()
         val count = presenter.chapters.size
-        val chaptersTitleText = itemView.resources.getQuantityString(R.plurals.chapters_plural, count, count) +
-            (presenter.getNextChapterEtaText()?.let { " • $it" } ?: "")
+        val chaptersTitleText = itemView.resources.getQuantityString(R.plurals.chapters_plural, count, count)
         if (binding != null) {
             binding.chaptersTitle.text = chaptersTitleText
             binding.filtersText.text = presenter.currentFilters()
@@ -296,8 +295,7 @@ class MangaHeaderHolder(
             if (chapterBinding != null) {
                 val count = presenter.chapters.size
                 chapterBinding.chaptersTitle.text =
-                    itemView.resources.getQuantityString(R.plurals.chapters_plural, count, count) +
-                    (presenter.getNextChapterEtaText()?.let { " • $it" } ?: "")
+                    itemView.resources.getQuantityString(R.plurals.chapters_plural, count, count)
                 chapterBinding.filtersText.text = presenter.currentFilters()
                 if (adapter.preferences.themeMangaDetails()) {
                     val accentColor = adapter.delegate.accentColor() ?: return
@@ -412,8 +410,11 @@ class MangaHeaderHolder(
         }
 
         val count = presenter.chapters.size
-        binding.chaptersTitle.text = itemView.resources.getQuantityString(R.plurals.chapters_plural, count, count) +
-            (presenter.getNextChapterEtaText()?.let { " • $it" } ?: "")
+        binding.chaptersTitle.text = itemView.resources.getQuantityString(R.plurals.chapters_plural, count, count)
+
+        val nextChapterEtaText = presenter.getNextChapterEtaText()
+        binding.nextChapterEta.isVisible = nextChapterEtaText != null
+        binding.nextChapterEta.text = nextChapterEtaText
 
         binding.topView.updateLayoutParams<ConstraintLayout.LayoutParams> {
             height = adapter.delegate.topCoverHeight()

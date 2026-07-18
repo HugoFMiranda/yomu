@@ -221,6 +221,21 @@
     </HorizontalScrollView>
 
     <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/next_chapter_eta"
+        style="?textAppearanceBodySmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="6dp"
+        android:layout_marginEnd="16dp"
+        android:textColor="@color/material_on_background_disabled"
+        android:visibility="gone"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/sub_button_scroll"
+        tools:text="Next chapter expected in ~3 days"
+        tools:visibility="visible" />
+
+    <com.google.android.material.textview.MaterialTextView
         android:id="@+id/manga_summary_label"
         style="?textAppearanceTitleSmall"
         android:layout_width="wrap_content"
@@ -232,7 +247,7 @@
         android:textIsSelectable="false"
         android:textSize="17sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/sub_button_scroll"
+        app:layout_constraintTop_toBottomOf="@id/next_chapter_eta"
         tools:text="About this manga" />
 
     <TextView
@@ -313,7 +328,7 @@
         android:id="@+id/sub_item_group"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:constraint_referenced_ids="manga_summary,manga_summary_label,sub_button_scroll" />
+        app:constraint_referenced_ids="manga_summary,manga_summary_label,sub_button_scroll,next_chapter_eta" />
 
     <com.google.android.material.chip.ChipGroup
         android:id="@+id/manga_genres_tags"
