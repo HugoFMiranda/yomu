@@ -1029,6 +1029,8 @@
     <!-- Stats -->
     <string name="stat">Stat</string>
     <string name="stats">Stats</string>
+    <string name="upcoming">Upcoming</string>
+    <string name="upcoming_empty">No upcoming chapters to estimate yet</string>
     <string name="statistics">Statistics</string>
     <string name="statistics_details">Statistics details</string>
     <string name="titles_in_library">Titles in library</string>

@@ -97,6 +97,7 @@ import eu.kanade.tachiyomi.ui.manga.MangaDetailsController
 import eu.kanade.tachiyomi.ui.more.AboutController
 import eu.kanade.tachiyomi.ui.more.OverflowDialog
 import eu.kanade.tachiyomi.ui.more.stats.StatsController
+import eu.kanade.tachiyomi.ui.more.upcoming.UpcomingController
 import eu.kanade.tachiyomi.ui.recents.RecentsController
 import eu.kanade.tachiyomi.ui.recents.RecentsViewType
 import eu.kanade.tachiyomi.ui.security.SecureActivityDelegate
@@ -1318,6 +1319,10 @@ open class MainActivity : BaseActivity<MainActivityBinding>() {
 
     fun showStats() {
         router.pushController(StatsController().withFadeTransaction())
+    }
+
+    fun showUpcoming() {
+        router.pushController(UpcomingController().withFadeTransaction())
     }
 
     override fun dispatchTouchEvent(ev: MotionEvent?): Boolean {
