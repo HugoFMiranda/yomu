@@ -413,8 +413,8 @@ class MangaHeaderHolder(
         binding.chaptersTitle.text = itemView.resources.getQuantityString(R.plurals.chapters_plural, count, count)
 
         val nextChapterEtaText = presenter.getNextChapterEtaText()
-        binding.nextChapterEta.isVisible = nextChapterEtaText != null
-        binding.nextChapterEta.text = nextChapterEtaText
+        binding.nextChapterEta?.isVisible = nextChapterEtaText != null
+        binding.nextChapterEta?.text = nextChapterEtaText
 
         binding.topView.updateLayoutParams<ConstraintLayout.LayoutParams> {
             height = adapter.delegate.topCoverHeight()
