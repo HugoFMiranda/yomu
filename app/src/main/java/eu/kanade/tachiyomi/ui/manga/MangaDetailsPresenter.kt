@@ -41,6 +41,7 @@ import eu.kanade.tachiyomi.ui.security.SecureActivityDelegate
 import eu.kanade.tachiyomi.util.chapter.ChapterFilter
 import eu.kanade.tachiyomi.util.chapter.ChapterSort
 import eu.kanade.tachiyomi.util.chapter.ChapterUtil
+import eu.kanade.tachiyomi.util.chapter.NextChapterEtaCalculator
 import eu.kanade.tachiyomi.util.chapter.syncChaptersWithSource
 import eu.kanade.tachiyomi.util.chapter.syncChaptersWithTrackServiceTwoWay
 import eu.kanade.tachiyomi.util.chapter.updateTrackChapterMarkedAsRead
@@ -270,6 +271,28 @@ class MangaDetailsPresenter(
      */
     fun getNextUnreadChapter(): ChapterItem? {
         return chapterSort.getNextUnreadChapter(chapters)
+    }
+
+    /**
+     * Estimated release date of the next chapter, formatted for display, or null if there's
+     * not enough chapter history to estimate one or the manga is completed/a one-shot.
+     */
+    fun getNextChapterEtaText(): String? {
+        if (manga.isOneShotOrCompleted(db)) return null
+        val nextDate = NextChapterEtaCalculator.estimateNextChapterDate(allChapters.map { it.chapter })
+            ?: return null
+
+        val context = view?.view?.context ?: return null
+        val daysUntil = (nextDate - Date().time) / (24 * 60 * 60 * 1000L)
+        return when {
+            daysUntil > 1 -> context.resources.getQuantityString(
+                R.plurals.next_chapter_estimate_days,
+                daysUntil.toInt(),
+                daysUntil.toInt(),
+            )
+            daysUntil in 0..1 -> context.getString(R.string.next_chapter_estimate_soon)
+            else -> context.getString(R.string.next_chapter_estimate_overdue)
+        }
     }
 
     fun anyRead(): Boolean = allChapters.any { it.read }

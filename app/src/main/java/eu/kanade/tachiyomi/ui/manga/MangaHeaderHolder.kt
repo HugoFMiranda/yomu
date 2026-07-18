@@ -278,13 +278,13 @@ class MangaHeaderHolder(
     fun bindChapters() {
         val presenter = adapter.delegate.mangaPresenter()
         val count = presenter.chapters.size
+        val chaptersTitleText = itemView.resources.getQuantityString(R.plurals.chapters_plural, count, count) +
+            (presenter.getNextChapterEtaText()?.let { " • $it" } ?: "")
         if (binding != null) {
-            binding.chaptersTitle.text =
-                itemView.resources.getQuantityString(R.plurals.chapters_plural, count, count)
+            binding.chaptersTitle.text = chaptersTitleText
             binding.filtersText.text = presenter.currentFilters()
         } else if (chapterBinding != null) {
-            chapterBinding.chaptersTitle.text =
-                itemView.resources.getQuantityString(R.plurals.chapters_plural, count, count)
+            chapterBinding.chaptersTitle.text = chaptersTitleText
             chapterBinding.filtersText.text = presenter.currentFilters()
         }
     }
@@ -296,7 +296,8 @@ class MangaHeaderHolder(
             if (chapterBinding != null) {
                 val count = presenter.chapters.size
                 chapterBinding.chaptersTitle.text =
-                    itemView.resources.getQuantityString(R.plurals.chapters_plural, count, count)
+                    itemView.resources.getQuantityString(R.plurals.chapters_plural, count, count) +
+                    (presenter.getNextChapterEtaText()?.let { " • $it" } ?: "")
                 chapterBinding.filtersText.text = presenter.currentFilters()
                 if (adapter.preferences.themeMangaDetails()) {
                     val accentColor = adapter.delegate.accentColor() ?: return
@@ -411,7 +412,8 @@ class MangaHeaderHolder(
         }
 
         val count = presenter.chapters.size
-        binding.chaptersTitle.text = itemView.resources.getQuantityString(R.plurals.chapters_plural, count, count)
+        binding.chaptersTitle.text = itemView.resources.getQuantityString(R.plurals.chapters_plural, count, count) +
+            (presenter.getNextChapterEtaText()?.let { " • $it" } ?: "")
 
         binding.topView.updateLayoutParams<ConstraintLayout.LayoutParams> {
             height = adapter.delegate.topCoverHeight()

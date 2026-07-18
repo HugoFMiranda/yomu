@@ -83,6 +83,12 @@
         <item quantity="one">%1$d page left</item>
         <item quantity="other">%1$d pages left</item>
     </plurals>
+    <plurals name="next_chapter_estimate_days">
+        <item quantity="one">Next chapter expected in ~%1$d day</item>
+        <item quantity="other">Next chapter expected in ~%1$d days</item>
+    </plurals>
+    <string name="next_chapter_estimate_soon">Next chapter expected soon</string>
+    <string name="next_chapter_estimate_overdue">Next chapter overdue</string>
 
     <!-- Category -->
     <string name="category">Category</string>
