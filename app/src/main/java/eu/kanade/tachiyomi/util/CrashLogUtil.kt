@@ -38,11 +38,13 @@ class CrashLogUtil(private val context: Context) {
 
     fun clearLogs() {
         val file = File(context.externalCacheDir, "tachiyomi_crash_logs.txt")
-        if (file.exists()) {
-            file.delete()
-        }
         context.notificationManager.cancel(Notifications.ID_CRASH_LOGS)
-        context.toast(context.getString(R.string.crash_log_cleared))
+        val message = when {
+            !file.exists() -> context.getString(R.string.crash_log_already_clear)
+            file.delete() -> context.getString(R.string.crash_log_cleared)
+            else -> context.getString(R.string.crash_log_clear_failed)
+        }
+        context.toast(message)
     }
 
     fun getDebugInfo(): String {

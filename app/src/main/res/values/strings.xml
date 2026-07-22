@@ -848,6 +848,8 @@
     <string name="clear_crash_logs">Clear crash logs</string>
     <string name="clears_error_logs">Deletes the saved crash log file</string>
     <string name="crash_log_cleared">Crash logs cleared</string>
+    <string name="crash_log_already_clear">No crash logs to clear</string>
+    <string name="crash_log_clear_failed">Failed to clear crash logs</string>
     <string name="about_dont_kill_my_app">Some manufacturers have additional app restrictions that kill background services. This website has more info on how to fix it.</string>
     <string name="crash_log_saved">Crash logs saved</string>
     <string name="network">Network</string>
