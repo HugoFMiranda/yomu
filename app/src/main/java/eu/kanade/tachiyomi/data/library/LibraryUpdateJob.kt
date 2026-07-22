@@ -216,7 +216,9 @@ class LibraryUpdateJob(private val context: Context, workerParams: WorkerParamet
                 async {
                     try {
                         requestSemaphore.withPermit { updateMangaInSource(source) }
-                    } catch (e: Exception) {
+                    } catch (e: Throwable) {
+                        // See updateMangaChapters: must catch Throwable, not just Exception, so
+                        // one broken source can't cancel every other source's update job.
                         Timber.e(e)
                         false
                     }
@@ -253,7 +255,8 @@ class LibraryUpdateJob(private val context: Context, workerParams: WorkerParamet
                         ensureActive()
                         val networkManga = try {
                             source.getMangaUpdate(manga.copy(), emptyList(), fetchDetails = true, fetchChapters = false).manga
-                        } catch (e: java.lang.Exception) {
+                        } catch (e: Throwable) {
+                            // See updateMangaChapters: must catch Throwable, not just Exception.
                             Timber.e(e)
                             null
                         }
@@ -428,7 +431,10 @@ class LibraryUpdateJob(private val context: Context, workerParams: WorkerParamet
                 }
             }
             return@coroutineScope hasDownloads
-        } catch (e: Exception) {
+        } catch (e: Throwable) {
+            // Catches Throwable, not just Exception: a source backed by a mismatched/broken
+            // extension can throw an Error (e.g. AbstractMethodError from a kotlinx.serialization
+            // version skew), which must not be allowed to cancel the whole library update.
             if (e !is CancellationException) {
                 failedUpdates[manga] = e.message
                 Timber.e("Failed updating: ${manga.title}: $e")
