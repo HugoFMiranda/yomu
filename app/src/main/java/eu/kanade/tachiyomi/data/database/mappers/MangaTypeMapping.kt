@@ -2,6 +2,7 @@ package eu.kanade.tachiyomi.data.database.mappers
 
 import android.content.ContentValues
 import android.database.Cursor
+import androidx.core.database.getStringOrNull
 import com.pushtorefresh.storio.sqlite.SQLiteTypeMapping
 import com.pushtorefresh.storio.sqlite.operations.delete.DefaultDeleteResolver
 import com.pushtorefresh.storio.sqlite.operations.get.DefaultGetResolver
@@ -23,6 +24,7 @@ import eu.kanade.tachiyomi.data.database.tables.MangaTable.COL_HIDE_TITLE
 import eu.kanade.tachiyomi.data.database.tables.MangaTable.COL_ID
 import eu.kanade.tachiyomi.data.database.tables.MangaTable.COL_INITIALIZED
 import eu.kanade.tachiyomi.data.database.tables.MangaTable.COL_LAST_UPDATE
+import eu.kanade.tachiyomi.data.database.tables.MangaTable.COL_MEMO
 import eu.kanade.tachiyomi.data.database.tables.MangaTable.COL_NOTES
 import eu.kanade.tachiyomi.data.database.tables.MangaTable.COL_SOURCE
 import eu.kanade.tachiyomi.data.database.tables.MangaTable.COL_STATUS
@@ -33,6 +35,8 @@ import eu.kanade.tachiyomi.data.database.tables.MangaTable.COL_URL
 import eu.kanade.tachiyomi.data.database.tables.MangaTable.COL_VIEWER
 import eu.kanade.tachiyomi.data.database.tables.MangaTable.TABLE
 import eu.kanade.tachiyomi.data.database.updateStrategyAdapter
+import kotlinx.serialization.json.Json
+import kotlinx.serialization.json.JsonObject
 
 class MangaTypeMapping : SQLiteTypeMapping<Manga>(
     MangaPutResolver(),
@@ -73,6 +77,7 @@ class MangaPutResolver : DefaultPutResolver<Manga>() {
         put(COL_FILTERED_SCANLATORS, obj.filtered_scanlators)
         put(COL_UPDATE_STRATEGY, obj.update_strategy.let(updateStrategyAdapter::encode))
         put(COL_NOTES, obj.notes)
+        put(COL_MEMO, Json.encodeToString(JsonObject.serializer(), obj.memo))
     }
 }
 
@@ -100,6 +105,12 @@ interface BaseMangaGetResolver {
             updateStrategyAdapter::decode,
         )
         notes = cursor.getString(cursor.getColumnIndex(COL_NOTES))
+        // Raw queries that select an explicit column list don't carry the memo column
+        memo = cursor.getColumnIndex(COL_MEMO)
+            .takeIf { it >= 0 }
+            ?.let(cursor::getStringOrNull)
+            ?.let { Json.decodeFromString(JsonObject.serializer(), it) }
+            ?: JsonObject(emptyMap())
     }
 }
 

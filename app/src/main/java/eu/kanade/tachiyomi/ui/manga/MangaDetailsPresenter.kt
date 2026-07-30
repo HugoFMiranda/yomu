@@ -371,7 +371,8 @@ class MangaDetailsPresenter(
             // calls for the same manga (e.g. they fetch the page once and parse
             // both details and chapters from it).
             val update = try {
-                source.getMangaUpdate(manga.copy(), emptyList(), fetchDetails = true, fetchChapters = true)
+                val knownChapters = db.getChapters(manga).executeAsBlocking().sortedBy { it.source_order }
+                source.getMangaUpdate(manga.copy(), knownChapters, fetchDetails = true, fetchChapters = true)
             } catch (e: Exception) {
                 mangaError = e
                 chapterError = e
@@ -463,7 +464,8 @@ class MangaDetailsPresenter(
 
         presenterScope.launch(Dispatchers.IO) {
             val chapters = try {
-                source.getMangaUpdate(manga, emptyList(), fetchDetails = false, fetchChapters = true).chapters
+                val knownChapters = db.getChapters(manga).executeAsBlocking().sortedBy { it.source_order }
+                source.getMangaUpdate(manga, knownChapters, fetchDetails = false, fetchChapters = true).chapters
             } catch (e: Exception) {
                 withContext(Dispatchers.Main) { view?.showError(trimException(e)) }
                 return@launch

@@ -52,6 +52,10 @@ object MangaTable {
 
     const val COL_NOTES = "notes"
 
+    // Not called "memo" so it can't collide with the chapter column of that name in the
+    // raw queries that select `mangas.*` alongside placeholder chapter columns.
+    const val COL_MEMO = "manga_memo"
+
     val createTableQuery: String
         get() =
             """CREATE TABLE $TABLE(
@@ -74,7 +78,8 @@ object MangaTable {
             $COL_DATE_ADDED LONG,
             $COL_FILTERED_SCANLATORS TEXT,
             $COL_UPDATE_STRATEGY INTEGER NOT NULL DEFAULT 0,
-            $COL_NOTES TEXT
+            $COL_NOTES TEXT,
+            $COL_MEMO TEXT
 
             )"""
 
@@ -99,4 +104,7 @@ object MangaTable {
 
     val addNotes: String
         get() = "ALTER TABLE $TABLE ADD COLUMN $COL_NOTES TEXT"
+
+    val addMemo: String
+        get() = "ALTER TABLE $TABLE ADD COLUMN $COL_MEMO TEXT DEFAULT NULL"
 }
