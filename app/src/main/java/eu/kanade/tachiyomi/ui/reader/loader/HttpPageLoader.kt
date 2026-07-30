@@ -17,6 +17,7 @@ import kotlinx.coroutines.flow.filter
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.runInterruptible
 import kotlinx.coroutines.suspendCancellableCoroutine
+import timber.log.Timber
 import uy.kohesive.injekt.Injekt
 import uy.kohesive.injekt.api.get
 import java.util.concurrent.PriorityBlockingQueue
@@ -211,6 +212,7 @@ class HttpPageLoader(
             if (e is CancellationException) {
                 throw e
             }
+            Timber.e(e, "Failed to load page ${page.index + 1} of ${chapter.chapter.name}")
         }
     }
 }

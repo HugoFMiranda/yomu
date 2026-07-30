@@ -65,6 +65,7 @@ import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.withContext
+import timber.log.Timber
 import uy.kohesive.injekt.Injekt
 import uy.kohesive.injekt.api.get
 import uy.kohesive.injekt.injectLazy
@@ -374,6 +375,7 @@ class MangaDetailsPresenter(
                 val knownChapters = db.getChapters(manga).executeAsBlocking().sortedBy { it.source_order }
                 source.getMangaUpdate(manga.copy(), knownChapters, fetchDetails = true, fetchChapters = true)
             } catch (e: Exception) {
+                Timber.e(e, "Failed to fetch details for ${manga.title}")
                 mangaError = e
                 chapterError = e
                 null
@@ -467,6 +469,7 @@ class MangaDetailsPresenter(
                 val knownChapters = db.getChapters(manga).executeAsBlocking().sortedBy { it.source_order }
                 source.getMangaUpdate(manga, knownChapters, fetchDetails = false, fetchChapters = true).chapters
             } catch (e: Exception) {
+                Timber.e(e, "Failed to fetch chapters for ${manga.title}")
                 withContext(Dispatchers.Main) { view?.showError(trimException(e)) }
                 return@launch
             }
