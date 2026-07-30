@@ -6,8 +6,8 @@ object AndroidVersions {
     // bodies extensions rely on — see the AbstractMethodError on GeneratedSerializer.
     const val minSdk = 26
     const val targetSdk = 34
-    const val versionCode = 125
-    const val versionName = "1.7.19"
+    const val versionCode = 126
+    const val versionName = "1.7.20"
     const val ndk = "23.1.7779620"
     const val kotlin = "2.1.21"
 }
