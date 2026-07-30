@@ -39,7 +39,7 @@ sealed class Extension {
         override val libVersion: Double,
         override val lang: String,
         override val isNsfw: Boolean,
-        val apkName: String,
+        val apkUrl: String,
         val iconUrl: String,
         val sources: List<AvailableSource>,
         val repoUrl: String,
