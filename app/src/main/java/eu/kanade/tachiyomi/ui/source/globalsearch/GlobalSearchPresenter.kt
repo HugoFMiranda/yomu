@@ -12,6 +12,7 @@ import eu.kanade.tachiyomi.source.SourceManager
 import eu.kanade.tachiyomi.source.model.MangasPage
 import eu.kanade.tachiyomi.source.model.SManga
 import eu.kanade.tachiyomi.ui.base.presenter.BaseCoroutinePresenter
+import eu.kanade.tachiyomi.util.refreshMemoFrom
 import eu.kanade.tachiyomi.util.system.launchIO
 import eu.kanade.tachiyomi.util.system.launchUI
 import eu.kanade.tachiyomi.util.system.withUIContext
@@ -273,10 +274,13 @@ open class GlobalSearchPresenter(
             val result = db.insertManga(newManga).executeAsBlocking()
             newManga.id = result.insertedId()
             localManga = newManga
-        } else if (!localManga.favorite) {
-            // if the manga isn't a favorite, set its display title from source
-            // if it later becomes a favorite, updated title will go to db
-            localManga.title = sManga.title
+        } else {
+            localManga.refreshMemoFrom(sManga, db)
+            if (!localManga.favorite) {
+                // if the manga isn't a favorite, set its display title from source
+                // if it later becomes a favorite, updated title will go to db
+                localManga.title = sManga.title
+            }
         }
         return localManga
     }

@@ -26,6 +26,7 @@ import eu.kanade.tachiyomi.ui.source.filter.TextItem
 import eu.kanade.tachiyomi.ui.source.filter.TextSectionItem
 import eu.kanade.tachiyomi.ui.source.filter.TriStateItem
 import eu.kanade.tachiyomi.ui.source.filter.TriStateSectionItem
+import eu.kanade.tachiyomi.util.refreshMemoFrom
 import eu.kanade.tachiyomi.util.system.launchIO
 import eu.kanade.tachiyomi.util.system.withUIContext
 import kotlinx.coroutines.Job
@@ -230,13 +231,16 @@ open class BrowseSourcePresenter(
             val result = db.insertManga(newManga).executeAsBlocking()
             newManga.id = result.insertedId()
             localManga = newManga
-        } else if (localManga.title.isBlank()) {
-            localManga.title = sManga.title
-            db.insertManga(localManga).executeAsBlocking()
-        } else if (!localManga.favorite) {
-            // if the manga isn't a favorite, set its display title from source
-            // if it later becomes a favorite, updated title will go to db
-            localManga.title = sManga.title
+        } else {
+            localManga.refreshMemoFrom(sManga, db)
+            if (localManga.title.isBlank()) {
+                localManga.title = sManga.title
+                db.insertManga(localManga).executeAsBlocking()
+            } else if (!localManga.favorite) {
+                // if the manga isn't a favorite, set its display title from source
+                // if it later becomes a favorite, updated title will go to db
+                localManga.title = sManga.title
+            }
         }
         return localManga
     }

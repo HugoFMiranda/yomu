@@ -5,6 +5,7 @@ import eu.kanade.tachiyomi.data.database.models.Manga
 import eu.kanade.tachiyomi.source.CatalogueSource
 import eu.kanade.tachiyomi.source.model.SManga
 import eu.kanade.tachiyomi.util.lang.toNormalized
+import eu.kanade.tachiyomi.util.refreshMemoFrom
 import info.debatty.java.stringsimilarity.NormalizedLevenshtein
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -136,6 +137,8 @@ class SmartSearchEngine(
             val result = db.insertManga(newManga).executeAsBlocking()
             newManga.id = result.insertedId()
             localManga = newManga
+        } else {
+            localManga.refreshMemoFrom(sManga, db)
         }
         return localManga
     }

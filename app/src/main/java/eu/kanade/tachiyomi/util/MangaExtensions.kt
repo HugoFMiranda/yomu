@@ -445,3 +445,18 @@ fun Context.mapSeriesType(seriesType: Int): String {
         },
     )
 }
+
+/**
+ * Copies the source's [SManga.memo] onto an entry that already exists locally, persisting it when
+ * it changed. Sources keep their own state there and read it back on the next call, so an entry
+ * that was saved before its source started using memo (or before this app persisted it) would
+ * otherwise never get one — the source can't fill it in, since it needs the memo to make the
+ * request in the first place.
+ */
+fun Manga.refreshMemoFrom(sManga: SManga, db: DatabaseHelper) {
+    if (sManga.memo.isEmpty() || sManga.memo == memo) return
+    memo = sManga.memo
+    if (id != null) {
+        db.insertManga(this).executeAsBlocking()
+    }
+}
