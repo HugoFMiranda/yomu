@@ -847,6 +847,8 @@
     <string name="saves_error_logs">Saves error logs to a file for sharing with the developers</string>
     <string name="clear_crash_logs">Clear crash logs</string>
     <string name="clears_error_logs">Deletes the saved crash log file</string>
+    <string name="verbose_logging">Verbose logging</string>
+    <string name="verbose_logging_summary">Log network requests and their timings to the crash log. Slows the app down slightly; only turn it on to diagnose a problem</string>
     <string name="crash_log_cleared">Crash logs cleared</string>
     <string name="crash_log_already_clear">No crash logs to clear</string>
     <string name="crash_log_clear_failed">Failed to clear crash logs</string>

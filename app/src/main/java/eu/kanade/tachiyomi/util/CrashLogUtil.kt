@@ -29,7 +29,8 @@ class CrashLogUtil(private val context: Context) {
             val file = context.createFileInCacheDir("tachiyomi_crash_logs.txt")
             file.appendText(getDebugInfo() + "\n\n")
             file.appendText(getExtensionsInfo() + "\n\n")
-            Runtime.getRuntime().exec("logcat *:E -d -f ${file.absolutePath}")
+            // Warn and above: source failures and, when verbose logging is on, request timings
+            Runtime.getRuntime().exec("logcat *:W -d -f ${file.absolutePath}")
             showNotification(file.getUriCompat(context))
         } catch (e: IOException) {
             context.toast("Failed to get logs")

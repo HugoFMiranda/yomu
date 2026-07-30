@@ -463,6 +463,8 @@ class PreferencesHelper(val context: Context) {
 
     fun dohProvider() = prefs.getInt(Keys.dohProvider, -1)
 
+    fun verboseLogging() = flowPrefs.getBoolean(Keys.verboseLogging, false)
+
     fun defaultUserAgent() = flowPrefs.getString("default_user_agent", NetworkHelper.DEFAULT_USER_AGENT)
 
     fun showSeriesInShortcuts() = prefs.getBoolean(Keys.showSeriesInShortcuts, true)

@@ -10,6 +10,8 @@ import eu.kanade.tachiyomi.network.interceptor.UncaughtExceptionInterceptor
 import eu.kanade.tachiyomi.network.interceptor.UserAgentInterceptor
 import okhttp3.Cache
 import okhttp3.OkHttpClient
+import okhttp3.logging.HttpLoggingInterceptor
+import timber.log.Timber
 import uy.kohesive.injekt.injectLazy
 import java.io.File
 import java.util.concurrent.TimeUnit
@@ -47,6 +49,17 @@ class NetworkHelper(val context: Context) {
                                 .redactHeaders(emptySet())
                                 .alwaysReadResponseBody(false)
                                 .build(),
+                        )
+                    }
+
+                    if (preferences.verboseLogging().get()) {
+                        // Logs "<-- 200 OK <url> (123ms, 45.6 kB body)" per request, which is what
+                        // makes it possible to tell a slow source from a slow app.
+                        addNetworkInterceptor(
+                            // Logged through Timber at WARN so it survives into the crash log dump
+                            HttpLoggingInterceptor { Timber.tag("OkHttp").w(it) }.apply {
+                                level = HttpLoggingInterceptor.Level.HEADERS
+                            },
                         )
                     }
 

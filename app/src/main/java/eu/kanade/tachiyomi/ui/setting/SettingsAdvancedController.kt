@@ -105,6 +105,18 @@ class SettingsAdvancedController : SettingsController() {
             }
         }
 
+        switchPreference {
+            key = PreferenceKeys.verboseLogging
+            titleRes = R.string.verbose_logging
+            summaryRes = R.string.verbose_logging_summary
+            defaultValue = false
+
+            onChange {
+                activity?.toast(R.string.requires_app_restart)
+                true
+            }
+        }
+
         preference {
             key = "debug_info"
             titleRes = R.string.pref_debug_info
