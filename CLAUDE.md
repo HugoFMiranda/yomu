@@ -91,6 +91,15 @@ plain `.toList()`. Also needed `-Xskip-metadata-version-check` kotlin
 compiler flag once the newer okhttp's kotlin-stdlib metadata outpaced this
 project's kotlinc version.
 
+## SDK levels
+
+`compileSdk` is 36 because `okhttp-android` 5.4.0 refuses to be consumed by a
+project compiling against less (AAR metadata check, hard failure). AGP 8.9.3
+predates API 36, so `android.suppressUnsupportedCompileSdk=36` is set in
+`gradle.properties`. `targetSdk` is still 34 — raising it opts into new
+runtime behavior and is a separate, riskier change. Mihon is on 37/36 with
+AGP 9.
+
 ## Extension-facing library versions
 
 okhttp, jsoup, kotlinx-coroutines and kotlinx-serialization are **provided to
