@@ -180,7 +180,7 @@ dependencies {
     implementation("com.fredporciuncula:flow-preferences:1.6.0")
 
     // Network client
-    val okhttpVersion = "5.3.2"
+    val okhttpVersion = "5.4.0"
     implementation("com.squareup.okhttp3:okhttp:$okhttpVersion")
     implementation("com.squareup.okhttp3:logging-interceptor:$okhttpVersion")
     implementation("com.squareup.okhttp3:okhttp-dnsoverhttps:$okhttpVersion")
@@ -197,7 +197,7 @@ dependencies {
     implementation(kotlin("reflect", version = AndroidVersions.kotlin))
 
     // JSON
-    val kotlinSerialization =  "1.8.1"
+    val kotlinSerialization =  "1.11.0"
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:${kotlinSerialization}")
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-protobuf:${kotlinSerialization}")
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json-okio:${kotlinSerialization}")
@@ -213,7 +213,7 @@ dependencies {
     implementation("org.tukaani:xz:1.9")
 
     // HTML parser
-    implementation("org.jsoup:jsoup:1.21.1")
+    implementation("org.jsoup:jsoup:1.23.1")
 
     // Job scheduling
     implementation("androidx.work:work-runtime-ktx:2.10.2")
@@ -274,7 +274,7 @@ dependencies {
 
     implementation(kotlin("stdlib", org.jetbrains.kotlin.config.KotlinCompilerVersion.VERSION))
 
-    val coroutines = "1.10.2"
+    val coroutines = "1.11.0"
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutines")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutines")
 
@@ -313,6 +313,9 @@ tasks {
             "-opt-in=kotlinx.coroutines.ExperimentalCoroutinesApi",
             "-opt-in=kotlinx.coroutines.InternalCoroutinesApi",
             "-opt-in=kotlinx.serialization.ExperimentalSerializationApi",
+            // Extension-facing libraries are pinned to the versions Mihon ships, which are
+            // built with a newer kotlinc than this project uses
+            "-Xskip-metadata-version-check",
         )
 
         if (project.findProperty("tachiyomi.enableComposeCompilerMetrics") == "true") {

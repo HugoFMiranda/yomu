@@ -91,6 +91,22 @@ plain `.toList()`. Also needed `-Xskip-metadata-version-check` kotlin
 compiler flag once the newer okhttp's kotlin-stdlib metadata outpaced this
 project's kotlinc version.
 
+## Extension-facing library versions
+
+okhttp, jsoup, kotlinx-coroutines and kotlinx-serialization are **provided to
+extensions at runtime** — extensions compile against Mihon's versions and get
+ours. Keep them matched to `mihonapp/mihon`'s `gradle/libs.versions.toml`,
+or extensions calling anything newer die with `NoSuchMethodError` /
+`NoClassDefFoundError` (real case: Comick Live calls
+`BuildersKt.runBlockingK`, which only exists in coroutines 1.11.0).
+
+To audit an APK against real extensions: parse the dex method-id table of a
+few keiyoushi extension APKs, subtract what they define themselves, and check
+the remaining references in `Leu/kanade/tachiyomi/`, `Lokhttp3/`,
+`Lkotlinx/`, `Lorg/jsoup/` against the classes and methods our dex defines.
+`app/src/main/java/eu/kanade/tachiyomi/util/system/ChildFirstPathClassLoader.kt`
+is what makes the extension's own copies win where it bundles any.
+
 ## Extensions
 
 Extensions are separate APKs loaded at runtime.
