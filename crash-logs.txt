@@ -1,0 +1,711 @@
+App version: 1.7.19 (standard, 7f36469ef, 125, 2026-07-30T22:39Z)
+Android version: 16 (SDK 36)
+Android build ID: BP4A.251205.006.S928BXXS6DZG1
+Device brand: samsung
+Device manufacturer: samsung
+Device name: e3q
+Device model: SM-S928B
+Device product name: e3qxeea
+
+
+
+--------- beginning of crash
+07-28 00:09:55.964 25607 25764 E AndroidRuntime: FATAL EXCEPTION: DefaultDispatcher-worker-3
+07-28 00:09:55.964 25607 25764 E AndroidRuntime: Process: com.hugofm.yomu, PID: 25607
+07-28 00:09:55.964 25607 25764 E AndroidRuntime: java.lang.AbstractMethodError: abstract method "kotlinx.serialization.KSerializer[] kotlinx.serialization.internal.GeneratedSerializer.typeParametersSerializers()" on receiver java.lang.Class<h2>
+07-28 00:09:55.964 25607 25764 E AndroidRuntime: 	at kotlinx.serialization.internal.PluginGeneratedSerialDescriptor.typeParameterDescriptors_delegate$lambda$2(SourceFile:5)
+07-28 00:09:55.964 25607 25764 E AndroidRuntime: 	at kotlinx.serialization.internal.PluginGeneratedSerialDescriptor.$r8$lambda$lHVbRHJZFJeOCNqxR0MeP9mvMTI(SourceFile:1)
+07-28 00:09:55.964 25607 25764 E AndroidRuntime: 	at kotlinx.serialization.internal.PluginGeneratedSerialDescriptor$$ExternalSyntheticLambda0.invoke(SourceFile:1)
+07-28 00:09:55.964 25607 25764 E AndroidRuntime: 	at kotlin.SafePublicationLazyImpl.getValue(SourceFile:12)
+07-28 00:09:55.964 25607 25764 E AndroidRuntime: 	at kotlinx.serialization.internal.PluginGeneratedSerialDescriptor.getTypeParameterDescriptors$kotlinx_serialization_core(SourceFile:3)
+07-28 00:09:55.964 25607 25764 E AndroidRuntime: 	at kotlinx.serialization.internal.PluginGeneratedSerialDescriptor._hashCode_delegate$lambda$3(SourceFile:1)
+07-28 00:09:55.964 25607 25764 E AndroidRuntime: 	at kotlinx.serialization.internal.PluginGeneratedSerialDescriptor.$r8$lambda$cDPWE4SK_6AyKNo6PzcexLAZOkg(SourceFile:1)
+07-28 00:09:55.964 25607 25764 E AndroidRuntime: 	at kotlinx.serialization.internal.PluginGeneratedSerialDescriptor$$ExternalSyntheticLambda0.invoke(SourceFile:1)
+07-28 00:09:55.964 25607 25764 E AndroidRuntime: 	at kotlin.SafePublicationLazyImpl.getValue(SourceFile:12)
+07-28 00:09:55.964 25607 25764 E AndroidRuntime: 	at kotlinx.serialization.internal.PluginGeneratedSerialDescriptor.get_hashCode(SourceFile:3)
+07-28 00:09:55.964 25607 25764 E AndroidRuntime: 	at kotlinx.serialization.internal.PluginGeneratedSerialDescriptor.hashCode(SourceFile:1)
+07-28 00:09:55.964 25607 25764 E AndroidRuntime: 	at java.util.concurrent.ConcurrentHashMap.get(ConcurrentHashMap.java:936)
+07-28 00:09:55.964 25607 25764 E AndroidRuntime: 	at kotlinx.serialization.json.internal.DescriptorSchemaCache.get(SourceFile:13)
+07-28 00:09:55.964 25607 25764 E AndroidRuntime: 	at kotlinx.serialization.json.internal.DescriptorSchemaCache.getOrPut(SourceFile:16)
+07-28 00:09:55.964 25607 25764 E AndroidRuntime: 	at kotlinx.serialization.json.internal.JsonNamesMapKt.deserializationNamesMap(SourceFile:24)
+07-28 00:09:55.964 25607 25764 E AndroidRuntime: 	at kotlinx.serialization.json.internal.JsonNamesMapKt.getJsonNameIndexSlowPath(SourceFile:1)
+07-28 00:09:55.964 25607 25764 E AndroidRuntime: 	at kotlinx.serialization.json.internal.JsonNamesMapKt.getJsonNameIndex(SourceFile:68)
+07-28 00:09:55.964 25607 25764 E AndroidRuntime: 	at kotlinx.serialization.json.internal.StreamingJsonDecoder.decodeObjectIndex(SourceFile:31)
+07-28 00:09:55.964 25607 25764 E AndroidRuntime: 	at kotlinx.serialization.json.internal.StreamingJsonDecoder.decodeElementIndex(SourceFile:27)
+07-28 00:09:55.964 25607 25764 E AndroidRuntime: 	at h2.deserialize(r8-map-id-5a9bd778cfacd93cd680140693ce4024a93850cabb4594601771e5f6b079b15b:28)
+07-28 00:09:55.964 25607 25764 E AndroidRuntime: 	at kotlinx.serialization.json.internal.StreamingJsonDecoder.decodeSerializableValue(SourceFile:322)
+07-28 00:09:55.964 25607 25764 E AndroidRuntime: 	at kotlinx.serialization.encoding.AbstractDecoder.decodeSerializableValue(SourceFile:2)
+07-28 00:09:55.964 25607 25764 E AndroidRuntime: 	at kotlinx.serialization.encoding.AbstractDecoder.decodeSerializableElement(SourceFile:11)
+07-28 00:09:55.964 25607 25764 E AndroidRuntime: 	at kotlinx.serialization.json.internal.StreamingJsonDecoder.decodeSerializableElement(SourceFile:33)
+07-28 00:09:55.964 25607 25764 E AndroidRuntime: 	at kotlinx.serialization.encoding.CompositeDecoder$-CC.decodeSerializableElement$default(SourceFile:8)
+07-28 00:09:55.964 25607 25764 E AndroidRuntime: 	at kotlinx.serialization.internal.CollectionLikeSerializer.readElement(SourceFile:21)
+07-28 00:09:55.964 25607 25764 E AndroidRuntime: 	at kotlinx.serialization.internal.AbstractCollectionSerializer.readElement$default(SourceFile:8)
+07-28 00:09:55.964 25607 25764 E AndroidRuntime: 	at kotlinx.serialization.internal.AbstractCollectionSerializer.merge(SourceFile:67)
+07-28 00:09:55.964 25607 25764 E AndroidRuntime: 	at kotlinx.serialization.internal.AbstractCollectionSerializer.deserialize(SourceFile:7)
+07-28 00:09:55.964 25607 25764 E AndroidRuntime: 	at kotlinx.serialization.json.internal.StreamingJsonDecoder.decodeSerializableValue(SourceFile:322)
+07-28 00:09:55.964 25607 25764 E AndroidRuntime: 	at kotlinx.serialization.encoding.AbstractDecoder.decodeSerializableValue(SourceFile:2)
+07-28 00:09:55.964 25607 25764 E AndroidRuntime: 	at kotlinx.serialization.encoding.AbstractDecoder.decodeNullableSerializableElement(SourceFile:33)
+07-28 00:09:55.964 25607 25764 E AndroidRuntime: 	at a1.deserialize(r8-map-id-5a9bd778cfacd93cd680140693ce4024a93850cabb4594601771e5f6b079b15b:290)
+07-28 00:09:55.964 25607 25764 E AndroidRuntime: 	at kotlinx.serialization.json.internal.StreamingJsonDecoder.decodeSerializableValue(SourceFile:322)
+07-28 00:09:55.964 25607 25764 E AndroidRuntime: 	at kotlinx.serialization.encoding.AbstractDecoder.decodeSerializableValue(SourceFile:2)
+07-28 00:09:55.964 25607 25764 E AndroidRuntime: 	at kotlinx.serialization.encoding.AbstractDecoder.decodeNullableSerializableElement(SourceFile:33)
+07-28 00:09:55.964 25607 25764 E AndroidRuntime: 	at d1.deserialize(r8-map-id-5a9bd778cfacd93cd680140693ce4024a93850cabb4594601771e5f6b079b15b:86)
+07-28 00:09:55.964 25607 25764 E AndroidRuntime: 	at kotlinx.serialization.json.internal.StreamingJsonDecoder.decodeSerializableValue(SourceFile:322)
+07-28 00:09:55.964 25607 25764 E AndroidRuntime: 	at kotlinx.serialization.encoding.AbstractDecoder.decodeSerializableValue(SourceFile:2)
+07-28 00:09:55.964 25607 25764 E AndroidRuntime: 	at kotlinx.serialization.encoding.AbstractDecoder.decodeNullableSerializableElement(SourceFile:33)
+07-28 00:09:55.964 25607 25764 E AndroidRuntime: 	at m0.deserialize(r8-map-id-5a9bd778cfacd93cd680140693ce4024a93850cabb4594601771e5f6b079b15b:87)
+07-28 00:09:55.964 25607 25764 E AndroidRuntime: 	at kotlinx.serialization.json.internal.StreamingJsonDecoder.decodeSerializableValue(SourceFile:322)
+07-28 00:09:55.964 25607 25764 E AndroidRuntime: 	at kotlinx.serialization.json.internal.JsonStreamsKt.decodeByReader(SourceFile:35)
+07-28 00:09:55.964 25607 25764 E AndroidRuntime: 	at kotlinx.serialization.json.okio.OkioStreamsKt.decodeFromBufferedSource(SourceFile:1)
+07-28 00:09:55.964 25607 25764 E AndroidRuntime: 	at eu.kanade.tachiyomi.extension.en.allanime.ExtensionGenerated.b(r8-map-id-5a9bd778cfacd93cd680140693ce4024a93850cabb4594601771e5f6b079b15b:17)
+07-28 00:09:55.964 25607 25764 E AndroidRuntime: 	at e.invokeSuspend(r8-map-id-5a9bd778cfacd93cd680140693ce4024a93850cabb4594601771e5f6b079b15b:17)
+07-28 00:09:55.964 25607 25764 E AndroidRuntime: 	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(SourceFile:12)
+07-28 00:09:55.964 25607 25764 E AndroidRuntime: 	at kotlinx.coroutines.DispatchedTask.run(SourceFile:129)
+07-28 00:09:55.964 25607 25764 E AndroidRuntime: 	at kotlinx.coroutines.scheduling.CoroutineScheduler.runSafely(SourceFile:1)
+07-28 00:09:55.964 25607 25764 E AndroidRuntime: 	at kotlinx.coroutines.scheduling.CoroutineScheduler$Worker.run(SourceFile:78)
+07-28 00:09:55.964 25607 25764 E AndroidRuntime: 	Suppressed: kotlinx.coroutines.internal.DiagnosticCoroutineContextException: [StandaloneCoroutine{Cancelling}@5b21631, Dispatchers.Default]
+--------- beginning of main
+07-30 23:48:19.717 11773 11773 W libc    : Access denied finding property "vendor.display.enable_optimal_refresh_rate"
+07-30 23:48:19.718 11773 11773 W libc    : Access denied finding property "vendor.display.enable_optimal_refresh_rate"
+07-30 23:48:19.745 11773 11870 W qdgralloc: getInterlacedFlag: getMetaData returned 3, defaulting to interlaced_flag = 0
+07-30 23:48:19.797 11773 11870 W qdgralloc: getInterlacedFlag: getMetaData returned 3, defaulting to interlaced_flag = 0
+07-30 23:48:19.806 11773 11870 W qdgralloc: getInterlacedFlag: getMetaData returned 3, defaulting to interlaced_flag = 0
+07-30 23:48:21.096 11773 11870 W qdgralloc: getInterlacedFlag: getMetaData returned 3, defaulting to interlaced_flag = 0
+07-30 23:48:22.417 11773 11773 W libc    : Access denied finding property "vendor.display.enable_optimal_refresh_rate"
+07-30 23:48:22.418 11773 11773 W libc    : Access denied finding property "vendor.display.enable_optimal_refresh_rate"
+07-30 23:48:22.424 11773 11870 W qdgralloc: getInterlacedFlag: getMetaData returned 3, defaulting to interlaced_flag = 0
+07-30 23:48:23.352 11773 11870 W qdgralloc: getInterlacedFlag: getMetaData returned 3, defaulting to interlaced_flag = 0
+07-30 23:48:23.360 11773 11870 W qdgralloc: getInterlacedFlag: getMetaData returned 3, defaulting to interlaced_flag = 0
+07-30 23:48:23.368 11773 11870 W qdgralloc: getInterlacedFlag: getMetaData returned 3, defaulting to interlaced_flag = 0
+07-30 23:48:24.619 11773 11793 W JobInfo : Requested important-while-foreground flag for job258 is ignored and takes no effect
+07-30 23:48:24.651 11773 11773 W libc    : Access denied finding property "vendor.display.enable_optimal_refresh_rate"
+07-30 23:48:24.652 11773 11773 W libc    : Access denied finding property "vendor.display.enable_optimal_refresh_rate"
+07-30 23:48:24.657 11773 11870 W qdgralloc: getInterlacedFlag: getMetaData returned 3, defaulting to interlaced_flag = 0
+07-30 23:48:24.662 11773 11870 W qdgralloc: getInterlacedFlag: getMetaData returned 3, defaulting to interlaced_flag = 0
+07-30 23:48:24.715 11773 11870 W qdgralloc: getInterlacedFlag: getMetaData returned 3, defaulting to interlaced_flag = 0
+07-30 23:48:26.472 11773 11870 W qdgralloc: getInterlacedFlag: getMetaData returned 3, defaulting to interlaced_flag = 0
+07-30 23:48:30.592 28941 28961 E ashmem  : Pinning is deprecated since Android Q. Please use trim or other methods.
+07-30 23:48:30.682 28941 28982 E chromium: [0730/234830.674651:ERROR:android_webview/browser/variations/variations_seed_loader.cc:39] Seed missing signature.
+07-30 23:48:30.847 28941 28941 W com.hugofm.yomu: Unsupported class loader: java.lang.Class<eu.kanade.tachiyomi.util.system.ChildFirstPathClassLoader>
+07-30 23:48:30.849 28941 28941 W com.hugofm.yomu: Unsupported class loader: java.lang.Class<eu.kanade.tachiyomi.util.system.ChildFirstPathClassLoader>
+07-30 23:48:30.849 28941 28941 W com.hugofm.yomu: Unsupported class loader: java.lang.Class<eu.kanade.tachiyomi.util.system.ChildFirstPathClassLoader>
+07-30 23:48:30.866 28941 28941 W Bundle  : Key tachiyomix.extensionLib expected Double but value was a java.lang.Float.  The default value 0.0 was returned.
+07-30 23:48:30.867 28941 28941 W Bundle  : Attempt to cast generated internal exception:
+07-30 23:48:30.867 28941 28941 W Bundle  : java.lang.ClassCastException: java.lang.Float cannot be cast to java.lang.Double
+07-30 23:48:30.867 28941 28941 W Bundle  : 	at android.os.BaseBundle.getDouble(BaseBundle.java:1443)
+07-30 23:48:30.867 28941 28941 W Bundle  : 	at android.os.BaseBundle.getDouble(BaseBundle.java:1425)
+07-30 23:48:30.867 28941 28941 W Bundle  : 	at eu.kanade.tachiyomi.extension.util.ExtensionLoader.loadExtension(SourceFile:76)
+07-30 23:48:30.867 28941 28941 W Bundle  : 	at eu.kanade.tachiyomi.extension.util.ExtensionLoader$loadExtensions$1$deferred$1$1.invokeSuspend(SourceFile:16)
+07-30 23:48:30.867 28941 28941 W Bundle  : 	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(SourceFile:12)
+07-30 23:48:30.867 28941 28941 W Bundle  : 	at kotlinx.coroutines.DispatchedTask.run(SourceFile:129)
+07-30 23:48:30.867 28941 28941 W Bundle  : 	at kotlinx.coroutines.EventLoopImplBase.processNextEvent(SourceFile:86)
+07-30 23:48:30.867 28941 28941 W Bundle  : 	at kotlinx.coroutines.BlockingCoroutine.joinBlocking(SourceFile:23)
+07-30 23:48:30.867 28941 28941 W Bundle  : 	at kotlinx.coroutines.BuildersKt__BuildersKt.runBlocking(SourceFile:60)
+07-30 23:48:30.867 28941 28941 W Bundle  : 	at kotlinx.coroutines.BuildersKt__BuildersKt.runBlocking$default(SourceFile:7)
+07-30 23:48:30.867 28941 28941 W Bundle  : 	at kotlinx.coroutines.BuildersKt.runBlocking$default(SourceFile:1)
+07-30 23:48:30.867 28941 28941 W Bundle  : 	at eu.kanade.tachiyomi.extension.util.ExtensionLoader.loadExtensions(SourceFile:17)
+07-30 23:48:30.867 28941 28941 W Bundle  : 	at eu.kanade.tachiyomi.extension.ExtensionManager.<init>(SourceFile:30)
+07-30 23:48:30.867 28941 28941 W Bundle  : 	at eu.kanade.tachiyomi.extension.ExtensionManager.<init>(SourceFile:9)
+07-30 23:48:30.867 28941 28941 W Bundle  : 	at eu.kanade.tachiyomi.AppModule$$ExternalSyntheticLambda0.invoke(SourceFile:56)
+07-30 23:48:30.867 28941 28941 W Bundle  : 	at uy.kohesive.injekt.registry.default.DefaultRegistrar$addSingletonFactory$1$1$1.invoke(SourceFile:3)
+07-30 23:48:30.867 28941 28941 W Bundle  : 	at kotlin.SynchronizedLazyImpl.getValue(SourceFile:21)
+07-30 23:48:30.867 28941 28941 W Bundle  : 	at uy.kohesive.injekt.registry.default.DefaultRegistrar$addSingletonFactory$1.invoke(SourceFile:50)
+07-30 23:48:30.867 28941 28941 W Bundle  : 	at uy.kohesive.injekt.registry.default.DefaultRegistrar.getInstance(SourceFile:16)
+07-30 23:48:30.867 28941 28941 W Bundle  : 	at eu.kanade.tachiyomi.AppModule$$ExternalSyntheticLambda16.invoke(SourceFile:1055)
+07-30 23:48:30.867 28941 28941 W Bundle  : 	at uy.kohesive.injekt.registry.default.DefaultRegistrar$addSingletonFactory$1$1$1.invoke(SourceFile:3)
+07-30 23:48:30.867 28941 28941 W Bundle  : 	at kotlin.SynchronizedLazyImpl.getValue(SourceFile:21)
+07-30 23:48:30.867 28941 28941 W Bundle  : 	at uy.kohesive.injekt.registry.default.DefaultRegistrar$addSingletonFactory$1.invoke(SourceFile:50)
+07-30 23:48:30.867 28941 28941 W Bundle  : 	at uy.kohesive.injekt.registry.default.DefaultRegistrar.getInstance(SourceFile:16)
+07-30 23:48:30.867 28941 28941 W Bundle  : 	at eu.kanade.tachiyomi.AppModule$$ExternalSyntheticLambda8.run(SourceFile:1258)
+07-30 23:48:30.867 28941 28941 W Bundle  : 	at android.os.Handler.handleCallback(Handler.java:1070)
+07-30 23:48:30.867 28941 28941 W Bundle  : 	at android.os.Handler.dispatchMessage(Handler.java:125)
+07-30 23:48:30.867 28941 28941 W Bundle  : 	at android.os.Looper.dispatchMessage(Looper.java:358)
+07-30 23:48:30.867 28941 28941 W Bundle  : 	at android.os.Looper.loopOnce(Looper.java:288)
+07-30 23:48:30.867 28941 28941 W Bundle  : 	at android.os.Looper.loop(Looper.java:392)
+07-30 23:48:30.867 28941 28941 W Bundle  : 	at android.app.ActivityThread.main(ActivityThread.java:10346)
+07-30 23:48:30.867 28941 28941 W Bundle  : 	at java.lang.reflect.Method.invoke(Native Method)
+07-30 23:48:30.867 28941 28941 W Bundle  : 	at com.android.internal.os.RuntimeInit$MethodAndArgsCaller.run(RuntimeInit.java:638)
+07-30 23:48:30.867 28941 28941 W Bundle  : 	at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:972)
+07-30 23:48:30.872 28941 28941 W com.hugofm.yomu: Unsupported class loader: java.lang.Class<eu.kanade.tachiyomi.util.system.ChildFirstPathClassLoader>
+07-30 23:48:30.874 28941 28941 W com.hugofm.yomu: Unsupported class loader: java.lang.Class<eu.kanade.tachiyomi.util.system.ChildFirstPathClassLoader>
+07-30 23:48:30.874 28941 28941 W com.hugofm.yomu: Unsupported class loader: java.lang.Class<eu.kanade.tachiyomi.util.system.ChildFirstPathClassLoader>
+07-30 23:48:30.884 28941 28941 W Bundle  : Key tachiyomix.extensionLib expected Double but value was a java.lang.Float.  The default value 0.0 was returned.
+07-30 23:48:30.885 28941 28941 W Bundle  : Attempt to cast generated internal exception:
+07-30 23:48:30.885 28941 28941 W Bundle  : java.lang.ClassCastException: java.lang.Float cannot be cast to java.lang.Double
+07-30 23:48:30.885 28941 28941 W Bundle  : 	at android.os.BaseBundle.getDouble(BaseBundle.java:1443)
+07-30 23:48:30.885 28941 28941 W Bundle  : 	at android.os.BaseBundle.getDouble(BaseBundle.java:1425)
+07-30 23:48:30.885 28941 28941 W Bundle  : 	at eu.kanade.tachiyomi.extension.util.ExtensionLoader.loadExtension(SourceFile:76)
+07-30 23:48:30.885 28941 28941 W Bundle  : 	at eu.kanade.tachiyomi.extension.util.ExtensionLoader$loadExtensions$1$deferred$1$1.invokeSuspend(SourceFile:16)
+07-30 23:48:30.885 28941 28941 W Bundle  : 	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(SourceFile:12)
+07-30 23:48:30.885 28941 28941 W Bundle  : 	at kotlinx.coroutines.DispatchedTask.run(SourceFile:129)
+07-30 23:48:30.885 28941 28941 W Bundle  : 	at kotlinx.coroutines.EventLoopImplBase.processNextEvent(SourceFile:86)
+07-30 23:48:30.885 28941 28941 W Bundle  : 	at kotlinx.coroutines.BlockingCoroutine.joinBlocking(SourceFile:23)
+07-30 23:48:30.885 28941 28941 W Bundle  : 	at kotlinx.coroutines.BuildersKt__BuildersKt.runBlocking(SourceFile:60)
+07-30 23:48:30.885 28941 28941 W Bundle  : 	at kotlinx.coroutines.BuildersKt__BuildersKt.runBlocking$default(SourceFile:7)
+07-30 23:48:30.885 28941 28941 W Bundle  : 	at kotlinx.coroutines.BuildersKt.runBlocking$default(SourceFile:1)
+07-30 23:48:30.885 28941 28941 W Bundle  : 	at eu.kanade.tachiyomi.extension.util.ExtensionLoader.loadExtensions(SourceFile:17)
+07-30 23:48:30.885 28941 28941 W Bundle  : 	at eu.kanade.tachiyomi.extension.ExtensionManager.<init>(SourceFile:30)
+07-30 23:48:30.885 28941 28941 W Bundle  : 	at eu.kanade.tachiyomi.extension.ExtensionManager.<init>(SourceFile:9)
+07-30 23:48:30.885 28941 28941 W Bundle  : 	at eu.kanade.tachiyomi.AppModule$$ExternalSyntheticLambda0.invoke(SourceFile:56)
+07-30 23:48:30.885 28941 28941 W Bundle  : 	at uy.kohesive.injekt.registry.default.DefaultRegistrar$addSingletonFactory$1$1$1.invoke(SourceFile:3)
+07-30 23:48:30.885 28941 28941 W Bundle  : 	at kotlin.SynchronizedLazyImpl.getValue(SourceFile:21)
+07-30 23:48:30.885 28941 28941 W Bundle  : 	at uy.kohesive.injekt.registry.default.DefaultRegistrar$addSingletonFactory$1.invoke(SourceFile:50)
+07-30 23:48:30.885 28941 28941 W Bundle  : 	at uy.kohesive.injekt.registry.default.DefaultRegistrar.getInstance(SourceFile:16)
+07-30 23:48:30.885 28941 28941 W Bundle  : 	at eu.kanade.tachiyomi.AppModule$$ExternalSyntheticLambda16.invoke(SourceFile:1055)
+07-30 23:48:30.885 28941 28941 W Bundle  : 	at uy.kohesive.injekt.registry.default.DefaultRegistrar$addSingletonFactory$1$1$1.invoke(SourceFile:3)
+07-30 23:48:30.885 28941 28941 W Bundle  : 	at kotlin.SynchronizedLazyImpl.getValue(SourceFile:21)
+07-30 23:48:30.885 28941 28941 W Bundle  : 	at uy.kohesive.injekt.registry.default.DefaultRegistrar$addSingletonFactory$1.invoke(SourceFile:50)
+07-30 23:48:30.885 28941 28941 W Bundle  : 	at uy.kohesive.injekt.registry.default.DefaultRegistrar.getInstance(SourceFile:16)
+07-30 23:48:30.885 28941 28941 W Bundle  : 	at eu.kanade.tachiyomi.AppModule$$ExternalSyntheticLambda8.run(SourceFile:1258)
+07-30 23:48:30.885 28941 28941 W Bundle  : 	at android.os.Handler.handleCallback(Handler.java:1070)
+07-30 23:48:30.885 28941 28941 W Bundle  : 	at android.os.Handler.dispatchMessage(Handler.java:125)
+07-30 23:48:30.885 28941 28941 W Bundle  : 	at android.os.Looper.dispatchMessage(Looper.java:358)
+07-30 23:48:30.885 28941 28941 W Bundle  : 	at android.os.Looper.loopOnce(Looper.java:288)
+07-30 23:48:30.885 28941 28941 W Bundle  : 	at android.os.Looper.loop(Looper.java:392)
+07-30 23:48:30.885 28941 28941 W Bundle  : 	at android.app.ActivityThread.main(ActivityThread.java:10346)
+07-30 23:48:30.885 28941 28941 W Bundle  : 	at java.lang.reflect.Method.invoke(Native Method)
+07-30 23:48:30.885 28941 28941 W Bundle  : 	at com.android.internal.os.RuntimeInit$MethodAndArgsCaller.run(RuntimeInit.java:638)
+07-30 23:48:30.885 28941 28941 W Bundle  : 	at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:972)
+07-30 23:48:30.886 28941 28941 W com.hugofm.yomu: Unsupported class loader: java.lang.Class<eu.kanade.tachiyomi.util.system.ChildFirstPathClassLoader>
+07-30 23:48:30.889 28941 28941 W com.hugofm.yomu: Unsupported class loader: java.lang.Class<eu.kanade.tachiyomi.util.system.ChildFirstPathClassLoader>
+07-30 23:48:30.889 28941 28941 W com.hugofm.yomu: Unsupported class loader: java.lang.Class<eu.kanade.tachiyomi.util.system.ChildFirstPathClassLoader>
+07-30 23:48:30.905 28941 28941 W Bundle  : Key tachiyomix.extensionLib expected Double but value was a java.lang.Float.  The default value 0.0 was returned.
+07-30 23:48:30.906 28941 28941 W Bundle  : Attempt to cast generated internal exception:
+07-30 23:48:30.906 28941 28941 W Bundle  : java.lang.ClassCastException: java.lang.Float cannot be cast to java.lang.Double
+07-30 23:48:30.906 28941 28941 W Bundle  : 	at android.os.BaseBundle.getDouble(BaseBundle.java:1443)
+07-30 23:48:30.906 28941 28941 W Bundle  : 	at android.os.BaseBundle.getDouble(BaseBundle.java:1425)
+07-30 23:48:30.906 28941 28941 W Bundle  : 	at eu.kanade.tachiyomi.extension.util.ExtensionLoader.loadExtension(SourceFile:76)
+07-30 23:48:30.906 28941 28941 W Bundle  : 	at eu.kanade.tachiyomi.extension.util.ExtensionLoader$loadExtensions$1$deferred$1$1.invokeSuspend(SourceFile:16)
+07-30 23:48:30.906 28941 28941 W Bundle  : 	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(SourceFile:12)
+07-30 23:48:30.906 28941 28941 W Bundle  : 	at kotlinx.coroutines.DispatchedTask.run(SourceFile:129)
+07-30 23:48:30.906 28941 28941 W Bundle  : 	at kotlinx.coroutines.EventLoopImplBase.processNextEvent(SourceFile:86)
+07-30 23:48:30.906 28941 28941 W Bundle  : 	at kotlinx.coroutines.BlockingCoroutine.joinBlocking(SourceFile:23)
+07-30 23:48:30.906 28941 28941 W Bundle  : 	at kotlinx.coroutines.BuildersKt__BuildersKt.runBlocking(SourceFile:60)
+07-30 23:48:30.906 28941 28941 W Bundle  : 	at kotlinx.coroutines.BuildersKt__BuildersKt.runBlocking$default(SourceFile:7)
+07-30 23:48:30.906 28941 28941 W Bundle  : 	at kotlinx.coroutines.BuildersKt.runBlocking$default(SourceFile:1)
+07-30 23:48:30.906 28941 28941 W Bundle  : 	at eu.kanade.tachiyomi.extension.util.ExtensionLoader.loadExtensions(SourceFile:17)
+07-30 23:48:30.906 28941 28941 W Bundle  : 	at eu.kanade.tachiyomi.extension.ExtensionManager.<init>(SourceFile:30)
+07-30 23:48:30.906 28941 28941 W Bundle  : 	at eu.kanade.tachiyomi.extension.ExtensionManager.<init>(SourceFile:9)
+07-30 23:48:30.906 28941 28941 W Bundle  : 	at eu.kanade.tachiyomi.AppModule$$ExternalSyntheticLambda0.invoke(SourceFile:56)
+07-30 23:48:30.906 28941 28941 W Bundle  : 	at uy.kohesive.injekt.registry.default.DefaultRegistrar$addSingletonFactory$1$1$1.invoke(SourceFile:3)
+07-30 23:48:30.906 28941 28941 W Bundle  : 	at kotlin.SynchronizedLazyImpl.getValue(SourceFile:21)
+07-30 23:48:30.906 28941 28941 W Bundle  : 	at uy.kohesive.injekt.registry.default.DefaultRegistrar$addSingletonFactory$1.invoke(SourceFile:50)
+07-30 23:48:30.906 28941 28941 W Bundle  : 	at uy.kohesive.injekt.registry.default.DefaultRegistrar.getInstance(SourceFile:16)
+07-30 23:48:30.906 28941 28941 W Bundle  : 	at eu.kanade.tachiyomi.AppModule$$ExternalSyntheticLambda16.invoke(SourceFile:1055)
+07-30 23:48:30.906 28941 28941 W Bundle  : 	at uy.kohesive.injekt.registry.default.DefaultRegistrar$addSingletonFactory$1$1$1.invoke(SourceFile:3)
+07-30 23:48:30.906 28941 28941 W Bundle  : 	at kotlin.SynchronizedLazyImpl.getValue(SourceFile:21)
+07-30 23:48:30.906 28941 28941 W Bundle  : 	at uy.kohesive.injekt.registry.default.DefaultRegistrar$addSingletonFactory$1.invoke(SourceFile:50)
+07-30 23:48:30.906 28941 28941 W Bundle  : 	at uy.kohesive.injekt.registry.default.DefaultRegistrar.getInstance(SourceFile:16)
+07-30 23:48:30.906 28941 28941 W Bundle  : 	at eu.kanade.tachiyomi.AppModule$$ExternalSyntheticLambda8.run(SourceFile:1258)
+07-30 23:48:30.906 28941 28941 W Bundle  : 	at android.os.Handler.handleCallback(Handler.java:1070)
+07-30 23:48:30.906 28941 28941 W Bundle  : 	at android.os.Handler.dispatchMessage(Handler.java:125)
+07-30 23:48:30.906 28941 28941 W Bundle  : 	at android.os.Looper.dispatchMessage(Looper.java:358)
+07-30 23:48:30.906 28941 28941 W Bundle  : 	at android.os.Looper.loopOnce(Looper.java:288)
+07-30 23:48:30.906 28941 28941 W Bundle  : 	at android.os.Looper.loop(Looper.java:392)
+07-30 23:48:30.906 28941 28941 W Bundle  : 	at android.app.ActivityThread.main(ActivityThread.java:10346)
+07-30 23:48:30.906 28941 28941 W Bundle  : 	at java.lang.reflect.Method.invoke(Native Method)
+07-30 23:48:30.906 28941 28941 W Bundle  : 	at com.android.internal.os.RuntimeInit$MethodAndArgsCaller.run(RuntimeInit.java:638)
+07-30 23:48:30.906 28941 28941 W Bundle  : 	at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:972)
+07-30 23:48:30.906 28941 28941 W com.hugofm.yomu: Unsupported class loader: java.lang.Class<eu.kanade.tachiyomi.util.system.ChildFirstPathClassLoader>
+07-30 23:48:30.908 28941 28941 W com.hugofm.yomu: Unsupported class loader: java.lang.Class<eu.kanade.tachiyomi.util.system.ChildFirstPathClassLoader>
+07-30 23:48:30.908 28941 28941 W com.hugofm.yomu: Unsupported class loader: java.lang.Class<eu.kanade.tachiyomi.util.system.ChildFirstPathClassLoader>
+07-30 23:48:30.922 28941 28941 W Bundle  : Key tachiyomix.extensionLib expected Double but value was a java.lang.Float.  The default value 0.0 was returned.
+07-30 23:48:30.922 28941 28941 W Bundle  : Attempt to cast generated internal exception:
+07-30 23:48:30.922 28941 28941 W Bundle  : java.lang.ClassCastException: java.lang.Float cannot be cast to java.lang.Double
+07-30 23:48:30.922 28941 28941 W Bundle  : 	at android.os.BaseBundle.getDouble(BaseBundle.java:1443)
+07-30 23:48:30.922 28941 28941 W Bundle  : 	at android.os.BaseBundle.getDouble(BaseBundle.java:1425)
+07-30 23:48:30.922 28941 28941 W Bundle  : 	at eu.kanade.tachiyomi.extension.util.ExtensionLoader.loadExtension(SourceFile:76)
+07-30 23:48:30.922 28941 28941 W Bundle  : 	at eu.kanade.tachiyomi.extension.util.ExtensionLoader$loadExtensions$1$deferred$1$1.invokeSuspend(SourceFile:16)
+07-30 23:48:30.922 28941 28941 W Bundle  : 	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(SourceFile:12)
+07-30 23:48:30.922 28941 28941 W Bundle  : 	at kotlinx.coroutines.DispatchedTask.run(SourceFile:129)
+07-30 23:48:30.922 28941 28941 W Bundle  : 	at kotlinx.coroutines.EventLoopImplBase.processNextEvent(SourceFile:86)
+07-30 23:48:30.922 28941 28941 W Bundle  : 	at kotlinx.coroutines.BlockingCoroutine.joinBlocking(SourceFile:23)
+07-30 23:48:30.922 28941 28941 W Bundle  : 	at kotlinx.coroutines.BuildersKt__BuildersKt.runBlocking(SourceFile:60)
+07-30 23:48:30.922 28941 28941 W Bundle  : 	at kotlinx.coroutines.BuildersKt__BuildersKt.runBlocking$default(SourceFile:7)
+07-30 23:48:30.922 28941 28941 W Bundle  : 	at kotlinx.coroutines.BuildersKt.runBlocking$default(SourceFile:1)
+07-30 23:48:30.922 28941 28941 W Bundle  : 	at eu.kanade.tachiyomi.extension.util.ExtensionLoader.loadExtensions(SourceFile:17)
+07-30 23:48:30.922 28941 28941 W Bundle  : 	at eu.kanade.tachiyomi.extension.ExtensionManager.<init>(SourceFile:30)
+07-30 23:48:30.922 28941 28941 W Bundle  : 	at eu.kanade.tachiyomi.extension.ExtensionManager.<init>(SourceFile:9)
+07-30 23:48:30.922 28941 28941 W Bundle  : 	at eu.kanade.tachiyomi.AppModule$$ExternalSyntheticLambda0.invoke(SourceFile:56)
+07-30 23:48:30.922 28941 28941 W Bundle  : 	at uy.kohesive.injekt.registry.default.DefaultRegistrar$addSingletonFactory$1$1$1.invoke(SourceFile:3)
+07-30 23:48:30.922 28941 28941 W Bundle  : 	at kotlin.SynchronizedLazyImpl.getValue(SourceFile:21)
+07-30 23:48:30.922 28941 28941 W Bundle  : 	at uy.kohesive.injekt.registry.default.DefaultRegistrar$addSingletonFactory$1.invoke(SourceFile:50)
+07-30 23:48:30.922 28941 28941 W Bundle  : 	at uy.kohesive.injekt.registry.default.DefaultRegistrar.getInstance(SourceFile:16)
+07-30 23:48:30.922 28941 28941 W Bundle  : 	at eu.kanade.tachiyomi.AppModule$$ExternalSyntheticLambda16.invoke(SourceFile:1055)
+07-30 23:48:30.922 28941 28941 W Bundle  : 	at uy.kohesive.injekt.registry.default.DefaultRegistrar$addSingletonFactory$1$1$1.invoke(SourceFile:3)
+07-30 23:48:30.922 28941 28941 W Bundle  : 	at kotlin.SynchronizedLazyImpl.getValue(SourceFile:21)
+07-30 23:48:30.922 28941 28941 W Bundle  : 	at uy.kohesive.injekt.registry.default.DefaultRegistrar$addSingletonFactory$1.invoke(SourceFile:50)
+07-30 23:48:30.922 28941 28941 W Bundle  : 	at uy.kohesive.injekt.registry.default.DefaultRegistrar.getInstance(SourceFile:16)
+07-30 23:48:30.922 28941 28941 W Bundle  : 	at eu.kanade.tachiyomi.AppModule$$ExternalSyntheticLambda8.run(SourceFile:1258)
+07-30 23:48:30.922 28941 28941 W Bundle  : 	at android.os.Handler.handleCallback(Handler.java:1070)
+07-30 23:48:30.922 28941 28941 W Bundle  : 	at android.os.Handler.dispatchMessage(Handler.java:125)
+07-30 23:48:30.922 28941 28941 W Bundle  : 	at android.os.Looper.dispatchMessage(Looper.java:358)
+07-30 23:48:30.922 28941 28941 W Bundle  : 	at android.os.Looper.loopOnce(Looper.java:288)
+07-30 23:48:30.922 28941 28941 W Bundle  : 	at android.os.Looper.loop(Looper.java:392)
+07-30 23:48:30.922 28941 28941 W Bundle  : 	at android.app.ActivityThread.main(ActivityThread.java:10346)
+07-30 23:48:30.922 28941 28941 W Bundle  : 	at java.lang.reflect.Method.invoke(Native Method)
+07-30 23:48:30.922 28941 28941 W Bundle  : 	at com.android.internal.os.RuntimeInit$MethodAndArgsCaller.run(RuntimeInit.java:638)
+07-30 23:48:30.922 28941 28941 W Bundle  : 	at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:972)
+07-30 23:48:30.923 28941 28941 W com.hugofm.yomu: Unsupported class loader: java.lang.Class<eu.kanade.tachiyomi.util.system.ChildFirstPathClassLoader>
+07-30 23:48:30.924 28941 28941 W com.hugofm.yomu: Unsupported class loader: java.lang.Class<eu.kanade.tachiyomi.util.system.ChildFirstPathClassLoader>
+07-30 23:48:30.924 28941 28941 W com.hugofm.yomu: Unsupported class loader: java.lang.Class<eu.kanade.tachiyomi.util.system.ChildFirstPathClassLoader>
+07-30 23:48:32.884 28941 29071 E Adreno-AppProfiles: QSPM AIDL service doesn't exist
+07-30 23:48:32.887 28941 28947 W com.hugofm.yomu: userfaultfd: MOVE ioctl seems unsupported: Connection timed out
+07-30 23:48:32.942 28941 28941 E SQLiteLog: (283) recovered 15 frames from WAL file /data/data/com.hugofm.yomu/databases/tachiyomi.db-wal
+07-30 23:48:32.952 28941 28999 E SQLiteLog: (28) double-quoted string literal: "N/A"
+07-30 23:48:32.952 28941 28999 E SQLiteLog: (28) double-quoted string literal: " [.] "
+07-30 23:48:32.952 28941 28999 E SQLiteLog: (28) double-quoted string literal: "N/A"
+07-30 23:48:32.952 28941 28999 E SQLiteLog: (28) double-quoted string literal: " [.] "
+07-30 23:48:32.952 28941 28999 E SQLiteLog: (284) automatic index on C(manga_id)
+07-30 23:48:32.952 28941 28999 E SQLiteLog: (284) automatic index on R(manga_id)
+07-30 23:48:32.952 28941 28999 E SQLiteLog: (284) automatic index on B(manga_id)
+07-30 23:48:32.952 28941 28999 E SQLiteLog: (284) automatic index on mangas_categories(manga_id)
+07-30 23:48:33.000 28941 28941 E BufferQueueProducer: Unable to open libpenguin.so: dlopen failed: library "libpenguin.so" not found.
+07-30 23:48:33.000 28941 28941 E com.hugofm.yomu: Unable to open libpenguin.so: dlopen failed: library "libpenguin.so" not found.
+07-30 23:48:33.000 28941 28941 W libc    : Access denied finding property "vendor.display.enable_optimal_refresh_rate"
+07-30 23:48:33.001 28941 28941 W libc    : Access denied finding property "vendor.display.enable_optimal_refresh_rate"
+07-30 23:48:33.013 28941 29071 W qdgralloc: getInterlacedFlag: getMetaData returned 3, defaulting to interlaced_flag = 0
+07-30 23:48:33.032 28941 29071 W qdgralloc: getInterlacedFlag: getMetaData returned 3, defaulting to interlaced_flag = 0
+07-30 23:48:33.047 28941 29071 W qdgralloc: getInterlacedFlag: getMetaData returned 3, defaulting to interlaced_flag = 0
+07-30 23:48:33.063 28941 28941 W libc    : Access denied finding property "vendor.display.enable_optimal_refresh_rate"
+07-30 23:48:33.064 28941 28941 W libc    : Access denied finding property "vendor.display.enable_optimal_refresh_rate"
+07-30 23:48:33.068 28941 29071 W qdgralloc: getInterlacedFlag: getMetaData returned 3, defaulting to interlaced_flag = 0
+07-30 23:48:33.101 28941 29071 W qdgralloc: getInterlacedFlag: getMetaData returned 3, defaulting to interlaced_flag = 0
+07-30 23:48:33.117 28941 29071 W qdgralloc: getInterlacedFlag: getMetaData returned 3, defaulting to interlaced_flag = 0
+07-30 23:48:33.134 28941 29071 W qdgralloc: getInterlacedFlag: getMetaData returned 3, defaulting to interlaced_flag = 0
+07-30 23:48:33.192 28941 28941 W View    : requestLayout() improperly called by eu.kanade.tachiyomi.ui.library.LibraryFastScroll{bc2bde3 V.E...... ......ID 0,949-1440,2865 #7f0a0228 app:id/fast_scroller} during layout: running second layout pass
+07-30 23:48:33.201 28941 29071 W qdgralloc: getInterlacedFlag: getMetaData returned 3, defaulting to interlaced_flag = 0
+07-30 23:48:36.347 28941 28941 W libc    : Access denied finding property "vendor.display.enable_optimal_refresh_rate"
+07-30 23:48:36.349 28941 29071 W qdgralloc: getInterlacedFlag: getMetaData returned 3, defaulting to interlaced_flag = 0
+07-30 23:48:36.358 28941 28996 E SQLiteLog: (284) automatic index on mangas(_id)
+07-30 23:48:36.410 28941 28941 W libc    : Access denied finding property "vendor.display.enable_optimal_refresh_rate"
+07-30 23:48:36.410 28941 28941 W libc    : Access denied finding property "vendor.display.enable_optimal_refresh_rate"
+07-30 23:48:36.449 28941 29071 W qdgralloc: getInterlacedFlag: getMetaData returned 3, defaulting to interlaced_flag = 0
+07-30 23:48:36.450 28941 29071 W qdgralloc: getInterlacedFlag: getMetaData returned 3, defaulting to interlaced_flag = 0
+07-30 23:48:36.466 28941 29071 W qdgralloc: getInterlacedFlag: getMetaData returned 3, defaulting to interlaced_flag = 0
+07-30 23:48:36.475 28941 29071 W qdgralloc: getInterlacedFlag: getMetaData returned 3, defaulting to interlaced_flag = 0
+07-30 23:48:36.500 28941 29071 W qdgralloc: getInterlacedFlag: getMetaData returned 3, defaulting to interlaced_flag = 0
+07-30 23:48:36.607 28941 28941 W InteractionJankMonitor: Initializing without READ_DEVICE_CONFIG permission. enabled=false, interval=1, missedFrameThreshold=3, frameTimeThreshold=64, package=com.hugofm.yomu
+07-30 23:48:36.932 28941 28941 E Adreno-AppProfiles: QSPM AIDL service doesn't exist
+07-30 23:48:37.544 28941 28941 E Adreno-AppProfiles: QSPM AIDL service doesn't exist
+07-30 23:48:38.128 28941 28941 W libc    : Access denied finding property "vendor.display.enable_optimal_refresh_rate"
+07-30 23:48:38.128 28941 28941 W libc    : Access denied finding property "vendor.display.enable_optimal_refresh_rate"
+07-30 23:48:38.146 28941 28941 W libc    : Access denied finding property "vendor.display.enable_optimal_refresh_rate"
+07-30 23:48:38.148 28941 29071 W qdgralloc: getInterlacedFlag: getMetaData returned 3, defaulting to interlaced_flag = 0
+07-30 23:48:38.155 28941 29071 W qdgralloc: getInterlacedFlag: getMetaData returned 3, defaulting to interlaced_flag = 0
+07-30 23:48:38.166 28941 29071 W qdgralloc: getInterlacedFlag: getMetaData returned 3, defaulting to interlaced_flag = 0
+07-30 23:48:38.169 28941 29071 W qdgralloc: getInterlacedFlag: getMetaData returned 3, defaulting to interlaced_flag = 0
+07-30 23:48:38.429 28941 29071 W qdgralloc: getInterlacedFlag: getMetaData returned 3, defaulting to interlaced_flag = 0
+07-30 23:48:38.486 28941 29071 W qdgralloc: getInterlacedFlag: getMetaData returned 3, defaulting to interlaced_flag = 0
+07-30 23:48:40.288 28941 28941 W libc    : Access denied finding property "vendor.display.enable_optimal_refresh_rate"
+07-30 23:48:40.290 28941 29071 W qdgralloc: getInterlacedFlag: getMetaData returned 3, defaulting to interlaced_flag = 0
+07-30 23:48:40.343 28941 28941 W libc    : Access denied finding property "vendor.display.enable_optimal_refresh_rate"
+07-30 23:48:40.343 28941 28941 W libc    : Access denied finding property "vendor.display.enable_optimal_refresh_rate"
+07-30 23:48:40.403 28941 29071 W qdgralloc: getInterlacedFlag: getMetaData returned 3, defaulting to interlaced_flag = 0
+07-30 23:48:40.404 28941 29071 W qdgralloc: getInterlacedFlag: getMetaData returned 3, defaulting to interlaced_flag = 0
+07-30 23:48:40.409 28941 29071 W qdgralloc: getInterlacedFlag: getMetaData returned 3, defaulting to interlaced_flag = 0
+07-30 23:48:40.413 28941 29071 W qdgralloc: getInterlacedFlag: getMetaData returned 3, defaulting to interlaced_flag = 0
+07-30 23:48:40.427 28941 29071 W qdgralloc: getInterlacedFlag: getMetaData returned 3, defaulting to interlaced_flag = 0
+07-30 23:48:40.746 28941 28941 E Adreno-AppProfiles: QSPM AIDL service doesn't exist
+07-30 23:48:42.535 28941 28941 E Adreno-AppProfiles: QSPM AIDL service doesn't exist
+07-30 23:48:42.627 28941 28941 E Adreno-AppProfiles: QSPM AIDL service doesn't exist
+07-30 23:48:43.604 28941 28941 W libc    : Access denied finding property "vendor.display.enable_optimal_refresh_rate"
+07-30 23:48:43.605 28941 28941 W libc    : Access denied finding property "vendor.display.enable_optimal_refresh_rate"
+07-30 23:48:43.625 28941 28941 W libc    : Access denied finding property "vendor.display.enable_optimal_refresh_rate"
+07-30 23:48:43.629 28941 29071 W qdgralloc: getInterlacedFlag: getMetaData returned 3, defaulting to interlaced_flag = 0
+07-30 23:48:43.656 28941 29071 W qdgralloc: getInterlacedFlag: getMetaData returned 3, defaulting to interlaced_flag = 0
+07-30 23:48:43.693 28941 29071 W qdgralloc: getInterlacedFlag: getMetaData returned 3, defaulting to interlaced_flag = 0
+07-30 23:48:43.695 28941 29071 W qdgralloc: getInterlacedFlag: getMetaData returned 3, defaulting to interlaced_flag = 0
+07-30 23:48:43.933 28941 29071 W qdgralloc: getInterlacedFlag: getMetaData returned 3, defaulting to interlaced_flag = 0
+07-30 23:48:44.027 28941 29071 W qdgralloc: getInterlacedFlag: getMetaData returned 3, defaulting to interlaced_flag = 0
+07-30 23:48:50.536 28941 28941 W libc    : Access denied finding property "vendor.display.enable_optimal_refresh_rate"
+07-30 23:48:50.538 28941 29071 W qdgralloc: getInterlacedFlag: getMetaData returned 3, defaulting to interlaced_flag = 0
+07-30 23:48:50.596 28941 28941 W libc    : Access denied finding property "vendor.display.enable_optimal_refresh_rate"
+07-30 23:48:50.597 28941 28941 W libc    : Access denied finding property "vendor.display.enable_optimal_refresh_rate"
+07-30 23:48:50.654 28941 29071 W qdgralloc: getInterlacedFlag: getMetaData returned 3, defaulting to interlaced_flag = 0
+07-30 23:48:50.655 28941 29071 W qdgralloc: getInterlacedFlag: getMetaData returned 3, defaulting to interlaced_flag = 0
+07-30 23:48:50.659 28941 29071 W qdgralloc: getInterlacedFlag: getMetaData returned 3, defaulting to interlaced_flag = 0
+07-30 23:48:50.664 28941 29071 W qdgralloc: getInterlacedFlag: getMetaData returned 3, defaulting to interlaced_flag = 0
+07-30 23:48:50.680 28941 29071 W qdgralloc: getInterlacedFlag: getMetaData returned 3, defaulting to interlaced_flag = 0
+07-30 23:48:51.818 28941 28941 E Adreno-AppProfiles: QSPM AIDL service doesn't exist
+07-30 23:48:51.835 28941 28941 E Adreno-AppProfiles: QSPM AIDL service doesn't exist
+07-30 23:48:52.824 28941 28941 E Adreno-AppProfiles: QSPM AIDL service doesn't exist
+07-30 23:48:52.865 28941 28941 E Adreno-AppProfiles: QSPM AIDL service doesn't exist
+07-30 23:48:53.786 28941 28941 W libc    : Access denied finding property "vendor.display.enable_optimal_refresh_rate"
+07-30 23:48:53.787 28941 28941 W libc    : Access denied finding property "vendor.display.enable_optimal_refresh_rate"
+07-30 23:48:53.801 28941 28941 W libc    : Access denied finding property "vendor.display.enable_optimal_refresh_rate"
+07-30 23:48:53.803 28941 29071 W qdgralloc: getInterlacedFlag: getMetaData returned 3, defaulting to interlaced_flag = 0
+07-30 23:48:53.811 28941 29071 W qdgralloc: getInterlacedFlag: getMetaData returned 3, defaulting to interlaced_flag = 0
+07-30 23:48:53.820 28941 29071 W qdgralloc: getInterlacedFlag: getMetaData returned 3, defaulting to interlaced_flag = 0
+07-30 23:48:53.823 28941 29071 W qdgralloc: getInterlacedFlag: getMetaData returned 3, defaulting to interlaced_flag = 0
+07-30 23:48:54.050 28941 29071 W qdgralloc: getInterlacedFlag: getMetaData returned 3, defaulting to interlaced_flag = 0
+07-30 23:48:54.100 28941 29071 W qdgralloc: getInterlacedFlag: getMetaData returned 3, defaulting to interlaced_flag = 0
+07-30 23:48:54.450 28941 28941 W chromium: [WARNING:android_webview/browser/network_service/net_helpers.cc:137] HTTP Cache size is: 20971520
+07-30 23:48:54.452 28941 28983 W chromium: [WARNING:android_webview/browser/cookie_manager.cc:372] Transferring cookies from provisional CookieManager to network service. For issues with the provisional CookieManager, see crbug.com/478873476.
+07-30 23:48:54.499 28941 29550 W cr_media: BLUETOOTH_CONNECT permission is missing.
+07-30 23:48:54.500 28941 29550 W cr_media: getBluetoothAdapter() requires BLUETOOTH permission
+07-30 23:48:54.500 28941 29550 W cr_media: registerBluetoothIntentsIfNeeded: Requires BLUETOOTH permission
+07-30 23:48:54.526 28941 28941 W libc    : Access denied finding property "vendor.display.enable_optimal_refresh_rate"
+07-30 23:48:54.527 28941 28941 W libc    : Access denied finding property "vendor.display.enable_optimal_refresh_rate"
+07-30 23:48:54.573 28941 29565 E Adreno-AppProfiles: QSPM AIDL service doesn't exist
+07-30 23:48:54.589 28941 29071 W qdgralloc: getInterlacedFlag: getMetaData returned 3, defaulting to interlaced_flag = 0
+07-30 23:48:54.612 28941 29071 W qdgralloc: getInterlacedFlag: getMetaData returned 3, defaulting to interlaced_flag = 0
+07-30 23:48:54.623 28941 29557 W AudioCapabilities: Unsupported mediaType audio/x-ape
+07-30 23:48:54.623 28941 29557 W AudioCapabilities: Unsupported mediaType audio/x-ima
+07-30 23:48:54.623 28941 29557 W AudioCapabilities: Unsupported mediaType audio/mpeg-L1
+07-30 23:48:54.623 28941 29557 W AudioCapabilities: Unsupported mediaType audio/mpeg-L2
+07-30 23:48:54.624 28941 29557 W VideoCapabilities: Unsupported mime video/wvc1
+07-30 23:48:54.624 28941 29557 W VideoCapabilities: Unsupported mime video/x-ms-wmv
+07-30 23:48:54.632 28941 29557 W VideoCapabilities: Unsupported mime image/vnd.android.heic
+07-30 23:48:54.632 28941 29557 W VideoCapabilities: Unrecognized profile/level 32768/256 for video/mp4v-es
+07-30 23:48:54.636 28941 29557 W AudioCapabilities: Unsupported mediaType audio/x-ape
+07-30 23:48:54.637 28941 29557 W AudioCapabilities: Unsupported mediaType audio/x-ima
+07-30 23:48:54.637 28941 29557 W AudioCapabilities: Unsupported mediaType audio/mpeg-L1
+07-30 23:48:54.637 28941 29557 W AudioCapabilities: Unsupported mediaType audio/mpeg-L2
+07-30 23:48:54.637 28941 29557 W VideoCapabilities: Unsupported mime video/wvc1
+07-30 23:48:54.637 28941 29557 W VideoCapabilities: Unsupported mime video/x-ms-wmv
+07-30 23:48:54.644 28941 29557 W VideoCapabilities: Unsupported mime image/vnd.android.heic
+07-30 23:48:54.644 28941 29557 W VideoCapabilities: Unrecognized profile/level 32768/256 for video/mp4v-es
+07-30 23:48:54.650 28941 29557 W AudioCapabilities: Unsupported mime audio/x-ape
+07-30 23:48:54.650 28941 29557 W AudioCapabilities: Unsupported mime audio/x-ima
+07-30 23:48:54.650 28941 29557 W AudioCapabilities: Unsupported mime audio/mpeg-L1
+07-30 23:48:54.650 28941 29557 W AudioCapabilities: Unsupported mime audio/mpeg-L2
+07-30 23:48:54.651 28941 29557 W VideoCapabilities: Unsupported mime video/wvc1
+07-30 23:48:54.651 28941 29557 W VideoCapabilities: Unsupported mime video/x-ms-wmv
+07-30 23:48:54.653 28941 29557 W VideoCapabilities: Unsupported mime image/vnd.android.heic
+07-30 23:48:54.653 28941 29557 W VideoCapabilities: Unrecognized profile/level 32768/256 for video/mp4v-es
+07-30 23:48:54.655 28941 29557 W VideoCapabilities: Unsupported mime video/wvc1
+07-30 23:48:54.656 28941 29557 W VideoCapabilities: Unsupported mime image/vnd.android.heic
+07-30 23:48:54.660 28941 29071 W qdgralloc: getInterlacedFlag: getMetaData returned 3, defaulting to interlaced_flag = 0
+07-30 23:48:54.700 28941 29071 W qdgralloc: getInterlacedFlag: getMetaData returned 3, defaulting to interlaced_flag = 0
+07-30 23:48:55.260 28941 29550 W cr_media: Requires MODIFY_AUDIO_SETTINGS and RECORD_AUDIO. No audio device will be available for recording
+07-30 23:48:55.560 28941 28941 W libc    : Access denied finding property "vendor.display.enable_optimal_refresh_rate"
+07-30 23:48:55.561 28941 28941 W libc    : Access denied finding property "vendor.display.enable_optimal_refresh_rate"
+07-30 23:48:55.570 28941 29071 W qdgralloc: getInterlacedFlag: getMetaData returned 3, defaulting to interlaced_flag = 0
+07-30 23:48:55.586 28941 29071 W qdgralloc: getInterlacedFlag: getMetaData returned 3, defaulting to interlaced_flag = 0
+07-30 23:48:55.592 28941 29071 W qdgralloc: getInterlacedFlag: getMetaData returned 3, defaulting to interlaced_flag = 0
+07-30 23:48:55.622 28941 29071 W qdgralloc: getInterlacedFlag: getMetaData returned 3, defaulting to interlaced_flag = 0
+07-30 23:48:56.587 28941 28941 W View    : requestLayout() improperly called by eu.kanade.tachiyomi.ui.extension.RecyclerWithScrollerView{928d6e6 V.E...... ......ID 0,0-1440,2906 #7f0a03ae app:id/recycler_layout} during layout: running second layout pass
+07-30 23:48:56.587 28941 28941 W View    : requestLayout() improperly called by eu.kanade.tachiyomi.ui.base.MaterialFastScroll{3c1c427 V.E...... ......ID 0,0-1440,2651 #7f0a0228 app:id/fast_scroller} during layout: running second layout pass
+07-30 23:48:56.587 28941 28941 W View    : requestLayout() improperly called by eu.kanade.tachiyomi.ui.extension.RecyclerWithScrollerView{6e96d4 V.E...... ......ID 1440,0-2880,2906 #7f0a03ae app:id/recycler_layout} during layout: running second layout pass
+07-30 23:48:56.587 28941 28941 W View    : requestLayout() improperly called by eu.kanade.tachiyomi.ui.base.MaterialFastScroll{d03007d V.E...... ......ID 0,0-1440,2651 #7f0a0228 app:id/fast_scroller} during layout: running second layout pass
+07-30 23:48:58.765 28941 28971 E AndroidRuntime: FATAL EXCEPTION: DefaultDispatcher-worker-3
+07-30 23:48:58.765 28941 28971 E AndroidRuntime: Process: com.hugofm.yomu, PID: 28941
+07-30 23:48:58.765 28941 28971 E AndroidRuntime: java.lang.AbstractMethodError: abstract method "kotlinx.serialization.KSerializer[] kotlinx.serialization.internal.GeneratedSerializer.typeParametersSerializers()" on receiver java.lang.Class<h2>
+07-30 23:48:58.765 28941 28971 E AndroidRuntime: 	at kotlinx.serialization.internal.PluginGeneratedSerialDescriptor.typeParameterDescriptors_delegate$lambda$2(SourceFile:5)
+07-30 23:48:58.765 28941 28971 E AndroidRuntime: 	at kotlinx.serialization.internal.PluginGeneratedSerialDescriptor.$r8$lambda$lHVbRHJZFJeOCNqxR0MeP9mvMTI(SourceFile:1)
+07-30 23:48:58.765 28941 28971 E AndroidRuntime: 	at kotlinx.serialization.internal.PluginGeneratedSerialDescriptor$$ExternalSyntheticLambda0.invoke(SourceFile:1)
+07-30 23:48:58.765 28941 28971 E AndroidRuntime: 	at kotlin.SafePublicationLazyImpl.getValue(SourceFile:12)
+07-30 23:48:58.765 28941 28971 E AndroidRuntime: 	at kotlinx.serialization.internal.PluginGeneratedSerialDescriptor.getTypeParameterDescriptors$kotlinx_serialization_core(SourceFile:3)
+07-30 23:48:58.765 28941 28971 E AndroidRuntime: 	at kotlinx.serialization.internal.PluginGeneratedSerialDescriptor._hashCode_delegate$lambda$3(SourceFile:1)
+07-30 23:48:58.765 28941 28971 E AndroidRuntime: 	at kotlinx.serialization.internal.PluginGeneratedSerialDescriptor.$r8$lambda$cDPWE4SK_6AyKNo6PzcexLAZOkg(SourceFile:1)
+07-30 23:48:58.765 28941 28971 E AndroidRuntime: 	at kotlinx.serialization.internal.PluginGeneratedSerialDescriptor$$ExternalSyntheticLambda0.invoke(SourceFile:1)
+07-30 23:48:58.765 28941 28971 E AndroidRuntime: 	at kotlin.SafePublicationLazyImpl.getValue(SourceFile:12)
+07-30 23:48:58.765 28941 28971 E AndroidRuntime: 	at kotlinx.serialization.internal.PluginGeneratedSerialDescriptor.get_hashCode(SourceFile:3)
+07-30 23:48:58.765 28941 28971 E AndroidRuntime: 	at kotlinx.serialization.internal.PluginGeneratedSerialDescriptor.hashCode(SourceFile:1)
+07-30 23:48:58.765 28941 28971 E AndroidRuntime: 	at java.util.concurrent.ConcurrentHashMap.get(ConcurrentHashMap.java:936)
+07-30 23:48:58.765 28941 28971 E AndroidRuntime: 	at kotlinx.serialization.json.internal.DescriptorSchemaCache.get(SourceFile:13)
+07-30 23:48:58.765 28941 28971 E AndroidRuntime: 	at kotlinx.serialization.json.internal.DescriptorSchemaCache.getOrPut(SourceFile:16)
+07-30 23:48:58.765 28941 28971 E AndroidRuntime: 	at kotlinx.serialization.json.internal.JsonNamesMapKt.deserializationNamesMap(SourceFile:24)
+07-30 23:48:58.765 28941 28971 E AndroidRuntime: 	at kotlinx.serialization.json.internal.JsonNamesMapKt.getJsonNameIndexSlowPath(SourceFile:1)
+07-30 23:48:58.765 28941 28971 E AndroidRuntime: 	at kotlinx.serialization.json.internal.JsonNamesMapKt.getJsonNameIndex(SourceFile:68)
+07-30 23:48:58.765 28941 28971 E AndroidRuntime: 	at kotlinx.serialization.json.internal.StreamingJsonDecoder.decodeObjectIndex(SourceFile:31)
+07-30 23:48:58.765 28941 28971 E AndroidRuntime: 	at kotlinx.serialization.json.internal.StreamingJsonDecoder.decodeElementIndex(SourceFile:27)
+07-30 23:48:58.765 28941 28971 E AndroidRuntime: 	at h2.deserialize(r8-map-id-d79c27217f6a8ea16eec093d19201f248105e72fd52e38e04553f2b487157184:28)
+07-30 23:48:58.765 28941 28971 E AndroidRuntime: 	at kotlinx.serialization.json.internal.StreamingJsonDecoder.decodeSerializableValue(SourceFile:322)
+07-30 23:48:58.765 28941 28971 E AndroidRuntime: 	at kotlinx.serialization.encoding.AbstractDecoder.decodeSerializableValue(SourceFile:2)
+07-30 23:48:58.765 28941 28971 E AndroidRuntime: 	at kotlinx.serialization.encoding.AbstractDecoder.decodeSerializableElement(SourceFile:11)
+07-30 23:48:58.765 28941 28971 E AndroidRuntime: 	at kotlinx.serialization.json.internal.StreamingJsonDecoder.decodeSerializableElement(SourceFile:33)
+07-30 23:48:58.765 28941 28971 E AndroidRuntime: 	at kotlinx.serialization.encoding.CompositeDecoder$-CC.decodeSerializableElement$default(SourceFile:8)
+07-30 23:48:58.765 28941 28971 E AndroidRuntime: 	at kotlinx.serialization.internal.CollectionLikeSerializer.readElement(SourceFile:21)
+07-30 23:48:58.765 28941 28971 E AndroidRuntime: 	at kotlinx.serialization.internal.AbstractCollectionSerializer.readElement$default(SourceFile:8)
+07-30 23:48:58.765 28941 28971 E AndroidRuntime: 	at kotlinx.serialization.internal.AbstractCollectionSerializer.merge(SourceFile:67)
+07-30 23:48:58.765 28941 28971 E AndroidRuntime: 	at kotlinx.serialization.internal.AbstractCollectionSerializer.deserialize(SourceFile:7)
+07-30 23:48:58.765 28941 28971 E AndroidRuntime: 	at kotlinx.serialization.json.internal.StreamingJsonDecoder.decodeSerializableValue(SourceFile:322)
+07-30 23:48:58.765 28941 28971 E AndroidRuntime: 	at kotlinx.serialization.encoding.AbstractDecoder.decodeSerializableValue(SourceFile:2)
+07-30 23:48:58.765 28941 28971 E AndroidRuntime: 	at kotlinx.serialization.encoding.AbstractDecoder.decodeNullableSerializableElement(SourceFile:33)
+07-30 23:48:58.765 28941 28971 E AndroidRuntime: 	at a1.deserialize(r8-map-id-d79c27217f6a8ea16eec093d19201f248105e72fd52e38e04553f2b487157184:290)
+07-30 23:48:58.765 28941 28971 E AndroidRuntime: 	at kotlinx.serialization.json.internal.StreamingJsonDecoder.decodeSerializableValue(SourceFile:322)
+07-30 23:48:58.765 28941 28971 E AndroidRuntime: 	at kotlinx.serialization.encoding.AbstractDecoder.decodeSerializableValue(SourceFile:2)
+07-30 23:48:58.765 28941 28971 E AndroidRuntime: 	at kotlinx.serialization.encoding.AbstractDecoder.decodeNullableSerializableElement(SourceFile:33)
+07-30 23:48:58.765 28941 28971 E AndroidRuntime: 	at d1.deserialize(r8-map-id-d79c27217f6a8ea16eec093d19201f248105e72fd52e38e04553f2b487157184:86)
+07-30 23:48:58.765 28941 28971 E AndroidRuntime: 	at kotlinx.serialization.json.internal.StreamingJsonDecoder.decodeSerializableValue(SourceFile:322)
+07-30 23:48:58.766 28941 28971 E AndroidRuntime: 	at kotlinx.serialization.encoding.AbstractDecoder.decodeSerializableValue(SourceFile:2)
+07-30 23:48:58.766 28941 28971 E AndroidRuntime: 	at kotlinx.serialization.encoding.AbstractDecoder.decodeNullableSerializableElement(SourceFile:33)
+07-30 23:48:58.766 28941 28971 E AndroidRuntime: 	at m0.deserialize(r8-map-id-d79c27217f6a8ea16eec093d19201f248105e72fd52e38e04553f2b487157184:87)
+07-30 23:48:58.766 28941 28971 E AndroidRuntime: 	at kotlinx.serialization.json.internal.StreamingJsonDecoder.decodeSerializableValue(SourceFile:322)
+07-30 23:48:58.766 28941 28971 E AndroidRuntime: 	at kotlinx.serialization.json.internal.JsonStreamsKt.decodeByReader(SourceFile:35)
+07-30 23:48:58.766 28941 28971 E AndroidRuntime: 	at kotlinx.serialization.json.okio.OkioStreamsKt.decodeFromBufferedSource(SourceFile:1)
+07-30 23:48:58.766 28941 28971 E AndroidRuntime: 	at eu.kanade.tachiyomi.extension.en.allanime.ExtensionGenerated.b(r8-map-id-d79c27217f6a8ea16eec093d19201f248105e72fd52e38e04553f2b487157184:17)
+07-30 23:48:58.766 28941 28971 E AndroidRuntime: 	at e.invokeSuspend(r8-map-id-d79c27217f6a8ea16eec093d19201f248105e72fd52e38e04553f2b487157184:17)
+07-30 23:48:58.766 28941 28971 E AndroidRuntime: 	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(SourceFile:12)
+07-30 23:48:58.766 28941 28971 E AndroidRuntime: 	at kotlinx.coroutines.DispatchedTask.run(SourceFile:129)
+07-30 23:48:58.766 28941 28971 E AndroidRuntime: 	at kotlinx.coroutines.scheduling.CoroutineScheduler.runSafely(SourceFile:1)
+07-30 23:48:58.766 28941 28971 E AndroidRuntime: 	at kotlinx.coroutines.scheduling.CoroutineScheduler$Worker.run(SourceFile:78)
+07-30 23:48:58.766 28941 28971 E AndroidRuntime: 	Suppressed: kotlinx.coroutines.internal.DiagnosticCoroutineContextException: [StandaloneCoroutine{Cancelling}@442d1c9, Dispatchers.Default]
+07-30 23:48:59.802 29822 29852 E Adreno-AppProfiles: QSPM AIDL service doesn't exist
+07-30 23:48:59.808 29822 29822 E ashmem  : Pinning is deprecated since Android Q. Please use trim or other methods.
+07-30 23:48:59.892 29822 29822 W com.hugofm.yomu: Unsupported class loader: java.lang.Class<eu.kanade.tachiyomi.util.system.ChildFirstPathClassLoader>
+07-30 23:48:59.892 29822 29822 W com.hugofm.yomu: Unsupported class loader: java.lang.Class<eu.kanade.tachiyomi.util.system.ChildFirstPathClassLoader>
+07-30 23:48:59.892 29822 29822 W com.hugofm.yomu: Unsupported class loader: java.lang.Class<eu.kanade.tachiyomi.util.system.ChildFirstPathClassLoader>
+07-30 23:48:59.924 29822 29870 E chromium: [ERROR:android_webview/browser/variations/variations_seed_loader.cc:39] Seed missing signature.
+07-30 23:48:59.934 29822 29822 W Bundle  : Key tachiyomix.extensionLib expected Double but value was a java.lang.Float.  The default value 0.0 was returned.
+07-30 23:48:59.934 29822 29822 W Bundle  : Attempt to cast generated internal exception:
+07-30 23:48:59.934 29822 29822 W Bundle  : java.lang.ClassCastException: java.lang.Float cannot be cast to java.lang.Double
+07-30 23:48:59.934 29822 29822 W Bundle  : 	at android.os.BaseBundle.getDouble(BaseBundle.java:1443)
+07-30 23:48:59.934 29822 29822 W Bundle  : 	at android.os.BaseBundle.getDouble(BaseBundle.java:1425)
+07-30 23:48:59.934 29822 29822 W Bundle  : 	at eu.kanade.tachiyomi.extension.util.ExtensionLoader.loadExtension(SourceFile:76)
+07-30 23:48:59.934 29822 29822 W Bundle  : 	at eu.kanade.tachiyomi.extension.util.ExtensionLoader$loadExtensions$1$deferred$1$1.invokeSuspend(SourceFile:16)
+07-30 23:48:59.934 29822 29822 W Bundle  : 	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(SourceFile:12)
+07-30 23:48:59.934 29822 29822 W Bundle  : 	at kotlinx.coroutines.DispatchedTask.run(SourceFile:129)
+07-30 23:48:59.934 29822 29822 W Bundle  : 	at kotlinx.coroutines.EventLoopImplBase.processNextEvent(SourceFile:86)
+07-30 23:48:59.934 29822 29822 W Bundle  : 	at kotlinx.coroutines.BlockingCoroutine.joinBlocking(SourceFile:23)
+07-30 23:48:59.934 29822 29822 W Bundle  : 	at kotlinx.coroutines.BuildersKt__BuildersKt.runBlocking(SourceFile:60)
+07-30 23:48:59.934 29822 29822 W Bundle  : 	at kotlinx.coroutines.BuildersKt__BuildersKt.runBlocking$default(SourceFile:7)
+07-30 23:48:59.934 29822 29822 W Bundle  : 	at kotlinx.coroutines.BuildersKt.runBlocking$default(SourceFile:1)
+07-30 23:48:59.934 29822 29822 W Bundle  : 	at eu.kanade.tachiyomi.extension.util.ExtensionLoader.loadExtensions(SourceFile:17)
+07-30 23:48:59.934 29822 29822 W Bundle  : 	at eu.kanade.tachiyomi.extension.ExtensionManager.<init>(SourceFile:30)
+07-30 23:48:59.934 29822 29822 W Bundle  : 	at eu.kanade.tachiyomi.extension.ExtensionManager.<init>(SourceFile:9)
+07-30 23:48:59.934 29822 29822 W Bundle  : 	at eu.kanade.tachiyomi.AppModule$$ExternalSyntheticLambda0.invoke(SourceFile:56)
+07-30 23:48:59.934 29822 29822 W Bundle  : 	at uy.kohesive.injekt.registry.default.DefaultRegistrar$addSingletonFactory$1$1$1.invoke(SourceFile:3)
+07-30 23:48:59.934 29822 29822 W Bundle  : 	at kotlin.SynchronizedLazyImpl.getValue(SourceFile:21)
+07-30 23:48:59.934 29822 29822 W Bundle  : 	at uy.kohesive.injekt.registry.default.DefaultRegistrar$addSingletonFactory$1.invoke(SourceFile:50)
+07-30 23:48:59.934 29822 29822 W Bundle  : 	at uy.kohesive.injekt.registry.default.DefaultRegistrar.getInstance(SourceFile:16)
+07-30 23:48:59.934 29822 29822 W Bundle  : 	at eu.kanade.tachiyomi.AppModule$$ExternalSyntheticLambda16.invoke(SourceFile:1055)
+07-30 23:48:59.934 29822 29822 W Bundle  : 	at uy.kohesive.injekt.registry.default.DefaultRegistrar$addSingletonFactory$1$1$1.invoke(SourceFile:3)
+07-30 23:48:59.934 29822 29822 W Bundle  : 	at kotlin.SynchronizedLazyImpl.getValue(SourceFile:21)
+07-30 23:48:59.934 29822 29822 W Bundle  : 	at uy.kohesive.injekt.registry.default.DefaultRegistrar$addSingletonFactory$1.invoke(SourceFile:50)
+07-30 23:48:59.934 29822 29822 W Bundle  : 	at uy.kohesive.injekt.registry.default.DefaultRegistrar.getInstance(SourceFile:16)
+07-30 23:48:59.934 29822 29822 W Bundle  : 	at uy.kohesive.injekt.api.InjektScope.getInstance(Unknown Source:7)
+07-30 23:48:59.934 29822 29822 W Bundle  : 	at eu.kanade.tachiyomi.ui.library.LibraryPresenter.<init>(SourceFile:17)
+07-30 23:48:59.934 29822 29822 W Bundle  : 	at eu.kanade.tachiyomi.ui.library.LibraryController.<init>(SourceFile:18)
+07-30 23:48:59.934 29822 29822 W Bundle  : 	at eu.kanade.tachiyomi.ui.library.LibraryController.<init>(SourceFile:6)
+07-30 23:48:59.934 29822 29822 W Bundle  : 	at eu.kanade.tachiyomi.ui.main.MainActivity$$ExternalSyntheticLambda12.onNavigationItemSelected(SourceFile:167)
+07-30 23:48:59.934 29822 29822 W Bundle  : 	at com.google.android.material.navigation.NavigationBarView$1.onMenuItemSelected(SourceFile:46)
+07-30 23:48:59.934 29822 29822 W Bundle  : 	at androidx.appcompat.view.menu.MenuBuilder.dispatchMenuItemSelected(SourceFile:5)
+07-30 23:48:59.934 29822 29822 W Bundle  : 	at androidx.appcompat.view.menu.MenuBuilder.performItemAction(SourceFile:5)
+07-30 23:48:59.934 29822 29822 W Bundle  : 	at com.google.android.material.navigation.NavigationBarView.setSelectedItemId(SourceFile:14)
+07-30 23:48:59.934 29822 29822 W Bundle  : 	at eu.kanade.tachiyomi.ui.main.MainActivity.onCreate(SourceFile:732)
+07-30 23:48:59.934 29822 29822 W Bundle  : 	at android.app.Activity.performCreate(Activity.java:9758)
+07-30 23:48:59.934 29822 29822 W Bundle  : 	at android.app.Activity.performCreate(Activity.java:9727)
+07-30 23:48:59.934 29822 29822 W Bundle  : 	at android.app.Instrumentation.callActivityOnCreate(Instrumentation.java:1544)
+07-30 23:48:59.934 29822 29822 W Bundle  : 	at android.app.ActivityThread.performLaunchActivity(ActivityThread.java:5024)
+07-30 23:48:59.934 29822 29822 W Bundle  : 	at android.app.ActivityThread.handleLaunchActivity(ActivityThread.java:5290)
+07-30 23:48:59.934 29822 29822 W Bundle  : 	at android.app.servertransaction.LaunchActivityItem.execute(LaunchActivityItem.java:224)
+07-30 23:48:59.934 29822 29822 W Bundle  : 	at android.app.servertransaction.TransactionExecutor.executeNonLifecycleItem(TransactionExecutor.java:133)
+07-30 23:48:59.934 29822 29822 W Bundle  : 	at android.app.servertransaction.TransactionExecutor.executeTransactionItems(TransactionExecutor.java:103)
+07-30 23:48:59.934 29822 29822 W Bundle  : 	at android.app.servertransaction.TransactionExecutor.execute(TransactionExecutor.java:80)
+07-30 23:48:59.934 29822 29822 W Bundle  : 	at android.app.ActivityThread$H.handleMessage(ActivityThread.java:3287)
+07-30 23:48:59.934 29822 29822 W Bundle  : 	at android.os.Handler.dispatchMessage(Handler.java:132)
+07-30 23:48:59.934 29822 29822 W Bundle  : 	at android.os.Looper.dispatchMessage(Looper.java:358)
+07-30 23:48:59.934 29822 29822 W Bundle  : 	at android.os.Looper.loopOnce(Looper.java:288)
+07-30 23:48:59.934 29822 29822 W Bundle  : 	at android.os.Looper.loop(Looper.java:392)
+07-30 23:48:59.934 29822 29822 W Bundle  : 	at android.app.ActivityThread.main(ActivityThread.java:10346)
+07-30 23:48:59.934 29822 29822 W Bundle  : 	at java.lang.reflect.Method.invoke(Native Method)
+07-30 23:48:59.934 29822 29822 W Bundle  : 	at com.android.internal.os.RuntimeInit$MethodAndArgsCaller.run(RuntimeInit.java:638)
+07-30 23:48:59.934 29822 29822 W Bundle  : 	at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:972)
+07-30 23:48:59.935 29822 29822 W com.hugofm.yomu: Unsupported class loader: java.lang.Class<eu.kanade.tachiyomi.util.system.ChildFirstPathClassLoader>
+07-30 23:48:59.935 29822 29822 W com.hugofm.yomu: Unsupported class loader: java.lang.Class<eu.kanade.tachiyomi.util.system.ChildFirstPathClassLoader>
+07-30 23:48:59.935 29822 29822 W com.hugofm.yomu: Unsupported class loader: java.lang.Class<eu.kanade.tachiyomi.util.system.ChildFirstPathClassLoader>
+07-30 23:48:59.942 29822 29822 W Bundle  : Key tachiyomix.extensionLib expected Double but value was a java.lang.Float.  The default value 0.0 was returned.
+07-30 23:48:59.942 29822 29822 W Bundle  : Attempt to cast generated internal exception:
+07-30 23:48:59.942 29822 29822 W Bundle  : java.lang.ClassCastException: java.lang.Float cannot be cast to java.lang.Double
+07-30 23:48:59.942 29822 29822 W Bundle  : 	at android.os.BaseBundle.getDouble(BaseBundle.java:1443)
+07-30 23:48:59.942 29822 29822 W Bundle  : 	at android.os.BaseBundle.getDouble(BaseBundle.java:1425)
+07-30 23:48:59.942 29822 29822 W Bundle  : 	at eu.kanade.tachiyomi.extension.util.ExtensionLoader.loadExtension(SourceFile:76)
+07-30 23:48:59.942 29822 29822 W Bundle  : 	at eu.kanade.tachiyomi.extension.util.ExtensionLoader$loadExtensions$1$deferred$1$1.invokeSuspend(SourceFile:16)
+07-30 23:48:59.942 29822 29822 W Bundle  : 	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(SourceFile:12)
+07-30 23:48:59.942 29822 29822 W Bundle  : 	at kotlinx.coroutines.DispatchedTask.run(SourceFile:129)
+07-30 23:48:59.942 29822 29822 W Bundle  : 	at kotlinx.coroutines.EventLoopImplBase.processNextEvent(SourceFile:86)
+07-30 23:48:59.942 29822 29822 W Bundle  : 	at kotlinx.coroutines.BlockingCoroutine.joinBlocking(SourceFile:23)
+07-30 23:48:59.942 29822 29822 W Bundle  : 	at kotlinx.coroutines.BuildersKt__BuildersKt.runBlocking(SourceFile:60)
+07-30 23:48:59.942 29822 29822 W Bundle  : 	at kotlinx.coroutines.BuildersKt__BuildersKt.runBlocking$default(SourceFile:7)
+07-30 23:48:59.942 29822 29822 W Bundle  : 	at kotlinx.coroutines.BuildersKt.runBlocking$default(SourceFile:1)
+07-30 23:48:59.942 29822 29822 W Bundle  : 	at eu.kanade.tachiyomi.extension.util.ExtensionLoader.loadExtensions(SourceFile:17)
+07-30 23:48:59.942 29822 29822 W Bundle  : 	at eu.kanade.tachiyomi.extension.ExtensionManager.<init>(SourceFile:30)
+07-30 23:48:59.942 29822 29822 W Bundle  : 	at eu.kanade.tachiyomi.extension.ExtensionManager.<init>(SourceFile:9)
+07-30 23:48:59.942 29822 29822 W Bundle  : 	at eu.kanade.tachiyomi.AppModule$$ExternalSyntheticLambda0.invoke(SourceFile:56)
+07-30 23:48:59.942 29822 29822 W Bundle  : 	at uy.kohesive.injekt.registry.default.DefaultRegistrar$addSingletonFactory$1$1$1.invoke(SourceFile:3)
+07-30 23:48:59.942 29822 29822 W Bundle  : 	at kotlin.SynchronizedLazyImpl.getValue(SourceFile:21)
+07-30 23:48:59.942 29822 29822 W Bundle  : 	at uy.kohesive.injekt.registry.default.DefaultRegistrar$addSingletonFactory$1.invoke(SourceFile:50)
+07-30 23:48:59.942 29822 29822 W Bundle  : 	at uy.kohesive.injekt.registry.default.DefaultRegistrar.getInstance(SourceFile:16)
+07-30 23:48:59.942 29822 29822 W Bundle  : 	at eu.kanade.tachiyomi.AppModule$$ExternalSyntheticLambda16.invoke(SourceFile:1055)
+07-30 23:48:59.942 29822 29822 W Bundle  : 	at uy.kohesive.injekt.registry.default.DefaultRegistrar$addSingletonFactory$1$1$1.invoke(SourceFile:3)
+07-30 23:48:59.942 29822 29822 W Bundle  : 	at kotlin.SynchronizedLazyImpl.getValue(SourceFile:21)
+07-30 23:48:59.942 29822 29822 W Bundle  : 	at uy.kohesive.injekt.registry.default.DefaultRegistrar$addSingletonFactory$1.invoke(SourceFile:50)
+07-30 23:48:59.942 29822 29822 W Bundle  : 	at uy.kohesive.injekt.registry.default.DefaultRegistrar.getInstance(SourceFile:16)
+07-30 23:48:59.942 29822 29822 W Bundle  : 	at uy.kohesive.injekt.api.InjektScope.getInstance(Unknown Source:7)
+07-30 23:48:59.942 29822 29822 W Bundle  : 	at eu.kanade.tachiyomi.ui.library.LibraryPresenter.<init>(SourceFile:17)
+07-30 23:48:59.942 29822 29822 W Bundle  : 	at eu.kanade.tachiyomi.ui.library.LibraryController.<init>(SourceFile:18)
+07-30 23:48:59.942 29822 29822 W Bundle  : 	at eu.kanade.tachiyomi.ui.library.LibraryController.<init>(SourceFile:6)
+07-30 23:48:59.942 29822 29822 W Bundle  : 	at eu.kanade.tachiyomi.ui.main.MainActivity$$ExternalSyntheticLambda12.onNavigationItemSelected(SourceFile:167)
+07-30 23:48:59.942 29822 29822 W Bundle  : 	at com.google.android.material.navigation.NavigationBarView$1.onMenuItemSelected(SourceFile:46)
+07-30 23:48:59.942 29822 29822 W Bundle  : 	at androidx.appcompat.view.menu.MenuBuilder.dispatchMenuItemSelected(SourceFile:5)
+07-30 23:48:59.942 29822 29822 W Bundle  : 	at androidx.appcompat.view.menu.MenuBuilder.performItemAction(SourceFile:5)
+07-30 23:48:59.942 29822 29822 W Bundle  : 	at com.google.android.material.navigation.NavigationBarView.setSelectedItemId(SourceFile:14)
+07-30 23:48:59.942 29822 29822 W Bundle  : 	at eu.kanade.tachiyomi.ui.main.MainActivity.onCreate(SourceFile:732)
+07-30 23:48:59.942 29822 29822 W Bundle  : 	at android.app.Activity.performCreate(Activity.java:9758)
+07-30 23:48:59.942 29822 29822 W Bundle  : 	at android.app.Activity.performCreate(Activity.java:9727)
+07-30 23:48:59.942 29822 29822 W Bundle  : 	at android.app.Instrumentation.callActivityOnCreate(Instrumentation.java:1544)
+07-30 23:48:59.942 29822 29822 W Bundle  : 	at android.app.ActivityThread.performLaunchActivity(ActivityThread.java:5024)
+07-30 23:48:59.942 29822 29822 W Bundle  : 	at android.app.ActivityThread.handleLaunchActivity(ActivityThread.java:5290)
+07-30 23:48:59.942 29822 29822 W Bundle  : 	at android.app.servertransaction.LaunchActivityItem.execute(LaunchActivityItem.java:224)
+07-30 23:48:59.942 29822 29822 W Bundle  : 	at android.app.servertransaction.TransactionExecutor.executeNonLifecycleItem(TransactionExecutor.java:133)
+07-30 23:48:59.942 29822 29822 W Bundle  : 	at android.app.servertransaction.TransactionExecutor.executeTransactionItems(TransactionExecutor.java:103)
+07-30 23:48:59.942 29822 29822 W Bundle  : 	at android.app.servertransaction.TransactionExecutor.execute(TransactionExecutor.java:80)
+07-30 23:48:59.942 29822 29822 W Bundle  : 	at android.app.ActivityThread$H.handleMessage(ActivityThread.java:3287)
+07-30 23:48:59.942 29822 29822 W Bundle  : 	at android.os.Handler.dispatchMessage(Handler.java:132)
+07-30 23:48:59.942 29822 29822 W Bundle  : 	at android.os.Looper.dispatchMessage(Looper.java:358)
+07-30 23:48:59.942 29822 29822 W Bundle  : 	at android.os.Looper.loopOnce(Looper.java:288)
+07-30 23:48:59.942 29822 29822 W Bundle  : 	at android.os.Looper.loop(Looper.java:392)
+07-30 23:48:59.942 29822 29822 W Bundle  : 	at android.app.ActivityThread.main(ActivityThread.java:10346)
+07-30 23:48:59.942 29822 29822 W Bundle  : 	at java.lang.reflect.Method.invoke(Native Method)
+07-30 23:48:59.942 29822 29822 W Bundle  : 	at com.android.internal.os.RuntimeInit$MethodAndArgsCaller.run(RuntimeInit.java:638)
+07-30 23:48:59.942 29822 29822 W Bundle  : 	at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:972)
+07-30 23:48:59.942 29822 29822 W com.hugofm.yomu: Unsupported class loader: java.lang.Class<eu.kanade.tachiyomi.util.system.ChildFirstPathClassLoader>
+07-30 23:48:59.947 29822 29822 W com.hugofm.yomu: Unsupported class loader: java.lang.Class<eu.kanade.tachiyomi.util.system.ChildFirstPathClassLoader>
+07-30 23:48:59.947 29822 29822 W com.hugofm.yomu: Unsupported class loader: java.lang.Class<eu.kanade.tachiyomi.util.system.ChildFirstPathClassLoader>
+07-30 23:48:59.965 29822 29822 W Bundle  : Key tachiyomix.extensionLib expected Double but value was a java.lang.Float.  The default value 0.0 was returned.
+07-30 23:48:59.965 29822 29822 W Bundle  : Attempt to cast generated internal exception:
+07-30 23:48:59.965 29822 29822 W Bundle  : java.lang.ClassCastException: java.lang.Float cannot be cast to java.lang.Double
+07-30 23:48:59.965 29822 29822 W Bundle  : 	at android.os.BaseBundle.getDouble(BaseBundle.java:1443)
+07-30 23:48:59.965 29822 29822 W Bundle  : 	at android.os.BaseBundle.getDouble(BaseBundle.java:1425)
+07-30 23:48:59.965 29822 29822 W Bundle  : 	at eu.kanade.tachiyomi.extension.util.ExtensionLoader.loadExtension(SourceFile:76)
+07-30 23:48:59.965 29822 29822 W Bundle  : 	at eu.kanade.tachiyomi.extension.util.ExtensionLoader$loadExtensions$1$deferred$1$1.invokeSuspend(SourceFile:16)
+07-30 23:48:59.965 29822 29822 W Bundle  : 	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(SourceFile:12)
+07-30 23:48:59.965 29822 29822 W Bundle  : 	at kotlinx.coroutines.DispatchedTask.run(SourceFile:129)
+07-30 23:48:59.965 29822 29822 W Bundle  : 	at kotlinx.coroutines.EventLoopImplBase.processNextEvent(SourceFile:86)
+07-30 23:48:59.965 29822 29822 W Bundle  : 	at kotlinx.coroutines.BlockingCoroutine.joinBlocking(SourceFile:23)
+07-30 23:48:59.965 29822 29822 W Bundle  : 	at kotlinx.coroutines.BuildersKt__BuildersKt.runBlocking(SourceFile:60)
+07-30 23:48:59.965 29822 29822 W Bundle  : 	at kotlinx.coroutines.BuildersKt__BuildersKt.runBlocking$default(SourceFile:7)
+07-30 23:48:59.965 29822 29822 W Bundle  : 	at kotlinx.coroutines.BuildersKt.runBlocking$default(SourceFile:1)
+07-30 23:48:59.965 29822 29822 W Bundle  : 	at eu.kanade.tachiyomi.extension.util.ExtensionLoader.loadExtensions(SourceFile:17)
+07-30 23:48:59.965 29822 29822 W Bundle  : 	at eu.kanade.tachiyomi.extension.ExtensionManager.<init>(SourceFile:30)
+07-30 23:48:59.965 29822 29822 W Bundle  : 	at eu.kanade.tachiyomi.extension.ExtensionManager.<init>(SourceFile:9)
+07-30 23:48:59.965 29822 29822 W Bundle  : 	at eu.kanade.tachiyomi.AppModule$$ExternalSyntheticLambda0.invoke(SourceFile:56)
+07-30 23:48:59.965 29822 29822 W Bundle  : 	at uy.kohesive.injekt.registry.default.DefaultRegistrar$addSingletonFactory$1$1$1.invoke(SourceFile:3)
+07-30 23:48:59.965 29822 29822 W Bundle  : 	at kotlin.SynchronizedLazyImpl.getValue(SourceFile:21)
+07-30 23:48:59.965 29822 29822 W Bundle  : 	at uy.kohesive.injekt.registry.default.DefaultRegistrar$addSingletonFactory$1.invoke(SourceFile:50)
+07-30 23:48:59.965 29822 29822 W Bundle  : 	at uy.kohesive.injekt.registry.default.DefaultRegistrar.getInstance(SourceFile:16)
+07-30 23:48:59.965 29822 29822 W Bundle  : 	at eu.kanade.tachiyomi.AppModule$$ExternalSyntheticLambda16.invoke(SourceFile:1055)
+07-30 23:48:59.965 29822 29822 W Bundle  : 	at uy.kohesive.injekt.registry.default.DefaultRegistrar$addSingletonFactory$1$1$1.invoke(SourceFile:3)
+07-30 23:48:59.965 29822 29822 W Bundle  : 	at kotlin.SynchronizedLazyImpl.getValue(SourceFile:21)
+07-30 23:48:59.965 29822 29822 W Bundle  : 	at uy.kohesive.injekt.registry.default.DefaultRegistrar$addSingletonFactory$1.invoke(SourceFile:50)
+07-30 23:48:59.965 29822 29822 W Bundle  : 	at uy.kohesive.injekt.registry.default.DefaultRegistrar.getInstance(SourceFile:16)
+07-30 23:48:59.965 29822 29822 W Bundle  : 	at uy.kohesive.injekt.api.InjektScope.getInstance(Unknown Source:7)
+07-30 23:48:59.965 29822 29822 W Bundle  : 	at eu.kanade.tachiyomi.ui.library.LibraryPresenter.<init>(SourceFile:17)
+07-30 23:48:59.965 29822 29822 W Bundle  : 	at eu.kanade.tachiyomi.ui.library.LibraryController.<init>(SourceFile:18)
+07-30 23:48:59.965 29822 29822 W Bundle  : 	at eu.kanade.tachiyomi.ui.library.LibraryController.<init>(SourceFile:6)
+07-30 23:48:59.965 29822 29822 W Bundle  : 	at eu.kanade.tachiyomi.ui.main.MainActivity$$ExternalSyntheticLambda12.onNavigationItemSelected(SourceFile:167)
+07-30 23:48:59.965 29822 29822 W Bundle  : 	at com.google.android.material.navigation.NavigationBarView$1.onMenuItemSelected(SourceFile:46)
+07-30 23:48:59.965 29822 29822 W Bundle  : 	at androidx.appcompat.view.menu.MenuBuilder.dispatchMenuItemSelected(SourceFile:5)
+07-30 23:48:59.965 29822 29822 W Bundle  : 	at androidx.appcompat.view.menu.MenuBuilder.performItemAction(SourceFile:5)
+07-30 23:48:59.965 29822 29822 W Bundle  : 	at com.google.android.material.navigation.NavigationBarView.setSelectedItemId(SourceFile:14)
+07-30 23:48:59.965 29822 29822 W Bundle  : 	at eu.kanade.tachiyomi.ui.main.MainActivity.onCreate(SourceFile:732)
+07-30 23:48:59.965 29822 29822 W Bundle  : 	at android.app.Activity.performCreate(Activity.java:9758)
+07-30 23:48:59.965 29822 29822 W Bundle  : 	at android.app.Activity.performCreate(Activity.java:9727)
+07-30 23:48:59.965 29822 29822 W Bundle  : 	at android.app.Instrumentation.callActivityOnCreate(Instrumentation.java:1544)
+07-30 23:48:59.965 29822 29822 W Bundle  : 	at android.app.ActivityThread.performLaunchActivity(ActivityThread.java:5024)
+07-30 23:48:59.965 29822 29822 W Bundle  : 	at android.app.ActivityThread.handleLaunchActivity(ActivityThread.java:5290)
+07-30 23:48:59.965 29822 29822 W Bundle  : 	at android.app.servertransaction.LaunchActivityItem.execute(LaunchActivityItem.java:224)
+07-30 23:48:59.965 29822 29822 W Bundle  : 	at android.app.servertransaction.TransactionExecutor.executeNonLifecycleItem(TransactionExecutor.java:133)
+07-30 23:48:59.965 29822 29822 W Bundle  : 	at android.app.servertransaction.TransactionExecutor.executeTransactionItems(TransactionExecutor.java:103)
+07-30 23:48:59.965 29822 29822 W Bundle  : 	at android.app.servertransaction.TransactionExecutor.execute(TransactionExecutor.java:80)
+07-30 23:48:59.965 29822 29822 W Bundle  : 	at android.app.ActivityThread$H.handleMessage(ActivityThread.java:3287)
+07-30 23:48:59.965 29822 29822 W Bundle  : 	at android.os.Handler.dispatchMessage(Handler.java:132)
+07-30 23:48:59.965 29822 29822 W Bundle  : 	at android.os.Looper.dispatchMessage(Looper.java:358)
+07-30 23:48:59.965 29822 29822 W Bundle  : 	at android.os.Looper.loopOnce(Looper.java:288)
+07-30 23:48:59.965 29822 29822 W Bundle  : 	at android.os.Looper.loop(Looper.java:392)
+07-30 23:48:59.965 29822 29822 W Bundle  : 	at android.app.ActivityThread.main(ActivityThread.java:10346)
+07-30 23:48:59.965 29822 29822 W Bundle  : 	at java.lang.reflect.Method.invoke(Native Method)
+07-30 23:48:59.965 29822 29822 W Bundle  : 	at com.android.internal.os.RuntimeInit$MethodAndArgsCaller.run(RuntimeInit.java:638)
+07-30 23:48:59.965 29822 29822 W Bundle  : 	at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:972)
+07-30 23:48:59.965 29822 29822 W com.hugofm.yomu: Unsupported class loader: java.lang.Class<eu.kanade.tachiyomi.util.system.ChildFirstPathClassLoader>
+07-30 23:48:59.966 29822 29822 W com.hugofm.yomu: Unsupported class loader: java.lang.Class<eu.kanade.tachiyomi.util.system.ChildFirstPathClassLoader>
+07-30 23:48:59.966 29822 29822 W com.hugofm.yomu: Unsupported class loader: java.lang.Class<eu.kanade.tachiyomi.util.system.ChildFirstPathClassLoader>
+07-30 23:48:59.975 29822 29822 W Bundle  : Key tachiyomix.extensionLib expected Double but value was a java.lang.Float.  The default value 0.0 was returned.
+07-30 23:48:59.975 29822 29822 W Bundle  : Attempt to cast generated internal exception:
+07-30 23:48:59.975 29822 29822 W Bundle  : java.lang.ClassCastException: java.lang.Float cannot be cast to java.lang.Double
+07-30 23:48:59.975 29822 29822 W Bundle  : 	at android.os.BaseBundle.getDouble(BaseBundle.java:1443)
+07-30 23:48:59.975 29822 29822 W Bundle  : 	at android.os.BaseBundle.getDouble(BaseBundle.java:1425)
+07-30 23:48:59.975 29822 29822 W Bundle  : 	at eu.kanade.tachiyomi.extension.util.ExtensionLoader.loadExtension(SourceFile:76)
+07-30 23:48:59.975 29822 29822 W Bundle  : 	at eu.kanade.tachiyomi.extension.util.ExtensionLoader$loadExtensions$1$deferred$1$1.invokeSuspend(SourceFile:16)
+07-30 23:48:59.975 29822 29822 W Bundle  : 	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(SourceFile:12)
+07-30 23:48:59.975 29822 29822 W Bundle  : 	at kotlinx.coroutines.DispatchedTask.run(SourceFile:129)
+07-30 23:48:59.975 29822 29822 W Bundle  : 	at kotlinx.coroutines.EventLoopImplBase.processNextEvent(SourceFile:86)
+07-30 23:48:59.975 29822 29822 W Bundle  : 	at kotlinx.coroutines.BlockingCoroutine.joinBlocking(SourceFile:23)
+07-30 23:48:59.975 29822 29822 W Bundle  : 	at kotlinx.coroutines.BuildersKt__BuildersKt.runBlocking(SourceFile:60)
+07-30 23:48:59.975 29822 29822 W Bundle  : 	at kotlinx.coroutines.BuildersKt__BuildersKt.runBlocking$default(SourceFile:7)
+07-30 23:48:59.975 29822 29822 W Bundle  : 	at kotlinx.coroutines.BuildersKt.runBlocking$default(SourceFile:1)
+07-30 23:48:59.975 29822 29822 W Bundle  : 	at eu.kanade.tachiyomi.extension.util.ExtensionLoader.loadExtensions(SourceFile:17)
+07-30 23:48:59.975 29822 29822 W Bundle  : 	at eu.kanade.tachiyomi.extension.ExtensionManager.<init>(SourceFile:30)
+07-30 23:48:59.975 29822 29822 W Bundle  : 	at eu.kanade.tachiyomi.extension.ExtensionManager.<init>(SourceFile:9)
+07-30 23:48:59.975 29822 29822 W Bundle  : 	at eu.kanade.tachiyomi.AppModule$$ExternalSyntheticLambda0.invoke(SourceFile:56)
+07-30 23:48:59.975 29822 29822 W Bundle  : 	at uy.kohesive.injekt.registry.default.DefaultRegistrar$addSingletonFactory$1$1$1.invoke(SourceFile:3)
+07-30 23:48:59.975 29822 29822 W Bundle  : 	at kotlin.SynchronizedLazyImpl.getValue(SourceFile:21)
+07-30 23:48:59.975 29822 29822 W Bundle  : 	at uy.kohesive.injekt.registry.default.DefaultRegistrar$addSingletonFactory$1.invoke(SourceFile:50)
+07-30 23:48:59.975 29822 29822 W Bundle  : 	at uy.kohesive.injekt.registry.default.DefaultRegistrar.getInstance(SourceFile:16)
+07-30 23:48:59.975 29822 29822 W Bundle  : 	at eu.kanade.tachiyomi.AppModule$$ExternalSyntheticLambda16.invoke(SourceFile:1055)
+07-30 23:48:59.975 29822 29822 W Bundle  : 	at uy.kohesive.injekt.registry.default.DefaultRegistrar$addSingletonFactory$1$1$1.invoke(SourceFile:3)
+07-30 23:48:59.975 29822 29822 W Bundle  : 	at kotlin.SynchronizedLazyImpl.getValue(SourceFile:21)
+07-30 23:48:59.975 29822 29822 W Bundle  : 	at uy.kohesive.injekt.registry.default.DefaultRegistrar$addSingletonFactory$1.invoke(SourceFile:50)
+07-30 23:48:59.975 29822 29822 W Bundle  : 	at uy.kohesive.injekt.registry.default.DefaultRegistrar.getInstance(SourceFile:16)
+07-30 23:48:59.975 29822 29822 W Bundle  : 	at uy.kohesive.injekt.api.InjektScope.getInstance(Unknown Source:7)
+07-30 23:48:59.975 29822 29822 W Bundle  : 	at eu.kanade.tachiyomi.ui.library.LibraryPresenter.<init>(SourceFile:17)
+07-30 23:48:59.975 29822 29822 W Bundle  : 	at eu.kanade.tachiyomi.ui.library.LibraryController.<init>(SourceFile:18)
+07-30 23:48:59.975 29822 29822 W Bundle  : 	at eu.kanade.tachiyomi.ui.library.LibraryController.<init>(SourceFile:6)
+07-30 23:48:59.975 29822 29822 W Bundle  : 	at eu.kanade.tachiyomi.ui.main.MainActivity$$ExternalSyntheticLambda12.onNavigationItemSelected(SourceFile:167)
+07-30 23:48:59.975 29822 29822 W Bundle  : 	at com.google.android.material.navigation.NavigationBarView$1.onMenuItemSelected(SourceFile:46)
+07-30 23:48:59.975 29822 29822 W Bundle  : 	at androidx.appcompat.view.menu.MenuBuilder.dispatchMenuItemSelected(SourceFile:5)
+07-30 23:48:59.975 29822 29822 W Bundle  : 	at androidx.appcompat.view.menu.MenuBuilder.performItemAction(SourceFile:5)
+07-30 23:48:59.975 29822 29822 W Bundle  : 	at com.google.android.material.navigation.NavigationBarView.setSelectedItemId(SourceFile:14)
+07-30 23:48:59.975 29822 29822 W Bundle  : 	at eu.kanade.tachiyomi.ui.main.MainActivity.onCreate(SourceFile:732)
+07-30 23:48:59.975 29822 29822 W Bundle  : 	at android.app.Activity.performCreate(Activity.java:9758)
+07-30 23:48:59.975 29822 29822 W Bundle  : 	at android.app.Activity.performCreate(Activity.java:9727)
+07-30 23:48:59.975 29822 29822 W Bundle  : 	at android.app.Instrumentation.callActivityOnCreate(Instrumentation.java:1544)
+07-30 23:48:59.975 29822 29822 W Bundle  : 	at android.app.ActivityThread.performLaunchActivity(ActivityThread.java:5024)
+07-30 23:48:59.975 29822 29822 W Bundle  : 	at android.app.ActivityThread.handleLaunchActivity(ActivityThread.java:5290)
+07-30 23:48:59.975 29822 29822 W Bundle  : 	at android.app.servertransaction.LaunchActivityItem.execute(LaunchActivityItem.java:224)
+07-30 23:48:59.975 29822 29822 W Bundle  : 	at android.app.servertransaction.TransactionExecutor.executeNonLifecycleItem(TransactionExecutor.java:133)
+07-30 23:48:59.975 29822 29822 W Bundle  : 	at android.app.servertransaction.TransactionExecutor.executeTransactionItems(TransactionExecutor.java:103)
+07-30 23:48:59.975 29822 29822 W Bundle  : 	at android.app.servertransaction.TransactionExecutor.execute(TransactionExecutor.java:80)
+07-30 23:48:59.975 29822 29822 W Bundle  : 	at android.app.ActivityThread$H.handleMessage(ActivityThread.java:3287)
+07-30 23:48:59.975 29822 29822 W Bundle  : 	at android.os.Handler.dispatchMessage(Handler.java:132)
+07-30 23:48:59.975 29822 29822 W Bundle  : 	at android.os.Looper.dispatchMessage(Looper.java:358)
+07-30 23:48:59.975 29822 29822 W Bundle  : 	at android.os.Looper.loopOnce(Looper.java:288)
+07-30 23:48:59.975 29822 29822 W Bundle  : 	at android.os.Looper.loop(Looper.java:392)
+07-30 23:48:59.975 29822 29822 W Bundle  : 	at android.app.ActivityThread.main(ActivityThread.java:10346)
+07-30 23:48:59.975 29822 29822 W Bundle  : 	at java.lang.reflect.Method.invoke(Native Method)
+07-30 23:48:59.975 29822 29822 W Bundle  : 	at com.android.internal.os.RuntimeInit$MethodAndArgsCaller.run(RuntimeInit.java:638)
+07-30 23:48:59.975 29822 29822 W Bundle  : 	at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:972)
+07-30 23:48:59.975 29822 29822 W com.hugofm.yomu: Unsupported class loader: java.lang.Class<eu.kanade.tachiyomi.util.system.ChildFirstPathClassLoader>
+07-30 23:48:59.987 29822 29822 W com.hugofm.yomu: Unsupported class loader: java.lang.Class<eu.kanade.tachiyomi.util.system.ChildFirstPathClassLoader>
+07-30 23:48:59.987 29822 29822 W com.hugofm.yomu: Unsupported class loader: java.lang.Class<eu.kanade.tachiyomi.util.system.ChildFirstPathClassLoader>
+07-30 23:49:00.009 29822 29822 E SQLiteLog: (283) recovered 104 frames from WAL file /data/data/com.hugofm.yomu/databases/tachiyomi.db-wal
+07-30 23:49:00.027 29822 29882 E SQLiteLog: (28) double-quoted string literal: "N/A"
+07-30 23:49:00.027 29822 29882 E SQLiteLog: (28) double-quoted string literal: " [.] "
+07-30 23:49:00.027 29822 29882 E SQLiteLog: (28) double-quoted string literal: "N/A"
+07-30 23:49:00.027 29822 29882 E SQLiteLog: (28) double-quoted string literal: " [.] "
+07-30 23:49:00.027 29822 29882 E SQLiteLog: (284) automatic index on C(manga_id)
+07-30 23:49:00.027 29822 29882 E SQLiteLog: (284) automatic index on R(manga_id)
+07-30 23:49:00.027 29822 29882 E SQLiteLog: (284) automatic index on B(manga_id)
+07-30 23:49:00.027 29822 29882 E SQLiteLog: (284) automatic index on mangas_categories(manga_id)
+07-30 23:49:00.056 29822 29822 E BufferQueueProducer: Unable to open libpenguin.so: dlopen failed: library "libpenguin.so" not found.
+07-30 23:49:00.057 29822 29822 E com.hugofm.yomu: Unable to open libpenguin.so: dlopen failed: library "libpenguin.so" not found.
+07-30 23:49:00.057 29822 29822 W libc    : Access denied finding property "vendor.display.enable_optimal_refresh_rate"
+07-30 23:49:00.057 29822 29822 W libc    : Access denied finding property "vendor.display.enable_optimal_refresh_rate"
+07-30 23:49:00.066 29822 29852 W qdgralloc: getInterlacedFlag: getMetaData returned 3, defaulting to interlaced_flag = 0
+07-30 23:49:00.080 29822 29852 W qdgralloc: getInterlacedFlag: getMetaData returned 3, defaulting to interlaced_flag = 0
+07-30 23:49:00.085 29822 29852 W qdgralloc: getInterlacedFlag: getMetaData returned 3, defaulting to interlaced_flag = 0
+07-30 23:49:00.098 29822 29852 W qdgralloc: getInterlacedFlag: getMetaData returned 3, defaulting to interlaced_flag = 0
+07-30 23:49:01.527 29822 29822 W View    : requestLayout() improperly called by eu.kanade.tachiyomi.ui.extension.RecyclerWithScrollerView{4d481c9 V.E...... ......ID 0,0-1440,2906 #7f0a03ae app:id/recycler_layout} during layout: running second layout pass
+07-30 23:49:01.527 29822 29822 W View    : requestLayout() improperly called by eu.kanade.tachiyomi.ui.base.MaterialFastScroll{87cb0ce V.E...... ......ID 0,0-1440,2651 #7f0a0228 app:id/fast_scroller} during layout: running second layout pass
+07-30 23:49:01.527 29822 29822 W View    : requestLayout() improperly called by eu.kanade.tachiyomi.ui.extension.RecyclerWithScrollerView{84a3bef V.E...... ......ID 1440,0-2880,2906 #7f0a03ae app:id/recycler_layout} during layout: running second layout pass
+07-30 23:49:01.527 29822 29822 W View    : requestLayout() improperly called by eu.kanade.tachiyomi.ui.base.MaterialFastScroll{fb886fc V.E...... ......ID 0,0-1440,2651 #7f0a0228 app:id/fast_scroller} during layout: running second layout pass
+07-30 23:49:02.667 29822 29827 W com.hugofm.yomu: userfaultfd: MOVE ioctl seems unsupported: Connection timed out
+07-30 23:49:10.218 29822 29822 W libc    : Access denied finding property "vendor.display.enable_optimal_refresh_rate"
+07-30 23:49:10.219 29822 29822 W libc    : Access denied finding property "vendor.display.enable_optimal_refresh_rate"
+07-30 23:49:10.224 29822 29852 W qdgralloc: getInterlacedFlag: getMetaData returned 3, defaulting to interlaced_flag = 0
+07-30 23:49:11.123 29822 29852 W qdgralloc: getInterlacedFlag: getMetaData returned 3, defaulting to interlaced_flag = 0
+07-30 23:49:11.131 29822 29852 W qdgralloc: getInterlacedFlag: getMetaData returned 3, defaulting to interlaced_flag = 0
+07-30 23:49:11.139 29822 29852 W qdgralloc: getInterlacedFlag: getMetaData returned 3, defaulting to interlaced_flag = 0

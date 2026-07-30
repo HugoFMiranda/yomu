@@ -299,7 +299,13 @@ internal object ExtensionLoader {
 
         // Validate lib version: declared in manifest metadata by newer
         // extensions, otherwise derived from the versionName prefix
-        val libVersion = appInfo.metaData.getDouble(METADATA_EXTENSION_LIB).takeUnless { it == 0.0 }
+        // Stored as a float by the extension build tooling; reading it as a double makes the
+        // Bundle log a ClassCastException and hand back 0.0. Round-trip through the string form
+        // like Mihon does, so 1.6f doesn't widen to 1.5999999046325684.
+        val libVersion = appInfo.metaData.getFloat(METADATA_EXTENSION_LIB)
+            .takeUnless { it == 0.0f }
+            ?.toString()
+            ?.toDouble()
             ?: versionName.substringBeforeLast('.').toDoubleOrNull()
         if (libVersion == null || libVersion < LIB_VERSION_MIN || libVersion > LIB_VERSION_MAX) {
             Timber.w(

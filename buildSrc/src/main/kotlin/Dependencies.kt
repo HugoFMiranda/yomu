@@ -2,7 +2,9 @@ import java.util.Locale
 
 object AndroidVersions {
     const val compileSdk = 35
-    const val minSdk = 23
+    // 26 matches Mihon. Below API 24 D8 desugars default interface methods, which strips the
+    // bodies extensions rely on — see the AbstractMethodError on GeneratedSerializer.
+    const val minSdk = 26
     const val targetSdk = 34
     const val versionCode = 125
     const val versionName = "1.7.19"

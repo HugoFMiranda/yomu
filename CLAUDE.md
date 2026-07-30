@@ -18,8 +18,18 @@ via `HugoFMiranda/yomu`). See `REBRAND_PLAN.md` for the original spec.
 Firebase is fully removed. Tracker OAuth intent-filters intentionally keep
 the upstream `tachiyomi`/`tachiyomij2k` schemes — they must match the
 redirect URIs registered with the upstream OAuth client IDs the app still
-uses. Launcher icon is a placeholder vector pending real artwork; legacy
-PNG mipmaps (API 23-25) still show upstream art.
+uses. Launcher icon is a placeholder vector pending real artwork; the legacy
+PNG mipmaps are now unreachable (see minSdk below) but still ship.
+
+**minSdk is 26 and must not go below 24.** Under API 24 D8 desugars default
+interface methods: the body is moved out and the interface method becomes
+abstract in our dex. Extensions are built against the unmodified libraries
+and don't override those methods, so they die with `AbstractMethodError`
+(hit in the wild on `kotlinx.serialization.internal.GeneratedSerializer.
+typeParametersSerializers()`). 26 matches Mihon, which is what extensions
+target. To check a built APK:
+`dexdump -d classes.dex | grep -A3 GeneratedSerializer` — the method must not
+be `PUBLIC ABSTRACT`.
 
 ## Environment
 
